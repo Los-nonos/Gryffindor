@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const Joi = require("joi");
+const Joi = tslib_1.__importStar(require("joi"));
 const inversify_1 = require("inversify");
 let Validator = class Validator {
     validator(data, schema) {
