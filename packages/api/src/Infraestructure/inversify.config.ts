@@ -5,12 +5,9 @@ import 'reflect-metadata';
 //Erros imports
 import ErrorHandler from '../Infraestructure/utils/ErrorHandler';
 
-
-
 import Validator from '../API/Http/Validator/Validator';
 
 var container = new Container();
-
 
 // Errors services
 container.bind<ErrorHandler>(ErrorHandler).toSelf();
