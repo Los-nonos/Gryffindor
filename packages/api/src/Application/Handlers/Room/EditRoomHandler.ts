@@ -17,14 +17,14 @@ class EditRoomHandler {
     const room = await this.repository.FindById(command.getId());
 
     if (!room) {
-		throw new EntityNotFound('room not found');
-	}
+      throw new EntityNotFound('room not found');
+    }
 
-	room.Name = command.getName();
+    room.Name = command.getName();
 
-	await this.repository.Update(room);
+    await this.repository.Update(room);
 
-	return room;
+    return room;
   }
 }
 

@@ -7,21 +7,23 @@ import CreateRoomAdapter from '../../Adapter/Room/CreateRoomAdapter';
 import CreateRoomHandler from '../../../../Application/Handlers/Room/CreateRoomHandler';
 
 @injectable()
-class CreateRoomAction
-{
-	private adapter: CreateRoomAdapter;
-	private handler: CreateRoomHandler;
-	constructor(@inject(CreateRoomAdapter) adapter: CreateRoomAdapter, @inject(CreateRoomHandler) handler: CreateRoomHandler) {
-		this.adapter = adapter;
-		this.handler = handler;
-	}
-	public async execute(req: Request, res: Response) {
-		const command: any = this.adapter.from(req);
-		const response: any = await this.handler.execute(command);
-		const presenter = new Presenter(response);
+class CreateRoomAction {
+  private adapter: CreateRoomAdapter;
+  private handler: CreateRoomHandler;
+  constructor(
+    @inject(CreateRoomAdapter) adapter: CreateRoomAdapter,
+    @inject(CreateRoomHandler) handler: CreateRoomHandler,
+  ) {
+    this.adapter = adapter;
+    this.handler = handler;
+  }
+  public async execute(req: Request, res: Response) {
+    const command: any = this.adapter.from(req);
+    const response: any = await this.handler.execute(command);
+    const presenter = new Presenter(response);
 
-		res.status(HTTP_CODES.OK).json(success(presenter.getData(), null));
-	}
+    res.status(HTTP_CODES.OK).json(success(presenter.getData(), null));
+  }
 }
 
 export default CreateRoomAction;

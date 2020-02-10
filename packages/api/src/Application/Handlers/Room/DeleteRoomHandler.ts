@@ -11,10 +11,10 @@ class DeleteRoomHandler {
   constructor(@inject(INTERFACES.IRoomRepository) repository: IRoomRepository) {
     this.repository = repository;
   }
-  
+
   public async execute(command: DeleteRoomCommand): Promise<any> {
     const room = await this.repository.FindById(command.getId());
-    if(!room){
+    if (!room) {
       throw new EntityNotFound('room not found');
     }
 

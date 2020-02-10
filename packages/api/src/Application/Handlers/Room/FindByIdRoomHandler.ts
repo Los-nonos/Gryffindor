@@ -13,13 +13,13 @@ class FindByIdRoomHandler {
     this.repository = repository;
   }
   public async execute(command: FindByIdRoomCommand): Promise<Room> {
-	const room = await this.repository.FindById(command.getId());
+    const room = await this.repository.FindById(command.getId());
 
-	if(!room) {
-		throw new EntityNotFound(`room not found with id: ${command.getId()}`);
-	}
-	
-	return room;
+    if (!room) {
+      throw new EntityNotFound(`room not found with id: ${command.getId()}`);
+    }
+
+    return room;
   }
 }
 
