@@ -18,6 +18,10 @@ class RoomRepository implements IRoomRepository {
     return await this.repository.find();
   }
 
+  public async FindByName(name: string): Promise<Room> {
+    return await this.repository.findOne({ Name: name });
+  }
+
   public async Persist(t: Room): Promise<Room> {
     return await this.repository.save(t);
   }

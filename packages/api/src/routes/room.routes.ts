@@ -6,7 +6,7 @@ import DeleteRoomAction from '../API/Http/Actions/Room/DeleteRoomAction';
 import FindByIdRoomAction from '../API/Http/Actions/Room/FindByIdRoomAction';
 import FindRoomAction from '../API/Http/Actions/Room/FindRoomAction';
 import { Router, Request, Response, NextFunction } from 'express';
-import { authMiddleware } from '../API/Http/Middleware/AuthenticationMiddleware';
+import { authMiddleware } from '../API/Http/Middleware/AuthMiddleware';
 
 const router = Router();
 
