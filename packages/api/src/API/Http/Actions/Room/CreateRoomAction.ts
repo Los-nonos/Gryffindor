@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
-import Presenter from '../../Presenters/null';
-import { success } from '../../Presenters/Base/success';
+import Presenter from '../../Presenter/Room/CreateRoomPresenter';
+import { success } from '../../Presenter/Base/success';
 import { HTTP_CODES } from '../../Enums/HttpCodes';
-import CreateRoomAdapter from '../../Adapter/Room/CreateRoomAdapter';
+import CreateRoomAdapter from '../../Adapters/Room/CreateRoomAdapter';
 import CreateRoomHandler from '../../../../Application/Handlers/Room/CreateRoomHandler';
 
 @injectable()

@@ -1,17 +1,16 @@
 import IPresenter from '../Base/IPresenter';
+import Room from '../../../../Domain/Entities/Room';
 
 class FindRoomPresenter implements IPresenter {
-  private message: string;
-  private result: any;
-  constructor(result: any, message: string) {
+  private result: Room[];
+  constructor(result: Room[]) {
     this.result = result;
-    this.message = message;
   }
   public toJson(): string {
     return JSON.stringify(this.getData());
   }
   public getData(): object {
-    return { message: this.message, result: this.result };
+    return { result: this.result };
   }
 }
 

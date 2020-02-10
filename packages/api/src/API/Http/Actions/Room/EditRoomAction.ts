@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
-import Presenter from '../../Presenters/null';
-import { success } from '../../Presenters/Base/success';
+import Presenter from '../../Presenter/Room/EditRoomPresenter';
+import { success } from '../../Presenter/Base/success';
 import { HTTP_CODES } from '../../Enums/HttpCodes';
-import EditRoomAdapter from '../../Adapter/Room/EditRoomAdapter';
+import EditRoomAdapter from '../../Adapters/Room/EditRoomAdapter';
 import EditRoomHandler from '../../../../Application/Handlers/Room/EditRoomHandler';
 
 @injectable()
@@ -19,7 +19,7 @@ class EditRoomAction {
     const response: any = await this.handler.execute(command);
     const presenter = new Presenter(response);
 
-    res.status(HTTP_CODES.OK).json(success(presenter.getData(), null));
+    res.status(HTTP_CODES.OK).json(success(presenter.getData(), 'rooms founds'));
   }
 }
 
