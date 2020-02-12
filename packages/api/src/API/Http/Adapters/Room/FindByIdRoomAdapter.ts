@@ -12,11 +12,11 @@ class FindByIdRoomAdapter {
     this.validator = validator;
   }
   public async from(req: Request): Promise<FindByIdRoomCommand> {
-    const error = this.validator.validate(req.body, FindByIdRoomSchema);
+    const error = this.validator.validate(req.params, FindByIdRoomSchema);
     if (error) {
       throw new BadRequest(JSON.stringify(this.validator.validationResult(error)));
     }
-    return new FindByIdRoomCommand(req.body.id);
+    return new FindByIdRoomCommand(Number(req.params.id));
   }
 }
 

@@ -12,11 +12,11 @@ class DeleteRoomAdapter {
     this.validator = validator;
   }
   public async from(req: Request): Promise<DeleteRoomCommand> {
-    const error = this.validator.validate(req.body, DeleteRoomSchema);
+    const error = this.validator.validate(req.params, DeleteRoomSchema);
     if (error) {
       throw new BadRequest(JSON.stringify(this.validator.validationResult(error)));
     }
-    return new DeleteRoomCommand(req.body.id);
+    return new DeleteRoomCommand(Number(req.params.id));
   }
 }
 

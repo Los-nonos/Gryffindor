@@ -1,4 +1,3 @@
-import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
 import FindByIdRoomCommand from '../../Commands/Room/FindByIdRoomCommand';
 import IRoomRepository from '../../../Domain/Interfaces/IRoomRepository';

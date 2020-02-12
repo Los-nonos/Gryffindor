@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
-import Presenter from '../../Presenter/Room/DeleteRoomPresenter';
-import { success } from '../../Presenter/Base/success';
 import { HTTP_CODES } from '../../Enums/HttpCodes';
 import DeleteRoomAdapter from '../../Adapters/Room/DeleteRoomAdapter';
 import DeleteRoomHandler from '../../../../Application/Handlers/Room/DeleteRoomHandler';
@@ -20,10 +18,9 @@ class DeleteRoomAction {
   }
   public async execute(req: Request, res: Response) {
     const command: DeleteRoomCommand = await this.adapter.from(req);
-    const response: string = await this.handler.execute(command);
-    const presenter = new Presenter(response);
+    await this.handler.execute(command);
 
-    res.status(HTTP_CODES.OK).json(success(presenter.getData(), null));
+    res.status(HTTP_CODES.NO_CONTENT).end();
   }
 }
 
