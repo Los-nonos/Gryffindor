@@ -3,7 +3,7 @@ import { inject, injectable } from 'inversify';
 import Validator from '../../Validator/Validator';
 import { BadRequest } from '../../Errors/BadRequest';
 import EditHostelCommand from '../../../../Application/Commands/Hostel/EditHostelCommand';
-import {EditHostelSchema} from '../../Validator/Schemas/HostelSchema';
+import { EditHostelSchema } from '../../Validator/Schemas/HostelSchema';
 
 @injectable()
 class EditHostelAdapter {
@@ -16,7 +16,15 @@ class EditHostelAdapter {
     if (error) {
       throw new BadRequest(JSON.stringify(this.validator.validationResult(error)));
     }
-    return new EditHostelCommand(req.body.id, req.body.name, req.body.email, req.body.address, req.body.cuit, req.body.password, req.body.tinyDescription);
+    return new EditHostelCommand(
+      req.body.id,
+      req.body.name,
+      req.body.email,
+      req.body.address,
+      req.body.cuit,
+      req.body.password,
+      req.body.tinyDescription,
+    );
   }
 }
 

@@ -20,7 +20,7 @@ class CreateHostelAction {
   public async execute(req: Request, res: Response) {
     const command: any = await this.adapter.from(req);
     const response: any = await this.handler.execute(command);
-    
+
     const presenter = new Presenter(response);
 
     res.status(HTTP_CODES.OK).json(success(presenter.getData(), null));

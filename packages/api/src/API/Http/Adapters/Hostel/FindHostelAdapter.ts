@@ -16,7 +16,15 @@ class FindHostelAdapter {
     if (error) {
       throw new BadRequest(JSON.stringify(this.validator.validationResult(error)));
     }
-    return new FindHostelCommand(req.body.id, req.body.name, req.body.email, req.body.address, req.body.cuit, req.body.password, req.body.tinyDescription);
+    return new FindHostelCommand(
+      req.body.id,
+      req.body.name,
+      req.body.email,
+      req.body.address,
+      req.body.cuit,
+      req.body.password,
+      req.body.tinyDescription,
+    );
   }
 }
 
