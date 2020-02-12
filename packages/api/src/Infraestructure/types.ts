@@ -1,6 +1,6 @@
-let TYPES = {
+let INTERFACES = {
   //Hash services Interfaces
   IHashService: Symbol('IHashService'),
 };
 
-export default TYPES;
+export default INTERFACES;

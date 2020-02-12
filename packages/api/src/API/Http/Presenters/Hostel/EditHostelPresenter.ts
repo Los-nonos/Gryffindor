@@ -1,17 +1,24 @@
 import IPresenter from '../Base/IPresenter';
 
 class EditHostelPresenter implements IPresenter {
-  private message: string;
   private result: any;
-  constructor(result: any, message: string) {
+  constructor(result: any) {
     this.result = result;
-    this.message = message;
   }
   public toJson(): string {
     return JSON.stringify(this.getData());
   }
   public getData(): object {
-    return { message: this.message, result: this.result };
+    return {
+      data: {
+        id: this.result.Id,
+        name: this.result.Name,
+        address: this.result.Address,
+        email: this.result.Email,
+        cuit: this.result.Cuit,
+        tinyDescription: this.result.TinyDescription,
+      },
+    };
   }
 }
 
