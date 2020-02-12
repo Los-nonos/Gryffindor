@@ -2,7 +2,6 @@ import { inject, injectable } from 'inversify';
 import DeleteHostelCommand from '../../Commands/Hostel/DeleteHostelCommand';
 import INTERFACES from '../../../Infraestructure/types';
 import IHostelRepository from '../../../Domain/Interfaces/IHostelRepository';
-import Hostel from '../../../Domain/Entities/Hostel';
 import { EntityNotFound } from '../../../Infraestructure/Errors/EntityNotFound';
 
 @injectable()

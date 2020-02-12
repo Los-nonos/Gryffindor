@@ -3,8 +3,10 @@ import { inject, injectable } from 'inversify';
 import Presenter from '../../Presenters/Hostel/CreateHostelPresenter';
 import { success } from '../../Presenters/Base/success';
 import { HTTP_CODES } from '../../Enums/HttpCodes';
-import CreateHostelAdapter from '../../Adapter/Hostel/CreateHostelAdapter';
+import CreateHostelAdapter from '../../Adapters/Hostel/CreateHostelAdapter';
 import CreateHostelHandler from '../../../../Application/Handlers/Hostel/CreateHostelHandler';
+import CreateHostelCommand from '../../../../Application/Commands/Hostel/CreateHostelCommand';
+import Hostel from '../../../../Domain/Entities/Hostel';
 
 @injectable()
 class CreateHostelAction {
@@ -18,8 +20,8 @@ class CreateHostelAction {
     this.handler = handler;
   }
   public async execute(req: Request, res: Response) {
-    const command: any = await this.adapter.from(req);
-    const response: any = await this.handler.execute(command);
+    const command: CreateHostelCommand = await this.adapter.from(req);
+    const response: Hostel = await this.handler.execute(command);
 
     const presenter = new Presenter(response);
 

@@ -1,9 +1,10 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { inject, injectable } from 'inversify';
 import Validator from '../../Validator/Validator';
 import { BadRequest } from '../../Errors/BadRequest';
 import EditHostelCommand from '../../../../Application/Commands/Hostel/EditHostelCommand';
 import { EditHostelSchema } from '../../Validator/Schemas/HostelSchema';
+import { IdSchema } from '../../Validator/Schemas/IdSchema';
 
 @injectable()
 class EditHostelAdapter {
@@ -12,12 +13,16 @@ class EditHostelAdapter {
     this.validator = validator;
   }
   public async from(req: Request): Promise<EditHostelCommand> {
+    const errorId = this.validator.validate(req.params, IdSchema);
     const error = this.validator.validate(req.body, EditHostelSchema);
     if (error) {
       throw new BadRequest(JSON.stringify(this.validator.validationResult(error)));
     }
+    if (errorId) {
+      throw new BadRequest(JSON.stringify(this.validator.validationResult(errorId)));
+    }
     return new EditHostelCommand(
-      req.body.id,
+      Number(req.params.id),
       req.body.name,
       req.body.email,
       req.body.address,

@@ -1,4 +1,3 @@
-import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
 import FindHostelCommand from '../../Commands/Hostel/FindHostelCommand';
 import IHostelRepository from '../../../Domain/Interfaces/IHostelRepository';

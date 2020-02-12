@@ -3,6 +3,7 @@ import { inject, injectable } from 'inversify';
 import { HTTP_CODES } from '../../Enums/HttpCodes';
 import DeleteHostelAdapter from '../../Adapters/Hostel/DeleteHostelAdapter';
 import DeleteHostelHandler from '../../../../Application/Handlers/Hostel/DeleteHostelHandler';
+import DeleteHostelCommand from '../../../../Application/Commands/Hostel/DeleteHostelCommand';
 
 @injectable()
 class DeleteHostelAction {
@@ -16,7 +17,7 @@ class DeleteHostelAction {
     this.handler = handler;
   }
   public async execute(req: Request, res: Response) {
-    const command: any = await this.adapter.from(req);
+    const command: DeleteHostelCommand = await this.adapter.from(req);
     await this.handler.execute(command);
 
     res.status(HTTP_CODES.NO_CONTENT).end();

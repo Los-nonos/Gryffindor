@@ -18,6 +18,10 @@ class HostelRepository implements IHostelRepository {
     return await this.repository.find();
   }
 
+  public async FindByName(name: string): Promise<Hostel> {
+    return await this.repository.findOne({ Name: name });
+  }
+
   public async Persist(t: Hostel): Promise<Hostel> {
     return await this.repository.save(t);
   }

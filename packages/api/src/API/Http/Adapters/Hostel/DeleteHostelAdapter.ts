@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { inject, injectable } from 'inversify';
 import Validator from '../../Validator/Validator';
 import { BadRequest } from '../../Errors/BadRequest';
@@ -12,11 +12,11 @@ class DeleteHostelAdapter {
     this.validator = validator;
   }
   public async from(req: Request): Promise<DeleteHostelCommand> {
-    const error = this.validator.validate(req.body, DeleteHostelSchema);
+    const error = this.validator.validate(req.params, DeleteHostelSchema);
     if (error) {
       throw new BadRequest(JSON.stringify(this.validator.validationResult(error)));
     }
-    return new DeleteHostelCommand(req.body.id);
+    return new DeleteHostelCommand(Number(req.params.id));
   }
 }
 

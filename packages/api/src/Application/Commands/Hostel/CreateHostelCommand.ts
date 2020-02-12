@@ -1,21 +1,11 @@
 class CreateHostelCommand {
-  private readonly id: number;
   private readonly name: string;
   private readonly email: string;
   private readonly address: string;
   private readonly cuit: number;
   private readonly password: string;
   private readonly tinyDescription: string;
-  constructor(
-    id: number,
-    name: string,
-    email: string,
-    address: string,
-    cuit: number,
-    password: string,
-    tinyDescription: string,
-  ) {
-    this.id = id;
+  constructor(name: string, email: string, address: string, cuit: number, password: string, tinyDescription: string) {
     this.name = name;
     this.email = email;
     this.address = address;
@@ -24,9 +14,6 @@ class CreateHostelCommand {
     this.tinyDescription = tinyDescription;
   }
 
-  getId(): number {
-    return this.id;
-  }
   getName(): string {
     return this.name;
   }

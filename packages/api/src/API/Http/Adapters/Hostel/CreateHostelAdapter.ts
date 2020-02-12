@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { inject, injectable } from 'inversify';
 import Validator from '../../Validator/Validator';
 import { BadRequest } from '../../Errors/BadRequest';
@@ -16,8 +16,8 @@ class CreateHostelAdapter {
     if (error) {
       throw new BadRequest(JSON.stringify(this.validator.validationResult(error)));
     }
+
     return new CreateHostelCommand(
-      req.body.id,
       req.body.name,
       req.body.email,
       req.body.address,

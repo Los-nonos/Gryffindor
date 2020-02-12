@@ -5,6 +5,8 @@ import { success } from '../../Presenters/Base/success';
 import { HTTP_CODES } from '../../Enums/HttpCodes';
 import FindByIdHostelAdapter from '../../Adapters/Hostel/FindByIdHostelAdapter';
 import FindByIdHostelHandler from '../../../../Application/Handlers/Hostel/FindByIdHostelHandler';
+import FindByIdHostelCommand from '../../../../Application/Commands/Hostel/FindByIdHostelCommand';
+import Hostel from '../../../../Domain/Entities/Hostel';
 
 @injectable()
 class FindByIdHostelAction {
@@ -18,8 +20,8 @@ class FindByIdHostelAction {
     this.handler = handler;
   }
   public async execute(req: Request, res: Response) {
-    const command: any = await this.adapter.from(req);
-    const response: any = await this.handler.execute(command);
+    const command: FindByIdHostelCommand = await this.adapter.from(req);
+    const response: Hostel = await this.handler.execute(command);
     const presenter = new Presenter(response);
 
     res.status(HTTP_CODES.OK).json(success(presenter.getData(), 'Hostel found'));

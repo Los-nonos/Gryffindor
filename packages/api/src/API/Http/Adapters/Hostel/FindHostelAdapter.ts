@@ -1,9 +1,9 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { inject, injectable } from 'inversify';
 import Validator from '../../Validator/Validator';
 import { BadRequest } from '../../Errors/BadRequest';
 import FindHostelCommand from '../../../../Application/Commands/Hostel/FindHostelCommand';
-import HostelSchema from '../../Validator/Schemas/HostelSchema';
+import { FindHostelSchema } from '../../Validator/Schemas/HostelSchema';
 
 @injectable()
 class FindHostelAdapter {
@@ -12,7 +12,7 @@ class FindHostelAdapter {
     this.validator = validator;
   }
   public async from(req: Request): Promise<FindHostelCommand> {
-    const error = this.validator.validate(req.body, HostelSchema);
+    const error = this.validator.validate(req.body, FindHostelSchema);
     if (error) {
       throw new BadRequest(JSON.stringify(this.validator.validationResult(error)));
     }
