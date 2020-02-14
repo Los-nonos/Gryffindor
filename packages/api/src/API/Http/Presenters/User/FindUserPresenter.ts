@@ -1,19 +1,27 @@
 import IPresenter from '../Base/IPresenter';
+import User from '../../../../Domain/Entities/User';
 
-class FindUserPresenter implements IPresenter
-{
-	private message: string;
-	private result: any;
-	constructor(result: any, message: string) {
-		this.result = result;
-		this.message = message;
-	}
-	public toJson(): string {
-		return JSON.stringify(this.getData());
-	}
-	public getData(): object {
-		return { message: this.message, result: this.result };
-	}
+class FindUserPresenter implements IPresenter {
+  private result: User[];
+  constructor(result: any) {
+    this.result = result;
+  }
+  public toJson(): string {
+    return JSON.stringify(this.getData());
+  }
+  public getData(): object {
+    const data = this.result.map(user => {
+      return {
+        result: {
+          id: user.Id,
+          name: user.Name,
+          email: user.Email,
+          phone: user.Phone,
+        },
+      };
+    });
+    return { result: data };
+  }
 }
 
 export default FindUserPresenter;

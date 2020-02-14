@@ -1,19 +1,24 @@
 import IPresenter from '../Base/IPresenter';
+import User from '../../../../Domain/Entities/User';
 
-class CreateUserPresenter implements IPresenter
-{
-	private message: string;
-	private result: any;
-	constructor(result: any, message: string) {
-		this.result = result;
-		this.message = message;
-	}
-	public toJson(): string {
-		return JSON.stringify(this.getData());
-	}
-	public getData(): object {
-		return { message: this.message, result: this.result };
-	}
+class CreateUserPresenter implements IPresenter {
+  private result: User;
+  constructor(result: any) {
+    this.result = result;
+  }
+  public toJson(): string {
+    return JSON.stringify(this.getData());
+  }
+  public getData(): object {
+    return {
+      result: {
+        id: this.result.Id,
+        name: this.result.Name,
+        email: this.result.Email,
+        phone: this.result.Phone,
+      },
+    };
+  }
 }
 
 export default CreateUserPresenter;

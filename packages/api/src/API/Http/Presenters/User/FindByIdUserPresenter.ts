@@ -1,19 +1,23 @@
 import IPresenter from '../Base/IPresenter';
 
-class FindByIdUserPresenter implements IPresenter
-{
-	private message: string;
-	private result: any;
-	constructor(result: any, message: string) {
-		this.result = result;
-		this.message = message;
-	}
-	public toJson(): string {
-		return JSON.stringify(this.getData());
-	}
-	public getData(): object {
-		return { message: this.message, result: this.result };
-	}
+class FindByIdUserPresenter implements IPresenter {
+  private result: any;
+  constructor(result: any) {
+    this.result = result;
+  }
+  public toJson(): string {
+    return JSON.stringify(this.getData());
+  }
+  public getData(): object {
+    return {
+      result: {
+        id: this.result.Id,
+        name: this.result.Name,
+        email: this.result.Email,
+        phone: this.result.Phone,
+      },
+    };
+  }
 }
 
 export default FindByIdUserPresenter;

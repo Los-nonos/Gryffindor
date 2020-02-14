@@ -3,9 +3,9 @@ import 'reflect-metadata';
 // import TYPES from './types';
 
 //Erros imports
-import ErrorHandler from '../Infraestructure/utils/ErrorHandler';
+import ErrorHandler from '../utils/ErrorHandler';
 
-import Validator from '../API/Http/Validator/Validator';
+import Validator from '../../API/Http/Validator/Validator';
 
 var container = new Container();
 
