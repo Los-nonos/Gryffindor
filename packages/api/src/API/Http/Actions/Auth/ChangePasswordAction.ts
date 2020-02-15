@@ -17,10 +17,10 @@ class ChangePasswordAction {
   }
   public async execute(req: Request, res: Response) {
     const command: any = this.adapter.from(req);
-    
+
     await this.handler.execute(command);
 
-    res.status(HTTP_CODES.NO_CONTENT).end()
+    res.status(HTTP_CODES.NO_CONTENT).end();
   }
 }
 

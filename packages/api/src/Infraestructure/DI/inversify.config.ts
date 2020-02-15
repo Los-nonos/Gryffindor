@@ -33,7 +33,6 @@ import IUserRepository from '../../Domain/Interfaces/IUserRepository';
 
 import UserRepository from '../../Persistance/Repositories/UserRepository';
 
-
 //Erros imports
 import ErrorHandler from '../utils/ErrorHandler';
 

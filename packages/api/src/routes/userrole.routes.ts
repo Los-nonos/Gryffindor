@@ -1,66 +1,66 @@
 import container from '../Infraestructure/DI/inversify.config';
 import asyncMiddleware from '../API/Http/Middleware/AsyncMiddleware';
-import CreateUserAction from '../API/Http/Actions/User/CreateUserAction';
-import EditUserAction from '../API/Http/Actions/User/EditUserAction';
-import DeleteUserAction from '../API/Http/Actions/User/DeleteUserAction';
-import FindByIdUserAction from '../API/Http/Actions/User/FindByIdUserAction';
-import FindUserAction from '../API/Http/Actions/User/FindUserAction';
+import CreateUserRoleAction from '../API/Http/Actions/UserRole/CreateUserRoleAction';
+import EditUserRoleAction from '../API/Http/Actions/UserRole/EditUserRoleAction';
+import DeleteUserRoleAction from '../API/Http/Actions/UserRole/DeleteUserRoleAction';
+import FindByIdUserRoleAction from '../API/Http/Actions/UserRole/FindByIdUserRoleAction';
+import FindUserRoleAction from '../API/Http/Actions/UserRole/FindUserRoleAction';
 import { Router, Request, Response, NextFunction } from 'express';
 import { authMiddleware } from '../API/Http/Middleware/AuthMiddleware';
 
 const router = Router();
 
 router.post(
-  '/user',
+  '/userrole',
   (req: Request, res: Response, next: NextFunction) => {
     authMiddleware(req, res, next, ['admin']);
   },
   asyncMiddleware(async (req: Request, res: Response) => {
-    const action = container.resolve<CreateUserAction>(CreateUserAction);
+    const action = container.resolve<CreateUserRoleAction>(CreateUserRoleAction);
     await action.execute(req, res);
   }),
 );
 
 router.put(
-  '/user/:id',
+  '/userrole/:id',
   (req: Request, res: Response, next: NextFunction) => {
     authMiddleware(req, res, next, ['admin']);
   },
   asyncMiddleware(async (req: Request, res: Response) => {
-    const action = container.resolve<EditUserAction>(EditUserAction);
+    const action = container.resolve<EditUserRoleAction>(EditUserRoleAction);
     await action.execute(req, res);
   }),
 );
 
 router.get(
-  '/user',
+  '/userrole',
   (req: Request, res: Response, next: NextFunction) => {
     authMiddleware(req, res, next, ['admin']);
   },
   asyncMiddleware(async (req: Request, res: Response) => {
-    const action = container.resolve<FindUserAction>(FindUserAction);
+    const action = container.resolve<FindUserRoleAction>(FindUserRoleAction);
     await action.execute(req, res);
   }),
 );
 
 router.get(
-  '/user/:id',
+  '/userrole/:id',
   (req: Request, res: Response, next: NextFunction) => {
     authMiddleware(req, res, next, ['admin']);
   },
   asyncMiddleware(async (req: Request, res: Response) => {
-    const action = container.resolve<FindByIdUserAction>(FindByIdUserAction);
+    const action = container.resolve<FindByIdUserRoleAction>(FindByIdUserRoleAction);
     await action.execute(req, res);
   }),
 );
 
 router.delete(
-  '/user',
+  '/userrole',
   (req: Request, res: Response, next: NextFunction) => {
     authMiddleware(req, res, next, ['admin']);
   },
   asyncMiddleware(async (req: Request, res: Response) => {
-    const action = container.resolve<DeleteUserAction>(DeleteUserAction);
+    const action = container.resolve<DeleteUserRoleAction>(DeleteUserRoleAction);
     await action.execute(req, res);
   }),
 );
