@@ -12,7 +12,15 @@ class LoginPresenter implements IPresenter {
     return JSON.stringify(this.getData());
   }
   public getData(): object {
-    return { result: this.result, token: this.token };
+    return {
+      user: {
+        id: this.result.Id,
+        name: this.result.Name,
+        email: this.result.Email,
+        phone: this.result.Phone,
+      },
+      token: this.token,
+    };
   }
 }
 
