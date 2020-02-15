@@ -5,6 +5,7 @@ import { success } from '../../Presenters/Base/success';
 import { HTTP_CODES } from '../../Enums/HttpCodes';
 import LoginAdapter from '../../Adapters/Auth/LoginAdapter';
 import LoginHandler from '../../../../Application/Handlers/Auth/LoginHandler';
+import LoginCommand from '../../../../Application/Commands/Auth/LoginCommand';
 
 @injectable()
 class LoginAction {
@@ -15,9 +16,10 @@ class LoginAction {
     this.handler = handler;
   }
   public async execute(req: Request, res: Response) {
-    const command: any = this.adapter.from(req);
-    const response: any = await this.handler.execute(command);
-    const presenter = new Presenter(response);
+    const command: LoginCommand = await this.adapter.from(req);
+    //TODO: Change any for concrete values
+    const { user, token }: any = await this.handler.execute(command);
+    const presenter = new Presenter(user, token);
 
     res.status(HTTP_CODES.OK).json(success(presenter.getData(), 'Auth founds'));
   }

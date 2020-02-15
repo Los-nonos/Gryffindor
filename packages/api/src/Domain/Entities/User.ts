@@ -26,6 +26,10 @@ class User {
   public checkPasswordUnhashedIsValid(unHashPassword: string): boolean {
     return bcrypt.compareSync(unHashPassword, this.Password);
   }
+
+  public getRolesFromUserRole(): UserRole[] {
+    return this.Roles;
+  }
 }
 
 export default User;

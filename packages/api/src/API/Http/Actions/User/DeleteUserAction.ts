@@ -3,6 +3,7 @@ import { inject, injectable } from 'inversify';
 import { HTTP_CODES } from '../../Enums/HttpCodes';
 import DeleteUserAdapter from '../../Adapters/User/DeleteUserAdapter';
 import DeleteUserHandler from '../../../../Application/Handlers/User/DeleteUserHandler';
+import DeleteUserCommand from '../../../../Application/Commands/User/DeleteUserCommand';
 
 @injectable()
 class DeleteUserAction {
@@ -16,8 +17,8 @@ class DeleteUserAction {
     this.handler = handler;
   }
   public async execute(req: Request, res: Response) {
-    const command: any = this.adapter.from(req);
-    const response: any = await this.handler.execute(command);
+    const command: DeleteUserCommand = await this.adapter.from(req);
+    await this.handler.execute(command);
 
     res.status(HTTP_CODES.NO_CONTENT).end();
   }

@@ -11,7 +11,7 @@ class CreateUserHandler {
   constructor(@inject(INTERFACES.IUserRepository) repository: IUserRepository) {
     this.repository = repository;
   }
-  public async execute(command: CreateUserCommand): Promise<any> {
+  public async execute(command: CreateUserCommand): Promise<User> {
     let user = await this.repository.FindByName(command.getName());
 
     if (user) {

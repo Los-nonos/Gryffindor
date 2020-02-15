@@ -1,10 +1,36 @@
-import { inject, injectable } from 'inversify';
 import LoginCommand from '../../Commands/Auth/LoginCommand';
+import { inject } from 'inversify';
+import UserRepository from '../../../Persistance/Repositories/UserRepository';
+import { EntityNotFound } from '../../../Infraestructure/Errors/EntityNotFound';
+import { UnAuthorizedError } from '../../../API/Http/Errors/UnAuthorizedException';
+import * as jwt from 'jsonwebtoken';
+import jwtConfig from '../../../Infraestructure/utils/jwtConfig';
+import User from '../../../Domain/Entities/User';
 
-@injectable()
 class LoginHandler {
-  constructor() {}
-  public async execute(command: LoginCommand): Promise<any> {}
-}
+  private repository: UserRepository;
 
+  constructor(@inject(UserRepository) repository: UserRepository) {
+    this.repository = repository;
+  }
+  public async execute(command: LoginCommand): Promise<{ user: User; token: string }> {
+    const user = await this.repository.FindByName(command.getUsername());
+
+    if (!user) {
+      throw new EntityNotFound(`not user found with name: ${command.getUsername()}`);
+    }
+    if (user.checkPasswordUnhashedIsValid(command.getPassword())) {
+      const token = jwt.sign(
+        { userId: user.Id, username: user.Name, roles: user.getRolesFromUserRole() },
+        jwtConfig.jwtConfiguration().jwtSecret,
+        {
+          expiresIn: jwtConfig.jwtConfiguration().expirationTime,
+        },
+      );
+      return { user, token };
+    } else {
+      throw new UnAuthorizedError(`Password not valid`);
+    }
+  }
+}
 export default LoginHandler;

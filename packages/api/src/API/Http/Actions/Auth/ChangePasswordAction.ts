@@ -3,6 +3,7 @@ import { inject, injectable } from 'inversify';
 import { HTTP_CODES } from '../../Enums/HttpCodes';
 import ChangePasswordAdapter from '../../Adapters/Auth/ChangePasswordAdapter';
 import ChangePasswordHandler from '../../../../Application/Handlers/Auth/ChangePasswordHandler';
+import ChangePasswordCommand from '../../../../Application/Commands/Auth/ChangePasswordCommand';
 
 @injectable()
 class ChangePasswordAction {
@@ -16,7 +17,7 @@ class ChangePasswordAction {
     this.handler = handler;
   }
   public async execute(req: Request, res: Response) {
-    const command: any = this.adapter.from(req);
+    const command: ChangePasswordCommand = await this.adapter.from(req);
 
     await this.handler.execute(command);
 
