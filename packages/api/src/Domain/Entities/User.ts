@@ -17,6 +17,10 @@ class User {
   public hashPassword(unHashPassword: string) {
     this.Password = bcrypt.hashSync(unHashPassword, 8);
   }
+
+  public checkPasswordUnhashedIsValid(unHashPassword: string): boolean {
+    return bcrypt.compareSync(unHashPassword, this.Password);
+  }
 }
 
 export default User;
