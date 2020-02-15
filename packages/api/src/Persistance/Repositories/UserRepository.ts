@@ -18,6 +18,10 @@ class UserRepository implements IUserRepository {
     return await this.repository.find();
   }
 
+  public async FindByName(name: string): Promise<User> {
+    return await this.repository.findOne({ Name: name });
+  }
+
   public async Persist(t: User): Promise<User> {
     return await this.repository.save(t);
   }
