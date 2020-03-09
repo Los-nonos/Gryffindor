@@ -45,7 +45,7 @@ Ir copiando cada línea y tirando los comandos en el directorio raíz del proyec
 ### Instalación de los contenedores de Docker.
 * Primeramente tener `docker` y `docker-compose` instalados (utilizar las guías de Digital Ocean estan bien documentadas).
 
-1. Entrar a la carpeta de docker del proyecto. (`lacade/doclacade`)
+1. Entrar a la carpeta de docker del proyecto. (`gryffindor/zeepdocker/`)
 
 2. Realizar un `docker-compose pull`
 
@@ -56,8 +56,11 @@ Ir copiando cada línea y tirando los comandos en el directorio raíz del proyec
 5. Listo ya se encuentra levantado el servidor y la base de datos (MySQL).
 
 ### Asignación de los permisos de Laravel.
-Es necesario para la correcta visualización y funcionamiento del proyecto que se asignen los siguientes permisos:
+Es necesario para la correcta visualización y funcionamiento del proyecto que se asignar los permisos de Laravel:
 
+1. Volver al directorio raíz del proyecto. (`gryffindor/`)
+
+2. Ejecutar los siguientes comandos en la consola para asignar los permisos:
 ```
     sudo chown -R 1000:33 storage/
     sudo chmod -R g+w storage/
@@ -68,27 +71,28 @@ Es necesario para la correcta visualización y funcionamiento del proyecto que s
 PD: Puede suceder que en momentos al crearse archivos de Logs nuevos tengamos que reasignar los permisos al storage/ (ver como solucionar esto, muchas veces al terminar la instalación del proyecto necesitamos asignar de nuevo estos permisos).
  
 ### Instalación de las dependencias.
-1. Nos ubicamos en la carpeta de docker del proyecto (`zeepdocker`)
+1. Nos ubicamos en la carpeta de docker del proyecto (`zeepdocker/`)
 
 2. Acceder al Lord Commander (Ricky Fort) ejecutando `./webapp` (basicamente es nuestro bash de nginx `docker-compose run --user=1000 phpnginx bash`)
 
 3. Ejecutamos `./composer.phar install`
 
-4. Esperar la instalación de dependencias de Laravel y compañía.
+4. Esperar la instalación de dependencias de Laravel y compañía. <---- Puede tardar, dependiendo de la velocidad de conexión a internet.
 
 ### Crear archivo de Enviroment
-1. Crear un archivo ```.env```
-2. Copiar lo que existe en el ```.env.example```
-3. Este archivo contiene las credenciales de las cuentas de los servicios utilizados.
+1. En nuestro terminal ejecutar `cp .env.example .env`
+2. Este archivo contiene las credenciales de las cuentas de los servicios utilizados.
 
 ### Configuración de la Base de Datos.
+###### Ésto no es necesario, te puede traer problemas con el container mysql de zeepdocker. Pero para deployar lo vamos a necesitar, así que se deben realizar pruebas periódicas en entorno mysqlserver local y comparar resultados en workbench. Todo ésto cuando estemos en un punto avanzado del desarrollo. Me pareció importante dejarlo indicado en el readme para que se tenga en cuenta un requisito futuro que TODOS los desarrolladores involucrados en el proyecto DEBEMOS SABERLO.
+
 1. Instalar mysql-client
 
 2. Ejecutamos `docker exec -it doclacade_mysql_1 bash` (con esto ingresamos a mysql del docker)
 
 4. Ejecutamos `mysql -uroot -psecret`
 
-5. Creamos la BD: `create database lacade;`
+5. Creamos la BD: `create database [ NOMBRE BDD ];`
 
 6. Verificamos la creación de la misma con: `show databases;`
 
@@ -101,7 +105,7 @@ PD: Puede suceder que en momentos al crearse archivos de Logs nuevos tengamos qu
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
-DB_DATABASE=zeepdocker
+DB_DATABASE=apizeep
 DB_USERNAME=test
 DB_PASSWORD=test
 ```
@@ -110,7 +114,7 @@ DB_PASSWORD=test
 
 2. Ejecutamos dentro del bash `php artisan migrate`
 
-3. Una vez terminada la ejecución ya tendremos las tablas correspondientes en nuestra base de datos `lacade`.
+3. Una vez terminada la ejecución ya tendremos las tablas correspondientes en nuestra base de datos `apizeep`.
 
 4. Ejecutar para tener el `.env` completo y correcto `php artisan key:generate`.
 
