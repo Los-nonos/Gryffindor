@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    ZeepCommerce Dashboard & API
                 </div>
 
                 <div class="links">
