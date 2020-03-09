@@ -1,4 +1,4 @@
-# ZeepCommerce API + Microservice
+# ZeepCommerce API + Dashboard Microservice
 
 Sistema API de ZeepCommerce para la venta / visualización de artículos varios.
 Será una API desacoplada del frontend `FrontApp` realizado en ReactJS.
