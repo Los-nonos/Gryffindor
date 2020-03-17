@@ -2,7 +2,7 @@
 
 namespace Presentation\Http\Actions;
 
-use App\Http\Controllers\Controller;
+use Presentation\Http\Actions\Controller;
 use Illuminate\Http\Request;
 
 class FindByIdUserAction extends Controller {

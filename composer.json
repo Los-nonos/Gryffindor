@@ -38,12 +38,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "Presentation/"
+            "App\\": "Presentation/",
+            "Presentation\\Http\\Actions\\": "Presentation/Http/Actions/"
         },
         "classmap": [
             "database/seeds",
-            "database/factories",
-            "Presentation/Http/Actions"
+            "database/factories"
         ]
     },
     "autoload-dev": {
