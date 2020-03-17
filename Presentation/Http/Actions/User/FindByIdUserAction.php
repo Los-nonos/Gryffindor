@@ -2,10 +2,9 @@
 
 namespace Presentation\Http\Actions\Users;
 
-use Presentation\Http\Actions\Controller;
 use Illuminate\Http\Request;
 
-class FindByIdUserAction extends Controller {
+class FindByIdUserAction {
     public function execute($id) {
         
     }

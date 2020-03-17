@@ -17,6 +17,6 @@ Route::middleware('auth:api')->get('/users', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->get('/users/{id}', 'FindByIdUserAction@execute');
+Route::middleware('auth:api')->get('/users/{id}', 'Users\FindByIdUserAction@execute');
 
-Route::middleware('auth:api')->post('/users', 'StoreUserAction@execute');
+Route::middleware('auth:api')->post('/users', 'Users\StoreUserAction@execute');
