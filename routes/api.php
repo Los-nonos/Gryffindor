@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/users', function (Request $request) {
 Route::middleware('auth:api')->get('/users/{id}', 'Users\FindByIdUserAction@execute');
 
 Route::middleware('auth:api')->post('/users', 'Users\StoreUserAction@execute');
+
+Route::middleware('auth:api')->delete('/users/{id}', 'Users\DeleteUserAction@execute');
+
+Route::middleware('auth:api')->put('/users/{id}', 'Users\UpdateUserAction@execute');
