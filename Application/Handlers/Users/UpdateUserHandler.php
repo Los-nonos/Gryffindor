@@ -55,7 +55,7 @@ class UpdateUserHandler
 
         $this->updateUserFormCommand($updateUserCommand, $user);
 
-        $this->userRepository->save($user);
+        //$this->userRepository->save($user);
 
         $this->updateUserResult->setUser($user);
 

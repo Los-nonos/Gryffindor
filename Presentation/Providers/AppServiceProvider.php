@@ -16,6 +16,8 @@ use Presentation\Interfaces\UpdateUserPresenterInterface;
 use Domain\Interfaces\UserRepositoryInterface;
 use Infrastructure\Persistence\Doctrine\Repositories\UserRepository;
 
+use Presentation\Interfaces\ValidatorServiceInterface;
+use Presentation\Services\ValidatorService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -48,6 +50,8 @@ class AppServiceProvider extends ServiceProvider
             EditUserValidatorInterface::class,
             EditUserValidator::class
         );
+
+        $this->app->bind(ValidatorServiceInterface::class, ValidatorService::class);
     }
 
     /**
