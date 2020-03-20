@@ -165,16 +165,17 @@ return [
         /*
          * Package Service Providers...
          */
-
+        LaravelDoctrine\ORM\DoctrineServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
+        Presentation\Providers\AppServiceProvider::class,
+        Presentation\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-
+        Presentation\Providers\EventServiceProvider::class,
+        Presentation\Providers\RouteServiceProvider::class,
+        Presentation\Providers\TacticianProvider::class,
     ],
 
     /*
@@ -224,9 +225,21 @@ return [
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'Str' => Illuminate\Support\Str::class,
         'URL' => Illuminate\Support\Facades\URL::class,
-        'Validator' => Illuminate\Support\Facades\Validator::class,
+        'ValidatorService' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+    /*
+    |--------------------------------------------------------------------------
+    | CommandBus
+    |--------------------------------------------------------------------------
+    |
+    | This array contains the namespaces where commands and handlers are located
+    |
+    */
 
+    'command_bus' => [
+        'commands_namespace' => 'Application\\Commands',
+        'handlers_namespace' => 'Application\\Handlers',
+    ],
 ];
