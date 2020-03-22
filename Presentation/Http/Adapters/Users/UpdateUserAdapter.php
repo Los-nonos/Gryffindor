@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Presentation\Exceptions\InvalidBodyException;
 use Presentation\Interfaces\ValidatorServiceInterface;
+use Presentation\Http\Enums;
 
 class UpdateUserAdapter
 {
@@ -51,7 +52,7 @@ class UpdateUserAdapter
         $this->validator->make($request->all(),$this->getRules());
 
         if(!$this->validator->isValid()){
-            throw new InvalidBodyException(412, $this->validator->getErrors());
+            throw new InvalidBodyException($HttpCodes->UNPROCESSABLE_ENTITY, $this->validator->getErrors());
         }
 
         return new UpdateUserCommand(
