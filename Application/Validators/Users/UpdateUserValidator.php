@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Application\Validators\Users;
 
 use Application\Commands\User\UpdateUserCommand;
+use Application\Exceptions\EntityNotFoundException;
 use Domain\Entities\User;
 use Domain\Interfaces\UserRepositoryInterface;
 use Exception;
@@ -35,7 +36,7 @@ final class UpdateUserValidator implements UpdateUserValidatorInterface
         $user = $this->userRepository->getById($updateUserCommand->getId());
 
         if (!$user) {
-            throw new Exception('User not found');
+            throw new EntityNotFoundException('User not found');
         }
 
         if ($user->getEmail() !== $updateUserCommand->getEmail()) {

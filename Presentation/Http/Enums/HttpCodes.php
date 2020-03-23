@@ -2,7 +2,7 @@
 
 namespace Presentation\Http\Enums;
 
-public $HttpCodes = [
+const HTTP_CODES = [
     'OK' => '200',
     'CREATED' => '201',
     'ASYNC' => '202',

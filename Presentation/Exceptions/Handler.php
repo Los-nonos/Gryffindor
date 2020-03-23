@@ -50,6 +50,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if($exception instanceof InvalidBodyException){
+            return response()->json($exception->getResponseMessage(),$exception->getStatusCode());
+        }
+
+        if($exception instanceof ExistingEntityException){
+            return response()->json($exception->getMessage(), 422);
+        }
+
+        if ($exception instanceof EntityNotFoundException){
+            return response()->json($exception->getMessage(), 404);
+        }
         return parent::render($request, $exception);
     }
 }
