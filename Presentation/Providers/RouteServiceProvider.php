@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Presentation\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'App\Http\Controllers';
+    protected $namespace = 'Presentation\Http\Actions';
 
     /**
      * The path to the "home" route for your application.
