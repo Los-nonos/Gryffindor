@@ -11,6 +11,7 @@ use Application\Results\Auth\LoginResultInterface;
 use Application\Services\HashServiceInterface;
 use Domain\Interfaces\UserRepositoryInterface;
 use Exception;
+use Tymon\JWTAuth\JWTAuth;
 
 class LoginHandler
 {
@@ -39,7 +40,9 @@ class LoginHandler
         {
             $result = new LoginResult();
             $result->setUser($user);
-            $result->setToken('');
+            $credentials = ['username' => $command->getUsername(), 'roles' => $user->getRoles(), 'id' => $user->getId()];
+            $token = JWTAuth::attempt($credentials);
+            $result->setToken($token);
 
             return $result;
         }

@@ -47,7 +47,7 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
 
     /**
      * @param int $userId
-     * @return User|null
+     * @return object
      * @throws Exception
      */
     public function getById(int $userId): ?User
@@ -109,5 +109,21 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
     {
         $this->getEntityManager()->remove($user);
         $this->getEntityManager()->flush();
+    }
+
+    /**
+     * @param string $username
+     * @return User|null
+     * @throws ORMException
+     */
+    public function getByUsername(string $username): ?User
+    {
+        $user = $this->findOneBy(['username'=> $username]);
+
+        if(!$user)
+        {
+            throw new EntityNotFoundException("User with username $username not found");
+        }
+        return $user;
     }
 }

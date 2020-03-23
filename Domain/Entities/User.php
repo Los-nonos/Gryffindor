@@ -18,6 +18,7 @@ class User
     private string $email;
     private string $password;
     private bool $isActive;
+    private array $roles;
 
     /**
      * Activity constructor.
@@ -119,5 +120,15 @@ class User
     public function setIsActive(bool $isActive): void
     {
         $this->isActive = $isActive;
+    }
+
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
+
+    public function setRole($role): void
+    {
+
     }
 }
