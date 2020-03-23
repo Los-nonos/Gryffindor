@@ -16,7 +16,7 @@ jobs:
       - checkout
 
       - run: chmod -R 777 storage
-      - run: cp .env.testing.example .env
+      - run: cp .env.example .env
 
       # Download and cache dependencies
       # Composer
