@@ -1,0 +1,49 @@
+# PHP CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-php/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: framgia/laravel-workspace
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      - image: circleci/mysql:5.7.18
+        environment:
+          MYSQL_DATABASE: apizeep
+          MYSQL_USER: test
+          MYSQL_PASSWORD: test
+          MYSQL_ROOT_PASSWORD: root
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run: chmod -R 777 storage
+      - run: cp .env.testing.example .env
+
+      # Download and cache dependencies
+      # Composer
+      - restore_cache:
+          name: Restore composer cache
+          keys:
+            - composer-{{ checksum "composer.json" }}
+            - composer-
+      - run: composer install -n --prefer-dist
+      - save_cache:
+          name: Store composer cache
+          key: composer-{{ checksum "composer.json" }}
+          paths:
+            - vendor
+      - run: php artisan migrate --database=mysql_test
+      # run tests!
+      - run:
+          command: |
+            mkdir -p /phpunit &&
+            php -dzend_extension=xdebug.so vendor/bin/phpunit --coverage-clover=phpunit/coverage-clover.xml --coverage-html=phpunit/coverage
+      - store_test_results:
+          path: /phpunit
+      - store_artifacts:
+          path: /phpunit
