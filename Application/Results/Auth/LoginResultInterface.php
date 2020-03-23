@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
 
-namespace Application\Results\Users;
+namespace Application\Results\Auth;
+
 
 use Domain\Entities\User;
 
-interface UpdateUserResultInterface
+interface LoginResultInterface
 {
     public function getUser(): User;
 

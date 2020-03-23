@@ -1,28 +1,15 @@
 <?php
 
-declare(strict_types=1);
+namespace Presentation\Http\Adapters\Auth;
 
-namespace Presentation\Http\Adapters\Users;
-
-use Application\Commands\Users\UpdateUserCommand;
-use Exception;
+use Application\Commands\Auth\LoginCommand;
 use Illuminate\Http\Request;
 use Presentation\Exceptions\InvalidBodyException;
+use Exception;
 use Presentation\Interfaces\ValidatorServiceInterface;
 
-class UpdateUserAdapter
+class LoginAdapter
 {
-    private $rules = [
-        'id' => 'bail|required|integer',
-        'name' => 'bail|required|alpha',
-        'email' => 'bail|required|email',
-        'password' => 'bail|required|min:4|max:16'
-    ];
-
-    public function getRules(){
-        return $this->rules;
-    }
-
     private ValidatorServiceInterface $validator;
 
     private $messages = [
@@ -37,6 +24,13 @@ class UpdateUserAdapter
         'password.max' => 'The password is too long'
     ];
 
+    private $rules = [
+        'id' => 'bail|required|integer',
+        'name' => 'bail|required|alpha',
+        'email' => 'bail|required|email',
+        'password' => 'bail|required|min:4|max:16'
+    ];
+
     public function __construct(
         ValidatorServiceInterface $validator
     ) {
@@ -45,7 +39,7 @@ class UpdateUserAdapter
 
     /**
      * @param Request $request
-     * @return UpdateUserCommand
+     * @return LoginCommand
      * @throws Exception
      */
     public function adapt(Request $request)
@@ -56,11 +50,13 @@ class UpdateUserAdapter
             throw new InvalidBodyException($this->validator->getErrors());
         }
 
-        return new UpdateUserCommand(
-            $request->get('id'),
-            $request->get('name'),
-            $request->get('email'),
+        return new LoginCommand(
+            $request->get('username'),
             $request->get('password')
         );
+    }
+
+    private function getRules(){
+        return $this->rules;
     }
 }

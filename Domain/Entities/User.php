@@ -13,6 +13,8 @@ class User
 {
     private int $id;
     private string $name;
+    private string $surname;
+    private string $username;
     private string $email;
     private string $password;
     private bool $isActive;
@@ -24,7 +26,7 @@ class User
      */
     public function __construct()
     {
-        $this->isActive = false;
+        $this->isActive = true;
     }
 
     /**
@@ -38,7 +40,7 @@ class User
     /**
      * @return string $name
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -46,15 +48,25 @@ class User
     /**
      * @param string $name
      */
-    public function setName($name): void
+    public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function setSurname(string $surname): void
+    {
+        $this->surname = $surname;
+    }
+
+    public function getSurname(): string
+    {
+        return $this->surname;
     }
 
     /**
      * @return string $email
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -62,15 +74,25 @@ class User
     /**
      * @param string $email
      */
-    public function setEmail($email): void
+    public function setEmail(string $email): void
     {
         $this->email = $email;
+    }
+
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
     }
 
     /**
      * @return string $password
      */
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
