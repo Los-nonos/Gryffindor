@@ -161,12 +161,12 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         /*
          * Package Service Providers...
          */
         LaravelDoctrine\ORM\DoctrineServiceProvider::class,
-        
+
         /*
          * Application Service Providers...
          */
@@ -228,6 +228,11 @@ return [
         'ValidatorService' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+    ],
+
+    'facades' => [
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
     ],
     /*
     |--------------------------------------------------------------------------

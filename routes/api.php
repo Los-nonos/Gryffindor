@@ -13,14 +13,12 @@ declare(strict_types=1);
 |
 */
 
-Route::middleware('auth:api')->get('/users', function (Request $request) {
-    return $request->user();
-});
+Route::get('/users', ['middleware' => 'auth.role:admin,zeeper', 'uses' => 'Users\IndexUsersAction@execute', 'as' => 'indexUsers']);
 
-Route::middleware('auth:api')->get('/users/{id}', 'Users\FindByIdUserAction@execute');
+Route::get('/users/{id}',['middleware' => 'auth.role:admin', 'uses' => 'Users\FindByIdUserAction@execute', 'as' => 'usersById']);
 
-Route::middleware('auth:api')->post('/users', 'Users\StoreUserAction@execute');
+Route::post('/users',['middleware' => 'auth.role:admin', 'uses' => 'Users\StoreUserAction@execute', 'as' => 'createUser']);
 
-Route::middleware('auth:api')->delete('/users/{id}', 'Users\DeleteUserAction@execute');
+Route::delete('/users/{id}', ['middleware' => 'auth.role:admin', 'uses' => 'Users\DeleteUserAction@execute', 'as' => 'removeUser']);
 
-Route::middleware('auth:api')->put('/users/{id}', 'Users\UpdateUserAction@execute');
+Route::put('/users/{id}', ['middleware' => 'auth.role:admin', 'uses' => 'Users\UpdateUserAction@execute', 'as' => 'editUser']);

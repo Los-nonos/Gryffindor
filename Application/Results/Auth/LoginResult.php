@@ -9,14 +9,26 @@ use Domain\Entities\User;
 class LoginResult implements LoginResultInterface
 {
 
+    private string $token;
+    private User $user;
+
     public function getUser(): User
     {
-        // TODO: Implement getUser() method.
-        throw new \Exception('not implemented function');
+        return $this->user;
     }
 
     public function setUser(User $user): void
     {
-        // TODO: Implement setUser() method.
+        $this->user = $user;
+    }
+
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token): void
+    {
+        $this->token = $token;
     }
 }
