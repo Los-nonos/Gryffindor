@@ -16,7 +16,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel-doctrine/orm": "*",
         "laravel/framework": "^7.10",
-        "laravel/sanctum": "^2.1",
+        "tymon/jwt-auth": "*",
         "laravel/tinker": "^2.0"
     },
     "require-dev": {
