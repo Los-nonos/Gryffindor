@@ -27,11 +27,11 @@ Route::put('/users/{id}', ['middleware' => 'auth.role:admin', 'uses' => 'Users\U
 Route::group([
 
     'middleware' => 'api',
-    'prefix' => 'auth'
+    'prefix' => 'auth',
 
 ], function ($router) {
-    Route::post('login', 'AuthController@login')->name('login');
-    Route::post('logout', 'AuthController@logout')->name('logout');
-    Route::post('renew-token', 'AuthController@refresh')->name('renew-token');
-    Route::post('me', 'AuthController@me')->name('getMe');
+    Route::post('login', 'AuthAction@login')->name('login');
+    Route::post('logout', 'AuthAction@logout')->name('logout');
+    Route::post('renew-token', 'AuthAction@refresh')->name('renew-token');
+    Route::post('me', 'AuthAction@me')->name('getMe');
 });
