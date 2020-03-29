@@ -2,9 +2,10 @@
 
 namespace Presentation\Http\Actions;
 
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Presentation\Exceptions\UnauthorizedException;
 use Presentation\Http\Controllers\Controller;
 
 class AuthAction extends Controller
@@ -25,6 +26,7 @@ class AuthAction extends Controller
      * @param Request $request
      *
      * @return JsonResponse
+     * @throws Exception
      */
     public function login(Request $request)
     {
@@ -34,7 +36,7 @@ class AuthAction extends Controller
             return $this->respondWithToken($token);
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401);
+        throw new UnauthorizedException('Unauthorized');
     }
 
     /**
