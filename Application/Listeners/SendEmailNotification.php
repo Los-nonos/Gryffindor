@@ -16,8 +16,14 @@ class SendEmailNotification
 
     }
 
+    public function subscribe($subscriber)
+    {
+
+        //$subscriber->subscribe($this);
+    }
+
     public function failed(SendEmailWithData $event, $exception)
     {
-        
+
     }
 }

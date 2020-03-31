@@ -4,6 +4,7 @@ namespace Presentation\Exceptions;
 
 use Application\Exceptions\EntityNotFoundException;
 use Application\Exceptions\ExistingEntityException;
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    protected array $dontReport = [
+    protected $dontReport = [
         //
     ];
 
@@ -25,7 +26,7 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    protected array $dontFlash = [
+    protected $dontFlash = [
         'password',
         'password_confirmation',
     ];
@@ -36,7 +37,7 @@ class Handler extends ExceptionHandler
      * @param Throwable $exception
      * @return void
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function report(Throwable $exception)
     {
