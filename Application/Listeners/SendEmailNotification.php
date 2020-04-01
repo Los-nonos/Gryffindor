@@ -18,8 +18,10 @@ class SendEmailNotification
 
     public function subscribe($subscriber)
     {
-
-        //$subscriber->subscribe($this);
+        $subscriber->listen(
+            'Application\Events\SendEmailWithData',
+            'Application\Listeners\SendEmailNotification@handle'
+        );
     }
 
     public function failed(SendEmailWithData $event, $exception)
