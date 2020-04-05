@@ -25,10 +25,8 @@ Route::delete('/users/{id}', ['middleware' => 'auth.role:admin', 'uses' => 'User
 Route::put('/users/{id}', ['middleware' => 'auth.role:admin', 'uses' => 'Users\UpdateUserAction@execute', 'as' => 'editUser']);
 
 Route::group([
-
     'middleware' => 'api',
     'prefix' => 'auth',
-
 ], function ($router) {
     Route::post('login', 'AuthAction@login')->name('login');
     Route::post('logout', 'AuthAction@logout')->name('logout');
