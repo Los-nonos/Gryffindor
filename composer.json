@@ -17,8 +17,9 @@
         "joselfonseca/laravel-tactician": "^1.0",
         "laravel-doctrine/orm": "*",
         "laravel/framework": "^7.10",
+        "tymon/jwt-auth": "*",
         "laravel/tinker": "^2.0",
-        "tymon/jwt-auth": "*"
+        "league/tactician": "^1.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -6,6 +6,7 @@ namespace Application\Handlers\Users;
 
 use Application\Commands\User\UpdateUserCommand;
 use Application\Results\User\UpdateUserResultInterface;
+use Application\Results\Users\UpdateUserResultInterface;
 use Application\Validators\User\UpdateUserValidatorInterface;
 use Domain\Entities\User;
 use Domain\Interfaces\UserRepositoryInterface;
