@@ -14,10 +14,11 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
+        "joselfonseca/laravel-tactician": "^1.0",
         "laravel-doctrine/orm": "*",
         "laravel/framework": "^7.10",
-        "tymon/jwt-auth": "*",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "tymon/jwt-auth": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

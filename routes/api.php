@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/users', ['middleware' => 'auth.role:admin,zeeper', 'uses' => 'Users\IndexUsersAction@execute', 'as' => 'indexUsers']);
+//Route::get('/users', ['middleware' => 'auth.role:admin,zeeper', 'uses' => 'Users\IndexUsersAction@execute', 'as' => 'indexUsers']);
 
-Route::get('/users/{id}',['middleware' => 'auth.role:admin', 'uses' => 'Users\FindByIdUserAction@execute', 'as' => 'usersById']);
+//Route::get('/users/{id}',['middleware' => 'auth.role:admin', 'uses' => 'Users\FindByIdUserAction@execute', 'as' => 'usersById']);
 
-Route::post('/users',['middleware' => 'auth.role:admin', 'uses' => 'Users\StoreUserAction@execute', 'as' => 'createUser']);
+//Route::post('/users',['middleware' => 'auth.role:admin', 'uses' => 'Users\StoreUserAction@execute', 'as' => 'createUser']);
 
-Route::delete('/users/{id}', ['middleware' => 'auth.role:admin', 'uses' => 'Users\DeleteUserAction@execute', 'as' => 'removeUser']);
+//Route::delete('/users/{id}', ['middleware' => 'auth.role:admin', 'uses' => 'Users\DeleteUserAction@execute', 'as' => 'removeUser']);
 
 Route::put('/users/{id}', ['middleware' => 'auth.role:admin', 'uses' => 'Users\UpdateUserAction@execute', 'as' => 'editUser']);
 
