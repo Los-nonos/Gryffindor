@@ -120,6 +120,7 @@
       <path value="$PROJECT_DIR$/../vendor/symfony/polyfill-php56" />
       <path value="$PROJECT_DIR$/../vendor/symfony/polyfill-util" />
       <path value="$PROJECT_DIR$/../vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/../vendor/league/tactician" />
       <path value="$PROJECT_DIR$/vendor/swagger-api/swagger-ui" />
       <path value="$PROJECT_DIR$/vendor/brick/math" />
       <path value="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server" />
