@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cf102c144eaae1cb58aa514b6b9d3b8e",
+    "content-hash": "6e5bb40120e6cfd7a16b7b61e2b231d3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1717,12 +1717,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "55070d4e57abd710783d29329d6f6846b570f452"
+<<<<<<< HEAD
+                "reference": "bcafcfa43c5451efe05174b739404d73af42e7d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/55070d4e57abd710783d29329d6f6846b570f452",
-                "reference": "55070d4e57abd710783d29329d6f6846b570f452",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/bcafcfa43c5451efe05174b739404d73af42e7d8",
+                "reference": "bcafcfa43c5451efe05174b739404d73af42e7d8",
+=======
+                "reference": "dafdd1e19f86add02e48fa9f6cac9be2c5329772"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/dafdd1e19f86add02e48fa9f6cac9be2c5329772",
+                "reference": "dafdd1e19f86add02e48fa9f6cac9be2c5329772",
+>>>>>>> a1c693188c9cdfe080a551397ae0525a74cfb17a
                 "shasum": ""
             },
             "require": {
@@ -1860,7 +1869,11 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-04-08T19:40:59+00:00"
+<<<<<<< HEAD
+            "time": "2020-04-07T19:10:21+00:00"
+=======
+            "time": "2020-03-31T15:01:12+00:00"
+>>>>>>> a1c693188c9cdfe080a551397ae0525a74cfb17a
         },
         {
             "name": "laravel/tinker",
