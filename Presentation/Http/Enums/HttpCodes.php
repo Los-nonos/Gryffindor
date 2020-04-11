@@ -17,4 +17,4 @@ const HTTP_CODES = [
     'UNPROCESSABLE_ENTITY' => '422',
     'INTERNAL_ERROR' => '500',
     'UNAVAILABLE' => '503'
-]
+];

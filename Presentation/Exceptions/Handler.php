@@ -2,7 +2,12 @@
 
 namespace Presentation\Exceptions;
 
+use Application\Exceptions\EntityNotFoundException;
+use Application\Exceptions\ExistingEntityException;
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -29,10 +34,10 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Throwable  $exception
+     * @param Throwable $exception
      * @return void
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function report(Throwable $exception)
     {
@@ -42,25 +47,26 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request  $request
+     * @param Throwable $exception
+     * @return Response
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function render($request, Throwable $exception)
     {
-        if($exception instanceof InvalidBodyException){
-            return response()->json($exception->getResponseMessage(),$exception->getStatusCode());
+        if ($exception instanceof BasePresentationException) {
+            return response()->json([ 'error' => $exception->getResponseMessage() ],$exception->getStatusCode());
         }
 
-        if($exception instanceof ExistingEntityException){
-            return response()->json($exception->getMessage(), 422);
+        if ($exception instanceof ExistingEntityException) {
+            return response()->json([ 'error' => $exception->getMessage() ], 422);
         }
 
-        if ($exception instanceof EntityNotFoundException){
-            return response()->json($exception->getMessage(), 404);
+        if ($exception instanceof EntityNotFoundException) {
+            return response()->json([ 'error' => $exception->getMessage() ], 404);
         }
+
         return parent::render($request, $exception);
     }
 }

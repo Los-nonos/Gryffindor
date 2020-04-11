@@ -4,13 +4,13 @@ namespace Presentation\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use Application\Validators\User\UpdateUserValidator;
-use Application\Validators\User\UpdateUserValidatorInterface;
+use Application\Validators\Users\UpdateUserValidator;
+use Application\Validators\Users\UpdateUserValidatorInterface;
 
-use Application\Results\User\UpdateUserResult;
-use Application\Results\User\UpdateUserResultInterface;
+use Application\Results\Users\UpdateUserResult;
+use Application\Results\Users\UpdateUserResultInterface;
 
-use Presentation\Http\Presenters\User\UpdateUserPresenter;
+use Presentation\Http\Presenters\Users\UpdateUserPresenter;
 use Presentation\Interfaces\UpdateUserPresenterInterface;
 
 use Domain\Interfaces\UserRepositoryInterface;
@@ -37,18 +37,18 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            EditUserResultInterface::class,
-            EditUserResult::class
+            UpdateUserResultInterface::class,
+            UpdateUserResult::class
         );
 
         $this->app->bind(
-            EditUserPresenterInterface::class,
-            EditUserPresenter::class
+            UpdateUserPresenterInterface::class,
+            UpdateUserPresenter::class
         );
 
         $this->app->bind(
-            EditUserValidatorInterface::class,
-            EditUserValidator::class
+            UpdateUserValidatorInterface::class,
+            UpdateUserValidator::class
         );
 
         $this->app->bind(ValidatorServiceInterface::class, ValidatorService::class);

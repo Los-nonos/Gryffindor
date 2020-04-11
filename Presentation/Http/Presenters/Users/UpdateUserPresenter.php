@@ -2,7 +2,7 @@
 
 namespace Presentation\Http\Presenters\Users;
 
-use Application\Results\User\UpdateUserResultInterface;
+use Application\Results\Users\UpdateUserResultInterface;
 use Application\Results\Users\UpdateUserResult;
 use Domain\Entities\User;
 use Presentation\Interfaces\UpdateUserPresenterInterface;
