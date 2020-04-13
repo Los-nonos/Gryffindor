@@ -21,6 +21,7 @@ class SendGridEmail extends Mailable
     {
         return $this->view('email.test')
             ->from('zeeporganization@gmail.com','ZeepOrganization')
+            //->to('joaquinmartina44@gmail.com')
             ->subject('Prueba correo');
     }
 }

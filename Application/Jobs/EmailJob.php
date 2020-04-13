@@ -15,13 +15,13 @@ class EmailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private $emailDetail;
+    protected $emailDetail;
 
     public function __construct($emailDetail)
     {
         $this->emailDetail = $emailDetail;
     }
-
+    
     public function handle()
     {
         $sendGridEmail = new SendGridEmail($this->emailDetail['data']);
