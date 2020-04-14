@@ -74,7 +74,7 @@ PD: Puede suceder que en momentos al crearse archivos de Logs nuevos tengamos qu
 
 2. Ejecutamos `docker exec -it doclacade_mysql_1 bash` (con esto ingresamos a mysql del docker)
 
-4. Ejecutamos `mysql -uroot -psecret`
+4. Ejecutamos `mysql -u root -psecret`
 
 5. Creamos la BD: `create database [ NOMBRE BDD ];`
 
