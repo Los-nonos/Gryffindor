@@ -16,20 +16,12 @@ $builder->createField('id', Type::INTEGER)
 
 $builder->addField('name', Type::STRING);
 
+$builder->addField('surname', Type::STRING);
+
+$builder->addField('username', Type::STRING);
+
 $builder->addField('email', Type::STRING);
 
 $builder->addField('password', Type::STRING);
 
 $builder->addField('isActive', Type::BOOLEAN);
-
-$builder->createOneToOne('companyAdmin', CompanyAdmin::class)
-    ->cascadePersist()
-    ->build();
-
-$builder->createOneToOne('teacher', Teacher::class)
-    ->cascadePersist()
-    ->build();
-
-$builder->createOneToOne('manager', Manager::class)
-    ->cascadePersist()
-    ->build();
