@@ -1717,21 +1717,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-<<<<<<< HEAD
-                "reference": "bcafcfa43c5451efe05174b739404d73af42e7d8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/bcafcfa43c5451efe05174b739404d73af42e7d8",
-                "reference": "bcafcfa43c5451efe05174b739404d73af42e7d8",
-=======
                 "reference": "dafdd1e19f86add02e48fa9f6cac9be2c5329772"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/dafdd1e19f86add02e48fa9f6cac9be2c5329772",
                 "reference": "dafdd1e19f86add02e48fa9f6cac9be2c5329772",
->>>>>>> a1c693188c9cdfe080a551397ae0525a74cfb17a
                 "shasum": ""
             },
             "require": {
