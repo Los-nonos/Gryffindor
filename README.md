@@ -96,11 +96,13 @@ DB_PASSWORD=test
 
 1. Entramos al `bash nginx` del Lord Commander ubicados en `lacade/docalacade` ejecutar: `./webapp`.
 
-2. Ejecutamos dentro del bash `php artisan migrate`
+##### Los comandos deben ser tirados siempre dentro del bash del comandante.
 
-3. Una vez terminada la ejecución ya tendremos las tablas correspondientes en nuestra base de datos `apizeep`.
+2. Ejecutar para tener el `.env` completo y correcto `php artisan key:generate` y `php artisan jwt:secret`. 
 
-4. Ejecutar para tener el `.env` completo y correcto `php artisan key:generate`.
+3. Una vez obtenidas las keys, debemos correr las migraciones con `php artisan migrate` y `doctrine:schema:create`.
+
+4. Una vez terminada la ejecución ya tendremos las tablas correspondientes en nuestra base de datos `apizeep`.
 
 5. Listo ya podemos salir del comandante.
 
