@@ -100,7 +100,7 @@ DB_PASSWORD=test
 
 2. Ejecutar para tener el `.env` completo y correcto `php artisan key:generate` y `php artisan jwt:secret`. 
 
-3. Una vez obtenidas las keys, debemos correr las migraciones con `php artisan migrate` y `doctrine:schema:create`.
+3. Una vez obtenidas las keys, debemos correr las migraciones con `php artisan migrate` y `php artisan doctrine:schema:create`.
 
 4. Una vez terminada la ejecución ya tendremos las tablas correspondientes en nuestra base de datos `apizeep`.
 
