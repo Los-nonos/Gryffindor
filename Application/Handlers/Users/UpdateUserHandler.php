@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Application\Handlers\Users;
 
-use Application\Commands\User\UpdateUserCommand;
-use Application\Results\User\UpdateUserResultInterface;
+use Application\Commands\Users\UpdateUserCommand;
 use Application\Results\Users\UpdateUserResultInterface;
-use Application\Validators\User\UpdateUserValidatorInterface;
+use Application\Validators\Users\UpdateUserValidatorInterface;
 use Domain\Entities\User;
 use Domain\Interfaces\UserRepositoryInterface;
 use Exception;

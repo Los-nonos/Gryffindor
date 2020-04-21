@@ -11,14 +11,35 @@ use function Sodium\add;
 
 class User
 {
+    /**
+     * @var int
+     *
+     */
     private int $id;
+    /**
+     * @var string
+     */
     private string $name;
+    /**
+     * @var string
+     */
     private string $surname;
+    /**
+     * @var string
+     */
     private string $username;
+    /**
+     * @var string
+     */
     private string $email;
+    /**
+     * @var string
+     */
     private string $password;
+    /**
+     * @var bool
+     */
     private bool $isActive;
-    private array $roles;
 
     /**
      * Activity constructor.
