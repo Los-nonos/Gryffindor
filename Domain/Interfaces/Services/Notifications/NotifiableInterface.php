@@ -6,7 +6,7 @@ namespace Domain\Interfaces\Services\Notifications;
 
 use Illuminate\Mail\Mailable;
 
-interface NotificationInterface
+interface NotifiableInterface
 {
     public function getId(): int;
     public function getName(): string;
@@ -19,5 +19,5 @@ interface NotificationInterface
     public function setEmail(string $email):void;
     public function setSubject(string $subject):void;
     public function setMessage(string $message):void;
-    public function emailNotification(NotificationInterface $data): Mailable;
+    public function emailNotification(NotifiableInterface $data): Mailable;
 }
