@@ -3,7 +3,7 @@
 
 namespace Application\Events;
 
-use Domain\Interfaces\Services\Notifications\NotificationInterface;
+use Domain\Interfaces\Services\Notifications\NotifiableInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -12,9 +12,9 @@ class EmailNotificationEventData extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private NotificationInterface $emailDetail;
+    private NotifiableInterface $emailDetail;
 
-    public function __construct(NotificationInterface $emailNotification)
+    public function __construct(NotifiableInterface $emailNotification)
     {
         $this->emailDetail = $emailNotification;
     }

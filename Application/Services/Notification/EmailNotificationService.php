@@ -5,7 +5,7 @@ namespace Application\Services\Notification;
 
 use Application\Jobs\EmailNotificationJob;
 use Domain\Interfaces\Services\Notifications\MailableInterface;
-use Domain\Interfaces\Services\Notifications\NotificationInterface;
+use Domain\Interfaces\Services\Notifications\NotifiableInterface;
 
 class EmailNotificationService implements EmailNotificationServiceInterface
 {
@@ -19,12 +19,12 @@ class EmailNotificationService implements EmailNotificationServiceInterface
         $this->mailable = $mailable;
     }
 
-    public function notificationData(): NotificationInterface
+    public function notificationData(): NotifiableInterface
     {
         return $this->generateEmailNotificationService->generate();
     }
 
-    public function sendEmail(NotificationInterface $data): void
+    public function sendEmail(NotifiableInterface $data): void
     {
         EmailNotificationJob::dispatch($this->mailable->emailNotification($data))->onQueue('emails');
     }

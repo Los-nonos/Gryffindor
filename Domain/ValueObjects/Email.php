@@ -2,10 +2,10 @@
 
 namespace Domain\ValueObjects;
 
-use Domain\Interfaces\Services\Notifications\NotificationInterface;
+use Domain\Interfaces\Services\Notifications\NotifiableInterface;
 use phpDocumentor\Reflection\Types\Integer;
 
-abstract class Email implements NotificationInterface
+abstract class Email implements NotifiableInterface
 {
     private int $id;
     private string $email;

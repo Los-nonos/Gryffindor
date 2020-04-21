@@ -4,10 +4,10 @@
 namespace Application\Services\Notification;
 
 
-use Domain\Interfaces\Services\Notifications\NotificationInterface;
+use Domain\Interfaces\Services\Notifications\NotifiableInterface;
 
 interface EmailNotificationServiceInterface
 {
-    public function notificationData(): NotificationInterface;
-    public function sendEmail(NotificationInterface $data): void;
+    public function notificationData(): NotifiableInterface;
+    public function sendEmail(NotifiableInterface $data): void;
 }
