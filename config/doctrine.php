@@ -29,13 +29,13 @@ return [
             'connection'    => env('DB_CONNECTION', 'mysql'),
             'namespaces'    => ['Domain\\Entities'],
             'paths'         => [
-                base_path('infrastructure/Persistence/Doctrine/Mappings')
+                base_path('Infrastructure/Persistence/Doctrine/Mappings')
             ],
             'repository'    => Doctrine\ORM\EntityRepository::class,
             'proxies'       => [
                 'namespace'     => false,
                 'path'          => storage_path('proxies'),
-                'auto_generate' => env('DOCTRINE_PROXY_AUTOGENERATE', false)
+                'auto_generate' => env('DOCTRINE_PROXY_AUTOGENERATE', true)
             ],
             /*
             |--------------------------------------------------------------------------
