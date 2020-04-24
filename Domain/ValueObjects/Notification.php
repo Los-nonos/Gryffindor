@@ -13,6 +13,8 @@ abstract class Notification implements NotifiableInterface
     private int $userId;
     private string $subject;
     private string $message;
+    private string $messageAction;
+    private string $urlAction;
 
     public function getId(): int
     {
@@ -34,6 +36,16 @@ abstract class Notification implements NotifiableInterface
         return $this->message;
     }
 
+    public function getMessageAction():string
+    {
+        return $this->messageAction;
+    }
+
+    public function getUrlAction(): string
+    {
+        return $this->urlAction;
+    }
+
     public function setSubject(string $subject): void
     {
         $this->subject = $subject;
@@ -42,5 +54,15 @@ abstract class Notification implements NotifiableInterface
     public function setMessage(string $message): void
     {
         $this->message = $message;
+    }
+
+    public function setUrlAction(string $urlAction): void
+    {
+        $this->urlAction = $urlAction;
+    }
+
+    public function setMessageAction(string $messageAction): void
+    {
+        $this->messageAction = $messageAction;
     }
 }

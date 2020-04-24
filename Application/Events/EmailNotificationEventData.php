@@ -5,10 +5,11 @@ namespace Application\Events;
 
 use Domain\Interfaces\Services\Notifications\NotifiableInterface;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class EmailNotificationEventData extends Mailable
+class EmailNotificationEventData extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
