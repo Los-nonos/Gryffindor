@@ -33,7 +33,6 @@ class InternalNotificationEventData extends Notification implements ShouldQueue
     public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
-            //Deberia poder obtener el email del UserId -> se me ato la rama
             ->from($this->notificationDetail->getUserId())
             //->greeting()
             ->line($this->notificationDetail->getSubject())

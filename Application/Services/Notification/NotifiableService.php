@@ -5,20 +5,17 @@ namespace Application\Services\Notification;
 
 use Application\Jobs\EmailNotificationJob;
 use Application\Jobs\InternalNotificationJob;
-use Domain\Interfaces\Services\Notifications\MailableInterface;
 use Domain\Interfaces\Services\Notifications\NotifiableInterface;
-use Domain\Interfaces\Services\Notifications\NotificationInterface;
 
 class NotifiableService implements NotifiableServiceInterface
 {
     private GenerateNotificationService $generateNotificationService;
-    //private MailableInterface $mailable;
-    private NotificationInterface $mailable;
-    private NotificationInterface $notification;
+    private NotifiableInterface $mailable;
+    private NotifiableInterface $notification;
 
     public function __construct(GenerateNotificationService $generateNotificationService,
-                                NotificationInterface $mailable,
-                                NotificationInterface $notification)
+                                NotifiableInterface $mailable,
+                                NotifiableInterface $notification)
     {
         $this->generateNotificationService = $generateNotificationService;
         $this->mailable = $mailable;

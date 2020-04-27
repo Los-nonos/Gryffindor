@@ -16,14 +16,12 @@ interface NotifiableInterface
     public function getEmail(): string;
     public function getSubject(): string;
     public function getMessage(): string;
-    public function getMessageAction(): string;
     public function getUrlAction(): string;
     public function setName(string $name):void;
     public function setSurname(string $surname):void;
     public function setEmail(string $email):void;
     public function setSubject(string $subject):void;
     public function setMessage(string $message):void;
-    public function setMessageAction(string $messageAction): void;
     public function setUrlAction(string $urlAction):void;
     public function emailNotification(NotifiableInterface $notifiable): Mailable;
     public function internalNotification(NotifiableInterface $notifiable): Notification;
