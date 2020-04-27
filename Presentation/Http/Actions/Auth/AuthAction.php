@@ -1,6 +1,6 @@
 <?php
 
-namespace Presentation\Http\Actions;
+namespace Presentation\Http\Actions\Auth;
 
 use Exception;
 use Illuminate\Http\JsonResponse;

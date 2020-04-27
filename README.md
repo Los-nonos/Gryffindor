@@ -26,22 +26,6 @@ Al utilizar SSH realizar los siguientes pasos de configuración:
 Una vez que ya tenemos clonado nuestro repositorio realizaremos los siguientes pasos.
 
 ## Si es la primera vez que clonás el repo
-### Realizar la instalación de composer en el proyecto.
-```
-https://getcomposer.org/download/
-```
-PD: Siempre se actualiza composer por lo que es mejor entrar a la página de composer.
-Se debe ubicar un hash similar al de abajo:
-```
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-```
-Ir copiando cada línea y tirando los comandos en el directorio raíz del proyecto.
-
-#### Copiamos el `composer.phar` de instalación que nos proveen los comandos anteriores en la carpeta raíz del proyecto (`Gryffindor/`)
-
 ### Instalación de los contenedores de Docker.
 * Primeramente tener `docker` y `docker-compose` instalados (utilizar las guías de Digital Ocean estan bien documentadas).
 
@@ -90,7 +74,7 @@ PD: Puede suceder que en momentos al crearse archivos de Logs nuevos tengamos qu
 
 2. Ejecutamos `docker exec -it doclacade_mysql_1 bash` (con esto ingresamos a mysql del docker)
 
-4. Ejecutamos `mysql -uroot -psecret`
+4. Ejecutamos `mysql -u root -psecret`
 
 5. Creamos la BD: `create database [ NOMBRE BDD ];`
 
@@ -112,11 +96,13 @@ DB_PASSWORD=test
 
 1. Entramos al `bash nginx` del Lord Commander ubicados en `lacade/docalacade` ejecutar: `./webapp`.
 
-2. Ejecutamos dentro del bash `php artisan migrate`
+##### Los comandos deben ser tirados siempre dentro del bash del comandante.
 
-3. Una vez terminada la ejecución ya tendremos las tablas correspondientes en nuestra base de datos `apizeep`.
+2. Ejecutar para tener el `.env` completo y correcto `php artisan key:generate` y `php artisan jwt:secret`. 
 
-4. Ejecutar para tener el `.env` completo y correcto `php artisan key:generate`.
+3. Una vez obtenidas las keys, debemos correr las migraciones con `php artisan migrate` y `php artisan doctrine:schema:create`.
+
+4. Una vez terminada la ejecución ya tendremos las tablas correspondientes en nuestra base de datos `apizeep`.
 
 5. Listo ya podemos salir del comandante.
 

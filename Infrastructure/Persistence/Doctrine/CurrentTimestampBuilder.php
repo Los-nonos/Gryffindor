@@ -1,6 +1,6 @@
-<?php
+<?php /** @noinspection PhpIllegalPsrClassPathInspection */
 
-namespace Persistence\Doctrine;
+namespace Infrastructure\Persistence\Doctrine;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
