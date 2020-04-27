@@ -24,6 +24,9 @@ class InternalNotificationEventData extends Notification implements ShouldQueue
 
     public function via($notifiable)
     {
+        //devolver un value object con prioridades no con las funciones concretas.
+        //depender de abstracciones nunca de implementaciones
+
         return ['mail', 'database'];
     }
 

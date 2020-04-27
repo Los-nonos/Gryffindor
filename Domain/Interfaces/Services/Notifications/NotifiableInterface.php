@@ -25,6 +25,6 @@ interface NotifiableInterface
     public function setMessage(string $message):void;
     public function setMessageAction(string $messageAction): void;
     public function setUrlAction(string $urlAction):void;
-    public function emailNotification(NotifiableInterface $data): Mailable;
-    public function internalNotification(NotifiableInterface $data): Notification;
+    public function emailNotification(NotifiableInterface $notifiable): Mailable;
+    public function internalNotification(NotifiableInterface $notifiable): Notification;
 }
