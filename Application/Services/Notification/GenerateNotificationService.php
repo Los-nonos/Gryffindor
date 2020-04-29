@@ -6,20 +6,26 @@ namespace Application\Services\Notification;
 
 use Domain\Interfaces\Services\Notifications\NotifiableInterface;
 
-class GenerateEmailNotificationService
+class GenerateNotificationService
 {
     private NotifiableInterface $notificationData;
 
-    public function __construct(NotifiableInterface $notification)
+    public function __construct(NotifiableInterface $notifiable)
     {
-        $this->notificationData = $notification;
+        $this->notificationData = $notifiable;
     }
 
-    public function generate(): NotifiableInterface
+    public function generateEmailData(): NotifiableInterface
     {
         $this->notificationData->setEmail(env('MAIL_FROM_ADDRESS'));
         $this->notificationData->setName(env('MAIL_FROM_NAME'));
 
+        return $this->notificationData;
+    }
+
+    public function generateNotificationData(): NotifiableInterface
+    {
+        //Implementar funcionalidad
         return $this->notificationData;
     }
 }
