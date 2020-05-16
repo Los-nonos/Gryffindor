@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Application\Services;
+namespace Application\Services\Hash;
 
 
 class HashService implements HashServiceInterface

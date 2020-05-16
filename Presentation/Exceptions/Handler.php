@@ -6,6 +6,7 @@ use Application\Exceptions\EntityNotFoundException;
 use Application\Exceptions\ExistingEntityException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -50,21 +51,24 @@ class Handler extends ExceptionHandler
      * @param  Request  $request
      * @param Throwable $exception
      * @return Response
-     *
      * @throws Throwable
      */
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof BasePresentationException) {
-            return response()->json([ 'error' => $exception->getResponseMessage() ],$exception->getStatusCode());
+        if($exception instanceof BasePresentationException)
+        {
+            return new JsonResponse(
+                json_decode($exception->getMessage()),
+                $exception->getStatusCode()
+            );
         }
 
         if ($exception instanceof ExistingEntityException) {
-            return response()->json([ 'error' => $exception->getMessage() ], 422);
+            return new JsonResponse([ 'error' => $exception->getMessage() ], 422);
         }
 
         if ($exception instanceof EntityNotFoundException) {
-            return response()->json([ 'error' => $exception->getMessage() ], 404);
+            return new JsonResponse([ 'error' => $exception->getMessage() ], 404);
         }
 
         return parent::render($request, $exception);
