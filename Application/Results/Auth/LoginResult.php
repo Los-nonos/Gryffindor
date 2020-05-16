@@ -4,12 +4,13 @@
 namespace Application\Results\Auth;
 
 
+use Domain\Entities\Token;
 use Domain\Entities\User;
 
 class LoginResult implements LoginResultInterface
 {
 
-    private string $token;
+    private Token $token;
     private User $user;
 
     public function getUser(): User
@@ -22,12 +23,12 @@ class LoginResult implements LoginResultInterface
         $this->user = $user;
     }
 
-    public function getToken(): string
+    public function getToken(): Token
     {
         return $this->token;
     }
 
-    public function setToken(string $token): void
+    public function setToken(Token $token): void
     {
         $this->token = $token;
     }

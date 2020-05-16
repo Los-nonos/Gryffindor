@@ -2,6 +2,13 @@
 
 namespace Presentation\Providers;
 
+use Application\Services\Token\TokenLoginService;
+use Application\Services\Token\TokenLoginServiceInterface;
+use Application\Services\Users\UserService;
+use Application\Services\Users\UserServiceInterface;
+use Domain\Interfaces\Repositories\TokenRepositoryInterface;
+use Domain\Interfaces\Services\GetUserTypeServiceInterface;
+use Domain\Services\Users\GetUserTypeService;
 use Illuminate\Support\ServiceProvider;
 
 use Application\Validators\Users\UpdateUserValidator;
@@ -10,6 +17,7 @@ use Application\Validators\Users\UpdateUserValidatorInterface;
 use Application\Results\Users\UpdateUserResult;
 use Application\Results\Users\UpdateUserResultInterface;
 
+use Infrastructure\Persistence\Doctrine\Repositories\TokenRepository;
 use Presentation\Http\Presenters\Users\UpdateUserPresenter;
 use Presentation\Interfaces\UpdateUserPresenterInterface;
 
@@ -46,10 +54,13 @@ class AppServiceProvider extends ServiceProvider
             UpdateUserPresenter::class
         );
 
-        $this->app->bind(
-            UpdateUserValidatorInterface::class,
-            UpdateUserValidator::class
-        );
+        $this->app->bind(UserServiceInterface::class, UserService::class);
+
+        $this->app->bind(TokenRepositoryInterface::class, TokenRepository::class);
+
+        $this->app->bind(TokenLoginServiceInterface::class, TokenLoginService::class);
+
+        $this->app->bind(GetUserTypeServiceInterface::class, GetUserTypeService::class);
 
         $this->app->bind(ValidatorServiceInterface::class, ValidatorService::class);
     }

@@ -5,29 +5,55 @@ namespace Presentation\Http\Presenters\Auth;
 
 
 use Application\Results\Auth\LoginResultInterface;
-use Presentation\Interfaces\LoginPresenterInterface;
+use Domain\Interfaces\Services\GetUserTypeServiceInterface;
+use Firebase\JWT\JWT;
 
-class LoginPresenter implements LoginPresenterInterface
+class LoginPresenter
 {
+    private LoginResultInterface $result;
+    private GetUserTypeServiceInterface $getUserTypeService;
 
-    /**
-     * @inheritDoc
-     */
-    public function toJson(): string
+    public function __construct(GetUserTypeServiceInterface $getUserTypeService)
     {
-        // TODO: Implement toJson() method.
+        $this->getUserTypeService = $getUserTypeService;
     }
 
-    public function fromResult(LoginResultInterface $result): LoginPresenterInterface
-    {
-        // TODO: Implement fromResult() method.
+    public function fromResult(LoginResultInterface $result): LoginPresenter {
+        $this->result = $result;
+        return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getData(): array
+    public function getData(): array {
+        $user = $this->result->getToken()->getUser();
+
+        $userTypes = $this->getUserTypeService->handle($user);
+
+        $userRoles = [];
+
+        if($userTypes[$this->getUserTypeService::USER_ADMIN] != null){
+            array_push($userRoles, 'CompanyAdmin');
+        }
+
+        if($userTypes[$this->getUserTypeService::USER_CUSTOMER] != null){
+            array_push($userRoles, 'Teacher');
+        }
+
+        return [
+            'user' => [
+                'id' => $user->getId(),
+                'firstName' => $user->getName(),
+                'lastName' => $user->getSurname(),
+                'username' => $user->getUsername(),
+                'email' => $user->getEmail(),
+                'roles' => $userRoles
+            ],
+        ];
+    }
+
+    public function toJWT()
     {
-        // TODO: Implement getData() method.
+        $key = "key";//todo: definir key
+        $payload = $this->getData();
+        return JWT::encode($payload, $key);
     }
 }

@@ -4,7 +4,8 @@
 namespace Application\Services\Token;
 
 
-use Application\Services\Token\TokenServiceInterface;
+use Application\Exceptions\EntityNotFoundException;
+use Application\Services\Token\TokenLoginServiceInterface;
 use Domain\Entities\Token;
 use Domain\Entities\User;
 use Domain\Interfaces\Repositories\TokenRepositoryInterface;
@@ -40,13 +41,35 @@ class TokenLoginService implements TokenLoginServiceInterface
         return $token;
     }
 
-    public function findByHash(?string $hash): ?Token
+    /**
+     * @param string|null $hash
+     * @return Token
+     * @throws EntityNotFoundException
+     */
+    public function findOneByHashOrFail(?string $hash): Token
     {
-        return $this->tokenRepository->findOneByHash($hash);
+        $token = $this->tokenRepository->findOneByHash($hash);
+
+        if(!$token) {
+            throw new EntityNotFoundException("Token hash not found");
+        }
+
+        return $token;
     }
 
     public function exist(string $hash): bool
     {
         return $this->tokenRepository->exist($hash);
+    }
+
+    public function persist(Token $token): void
+    {
+        $this->tokenRepository->persist($token);
+        $this->update();
+    }
+
+    public function update()
+    {
+        $this->tokenRepository->update();
     }
 }
