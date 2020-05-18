@@ -10,4 +10,6 @@ use Infrastructure\Presenter\Contracts\PresenterInterface;
 interface LoginPresenterInterface extends PresenterInterface
 {
     public function fromResult(LoginResultInterface $result): LoginPresenterInterface;
+
+    public function toJWT();
 }

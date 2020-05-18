@@ -8,19 +8,27 @@ use Application\Exceptions\EntityNotFoundException;
 use Application\Exceptions\PasswordNotMatch;
 use Application\Results\Auth\LoginResult;
 use Application\Results\Auth\LoginResultInterface;
-use Application\Services\HashServiceInterface;
+use Application\Services\Hash\HashServiceInterface;
+use Application\Services\Token\TokenLoginServiceInterface;
+use Application\Services\Users\UserServiceInterface;
 use Domain\Interfaces\UserRepositoryInterface;
 use Exception;
 
 class LoginHandler
 {
     private HashServiceInterface $hashService;
-    private UserRepositoryInterface $userRepository;
+    private UserServiceInterface $userService;
+    private TokenLoginServiceInterface $tokenLoginService;
 
-    public function __construct(HashServiceInterface $hashService, UserRepositoryInterface $userRepository)
+    public function __construct(
+        HashServiceInterface $hashService,
+        UserServiceInterface $userService,
+        TokenLoginServiceInterface $tokenLoginService
+    )
     {
-        $this->userRepository = $userRepository;
+        $this->userService = $userService;
         $this->hashService = $hashService;
+        $this->tokenLoginService = $tokenLoginService;
     }
     /**
      * @param LoginCommand $command
@@ -29,19 +37,15 @@ class LoginHandler
      */
     public function execute(LoginCommand $command): LoginResultInterface
     {
-        $user = $this->userRepository->getByUsername($command->getUsername());
+        $user = $this->userService->findUserByUsernameOrFail($command->getUsername());
 
-        if(!$user){
-            throw new EntityNotFoundException("no user registered with username");
-        }
 
         if($this->hashService->VerificateHash($user->getPassword(), $command->getPassword()))
         {
             $result = new LoginResult();
-            $result->setUser($user);
-            $token = $this->auth->Create($command->getUsername(), $user->getRoles(), $user->getId());
-            $result->setToken($token);
+            $token = $this->tokenLoginService->createToken($user);
 
+            $result->setToken($token);
             return $result;
         }
         else

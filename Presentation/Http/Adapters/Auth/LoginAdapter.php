@@ -6,33 +6,18 @@ use Application\Commands\Auth\LoginCommand;
 use Illuminate\Http\Request;
 use Presentation\Exceptions\InvalidBodyException;
 use Exception;
+use Presentation\Http\Validations\Schemas\Auth\LoginSchema;
 use Presentation\Interfaces\ValidatorServiceInterface;
 
 class LoginAdapter
 {
     private ValidatorServiceInterface $validator;
 
-    private $messages = [
-        'id.required' => 'The id is required',
-        'id.integer' => 'The id must be an integer',
-        'name.required' => 'The name is required',
-        'name.alpha' => 'The name cannot contain numbers or symbols',
-        'email.required' => 'The email is required',
-        'email.email' => 'The email is not correct',
-        'password.required' => 'The password is required',
-        'password.min' => 'The password is too short',
-        'password.max' => 'The password is too long'
-    ];
-
-    private $rules = [
-        'id' => 'bail|required|integer',
-        'name' => 'bail|required|alpha',
-        'email' => 'bail|required|email',
-        'password' => 'bail|required|min:4|max:16'
-    ];
+    private LoginSchema $loginSchema;
 
     public function __construct(
-        ValidatorServiceInterface $validator
+        ValidatorServiceInterface $validator,
+        LoginSchema $loginSchema
     ) {
         $this->validator = $validator;
     }
@@ -40,11 +25,11 @@ class LoginAdapter
     /**
      * @param Request $request
      * @return LoginCommand
-     * @throws Exception
+     * @throws InvalidBodyException
      */
-    public function adapt(Request $request)
+    public function from(Request $request)
     {
-        $this->validator->make($request->all(),$this->getRules());
+        $this->validator->make($request->all(),$this->loginSchema->getRules());
 
         if(!$this->validator->isValid()){
             throw new InvalidBodyException($this->validator->getErrors());
@@ -54,9 +39,5 @@ class LoginAdapter
             $request->get('username'),
             $request->get('password')
         );
-    }
-
-    private function getRules(){
-        return $this->rules;
     }
 }

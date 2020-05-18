@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Presentation\Http\Actions;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,8 +30,6 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'auth',
 ], function ($router) {
-    Route::post('login', 'AuthAction@login')->name('login');
-    Route::post('logout', 'AuthAction@logout')->name('logout');
-    Route::post('renew-token', 'AuthAction@refresh')->name('renew-token');
-    Route::post('me', 'AuthAction@me')->name('getMe');
+    Route::post('login', Actions\Auth\LoginAction::class)->name('login');
+    Route::post('renew-token', Actions\Auth\RenewTokenAction::class)->name('renew-token');
 });
