@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Handlers\Auth;
+namespace Application\Commands\Handler\Auth;
 
 
 use Application\Commands\Auth\LoginCommand;
@@ -32,10 +32,10 @@ class LoginHandler
     }
     /**
      * @param LoginCommand $command
-     * @return LoginResultInterface
+     * @return LoginResult
      * @throws Exception
      */
-    public function execute(LoginCommand $command): LoginResultInterface
+    public function execute(LoginCommand $command): ResultInterface
     {
         $user = $this->userService->findUserByUsernameOrFail($command->getUsername());
 

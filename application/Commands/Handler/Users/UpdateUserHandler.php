@@ -6,7 +6,6 @@ namespace Application\Handlers\Users;
 
 use Application\Commands\Users\UpdateUserCommand;
 use Application\Results\Users\UpdateUserResultInterface;
-use Application\Validators\Users\UpdateUserValidatorInterface;
 use Domain\Entities\User;
 use Domain\Interfaces\UserRepositoryInterface;
 use Exception;
@@ -19,11 +18,6 @@ class UpdateUserHandler
     private $userRepository;
 
     /**
-     * @var UpdateUserValidatorInterface $updateUserValidator
-     */
-    private $updateUserValidator;
-
-    /**
      * @var UpdateUserResultInterface $updateUserResult
      */
     private $updateUserResult;
@@ -31,16 +25,13 @@ class UpdateUserHandler
     /**
      * CreateUserHandler constructor.
      * @param UserRepositoryInterface $userRepository
-     * @param UpdateUserValidatorInterface $updateUserValidator
      * @param UpdateUserResultInterface $updateUserResult
      */
     public function __construct(
         UserRepositoryInterface $userRepository,
-        UpdateUserValidatorInterface $updateUserValidator,
         UpdateUserResultInterface $updateUserResult
     ) {
         $this->userRepository = $userRepository;
-        $this->updateUserValidator = $updateUserValidator;
         $this->updateUserResult = $updateUserResult;
     }
 
@@ -51,7 +42,7 @@ class UpdateUserHandler
      */
     public function handle(UpdateUserCommand $updateUserCommand): UpdateUserResultInterface
     {
-        $user = $this->updateUserValidator->validate($updateUserCommand);
+        $user = null;
 
         $this->updateUserFormCommand($updateUserCommand, $user);
 

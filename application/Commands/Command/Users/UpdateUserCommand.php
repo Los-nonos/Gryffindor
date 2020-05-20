@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Application\Commands\Users;
+namespace Application\Commands\Command\Users;
 
 class UpdateUserCommand
 {

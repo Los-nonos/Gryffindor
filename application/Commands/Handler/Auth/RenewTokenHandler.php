@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Application\Handlers\Auth;
+namespace Application\Commands\Handler\Auth;
 
 
 use Application\Results\Auth\RenewTokenResult;

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use presentation\Http\Actions;
+use Presentation\Http\Actions;
 
 /*
 |--------------------------------------------------------------------------

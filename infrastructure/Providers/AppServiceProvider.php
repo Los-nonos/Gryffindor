@@ -1,6 +1,6 @@
 <?php
 
-namespace presentation\Providers;
+namespace Infrastructure\Providers;
 
 use Application\Services\Token\TokenLoginService;
 use Application\Services\Token\TokenLoginServiceInterface;
@@ -11,21 +11,14 @@ use Domain\Interfaces\Services\GetUserTypeServiceInterface;
 use Domain\Services\Users\GetUserTypeService;
 use Illuminate\Support\ServiceProvider;
 
-use Application\Validators\Users\UpdateUserValidator;
-use Application\Validators\Users\UpdateUserValidatorInterface;
-
-use Application\Results\Users\UpdateUserResult;
-use Application\Results\Users\UpdateUserResultInterface;
-
 use Infrastructure\Persistence\Doctrine\Repositories\TokenRepository;
 use presentation\Http\Presenters\Users\UpdateUserPresenter;
-use presentation\Interfaces\UpdateUserPresenterInterface;
 
 use Domain\Interfaces\UserRepositoryInterface;
 use Infrastructure\Persistence\Doctrine\Repositories\UserRepository;
 
-use presentation\Interfaces\ValidatorServiceInterface;
-use presentation\Services\ValidatorService;
+use Presentation\Http\Validations\Utils\ValidatorService;
+use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -44,15 +37,6 @@ class AppServiceProvider extends ServiceProvider
             UserRepository::class
         );
 
-        $this->app->bind(
-            UpdateUserResultInterface::class,
-            UpdateUserResult::class
-        );
-
-        $this->app->bind(
-            UpdateUserPresenterInterface::class,
-            UpdateUserPresenter::class
-        );
 
         $this->app->bind(UserServiceInterface::class, UserService::class);
 

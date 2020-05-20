@@ -6,7 +6,7 @@ namespace Application\Results\Users;
 
 use Domain\Entities\User;
 
-class UpdateUserResult implements UpdateUserResultInterface
+class UpdateUserResult
 {
     /**
      * @var User $user

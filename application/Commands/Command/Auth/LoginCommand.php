@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Application\Commands\Auth;
+namespace Application\Commands\Command\Auth;
 
 
 class LoginCommand

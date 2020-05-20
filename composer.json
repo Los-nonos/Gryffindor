@@ -20,7 +20,10 @@
         "laravel/framework": "^6.0",
         "firebase/php-jwt": "^5.1",
         "laravel/tinker": "^2.0",
-        "league/tactician": "^1.0"
+        "league/tactician": "^1.0",
+        "ext-redis": "*",
+        "predis/predis": "^1.1",
+        "psr/cache": "1.0.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -42,10 +45,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "Application/",
+            "App\\": "app/",
+            "Application\\": "application/",
             "Presentation\\": "presentation/",
-            "Domain\\": "Domain/",
-            "Infrastructure\\": "Infrastructure/"
+            "Domain\\": "domain/",
+            "Infrastructure\\": "infrastructure/",
+            "Console\\": "console/"
         },
         "classmap": [
             "database/seeds",
