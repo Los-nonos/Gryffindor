@@ -1,15 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Infrastructure\CommandBus;
+namespace Infrastructure\QueryBus;
 
-use Infrastructure\CommandBus\Command\CommandInterface;
-use Infrastructure\CommandBus\Exception\InvalidHandlerException;
-use League\Tactician\Exception\InvalidCommandException;
+use Infrastructure\QueryBus\Exception\InvalidHandlerException;
+use Infrastructure\QueryBus\Exception\InvalidResultException;
+use Infrastructure\QueryBus\Query\QueryInterface;
+use Infrastructure\QueryBus\Result\ResultInterface;
 use League\Tactician\Exception\InvalidMiddlewareException;
 use League\Tactician\Middleware;
 
-final class CommandBus implements CommandBusInterface
+final class QueryBus implements QueryBusInterface
 {
     /**
      * @var callable
@@ -25,23 +26,27 @@ final class CommandBus implements CommandBusInterface
     }
 
     /**
-     * Execute the given command
-     * @param CommandInterface $command
+     * Execute the given query and return a result
+     * @param QueryInterface $query
+     * @return ResultInterface
      * @throws InvalidHandlerException
+     * @throws InvalidResultException
      */
-    public function handle(CommandInterface $command): void
+    public function handle(QueryInterface $query): ResultInterface
     {
-        if (!is_object($command)) {
-            throw InvalidCommandException::forUnknownValue($command);
-        }
-
         $middlewareChain = $this->middlewareChain;
 
-        $result = $middlewareChain($command);
+        $result = $middlewareChain($query);
 
-        if (!empty($result)) {
-            throw new InvalidHandlerException('A command execution must not return a result');
+        if (empty($result)) {
+            throw new InvalidHandlerException('A query execution must return a result');
         }
+
+        if (! $result instanceof ResultInterface) {
+            throw new InvalidResultException('The result must be an instance of ResultInterface');
+        }
+
+        return $result;
     }
 
     /**
@@ -59,8 +64,8 @@ final class CommandBus implements CommandBusInterface
                 throw InvalidMiddlewareException::forMiddleware($middleware);
             }
 
-            $lastCallable = function ($command) use ($middleware, $lastCallable) {
-                return $middleware->execute($command, $lastCallable);
+            $lastCallable = function ($query) use ($middleware, $lastCallable) {
+                return $middleware->execute($query, $lastCallable);
             };
         }
 

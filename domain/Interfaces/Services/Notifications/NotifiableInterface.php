@@ -25,7 +25,7 @@ interface NotifiableInterface
     public function setSubject(string $subject):void;
     public function setMessage(string $message):void;
     public function setUrlAction(string $urlAction):void;
-    public function setPriority(string $priority): void;
+    public function setPriority(Priority $priority): void;
     public function emailNotification(NotifiableInterface $notifiable): Mailable;
     public function internalNotification(NotifiableInterface $notifiable): Notification;
 }

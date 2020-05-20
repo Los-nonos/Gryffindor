@@ -6,8 +6,9 @@ namespace Application\Results\Auth;
 
 use Domain\Entities\Token;
 use Domain\Entities\User;
+use Infrastructure\QueryBus\Result\ResultInterface;
 
-class LoginResult
+class LoginResult implements ResultInterface
 {
 
     private Token $token;

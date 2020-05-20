@@ -5,8 +5,9 @@ namespace Application\Results\Auth;
 
 
 use Domain\Entities\Token;
+use Infrastructure\QueryBus\Result\ResultInterface;
 
-class RenewTokenResult
+class RenewTokenResult implements ResultInterface
 {
     /**
      * @var Token

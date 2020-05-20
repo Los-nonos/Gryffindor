@@ -95,7 +95,7 @@ abstract class Notification implements NotifiableInterface
         $this->urlAction = $urlAction;
     }
 
-    public function setPriority(string $priority): void
+    public function setPriority(Priority $priority): void
     {
         $this->priority = $priority;
     }

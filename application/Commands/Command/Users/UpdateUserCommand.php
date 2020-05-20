@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Application\Commands\Command\Users;
 
-class UpdateUserCommand
+use Infrastructure\CommandBus\Command\CommandInterface;
+
+class UpdateUserCommand implements CommandInterface
 {
     /**
      * @var int

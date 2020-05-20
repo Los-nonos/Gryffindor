@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Application\Handlers\Users;
+namespace Application\Commands\Handler\Users;
 
-use Application\Commands\Users\UpdateUserCommand;
-use Application\Results\Users\UpdateUserResultInterface;
+use Application\Commands\Command\Users\UpdateUserCommand;
 use Domain\Entities\User;
 use Domain\Interfaces\UserRepositoryInterface;
 use Exception;
+use Infrastructure\CommandBus\Handler\HandlerInterface;
 
-class UpdateUserHandler
+class UpdateUserHandler implements HandlerInterface
 {
     /**
      * @var UserRepositoryInterface $userRepository
@@ -18,39 +18,26 @@ class UpdateUserHandler
     private $userRepository;
 
     /**
-     * @var UpdateUserResultInterface $updateUserResult
-     */
-    private $updateUserResult;
-
-    /**
      * CreateUserHandler constructor.
      * @param UserRepositoryInterface $userRepository
-     * @param UpdateUserResultInterface $updateUserResult
      */
     public function __construct(
-        UserRepositoryInterface $userRepository,
-        UpdateUserResultInterface $updateUserResult
+        UserRepositoryInterface $userRepository
     ) {
         $this->userRepository = $userRepository;
-        $this->updateUserResult = $updateUserResult;
     }
 
     /**
      * @param UpdateUserCommand $updateUserCommand
-     * @return UpdateUserResultInterface
      * @throws Exception
      */
-    public function handle(UpdateUserCommand $updateUserCommand): UpdateUserResultInterface
+    public function handle($updateUserCommand): void
     {
         $user = null;
 
         $this->updateUserFormCommand($updateUserCommand, $user);
 
         //$this->userRepository->save($user);
-
-        $this->updateUserResult->setUser($user);
-
-        return $this->updateUserResult;
     }
 
     /**
