@@ -175,6 +175,9 @@ return [
         Infrastructure\Providers\EventServiceProvider::class,
         Infrastructure\Providers\RouteServiceProvider::class,
         Infrastructure\Providers\TacticianProvider::class,
+        Infrastructure\Providers\DoctrineRepositoriesServiceProvider::class,
+        Infrastructure\Providers\CommandBusServiceProvider::class,
+        Infrastructure\Providers\QueryBusServiceProvider::class
     ],
 
     /*
