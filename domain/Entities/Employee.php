@@ -39,10 +39,18 @@ class Employee
     }
 
     /**
-     * @param string $role
+     * @param string|array $role
      */
-    public function setRole(string $role): void
+    public function setRole($role): void
     {
+        if(is_array($role))
+        {
+            $role = json_encode($role);
+        }
+        else {
+            $role = json_encode([$role]);
+        }
+
         $this->role = $role;
     }
 }

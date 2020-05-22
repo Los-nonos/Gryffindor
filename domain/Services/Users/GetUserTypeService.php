@@ -37,7 +37,11 @@ class GetUserTypeService implements GetUserTypeServiceInterface
 
         if($user->isEmployee()){
             $user->getEmployee()->getId();
-            array_push($userTypes, $user->getEmployee()->getRole());
+            $userRoles = json_decode($user->getEmployee()->getRole());
+
+            foreach ($userRoles as $userRole) {
+                array_push($userTypes, $userRole);
+            }
         } else {
             array_push($userTypes, null);
         }
