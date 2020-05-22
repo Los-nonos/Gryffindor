@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Application\Results\Auth;
+namespace Application\Queries\Results\Auth;
 
 
 use Domain\Entities\Token;

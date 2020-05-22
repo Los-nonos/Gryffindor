@@ -2,6 +2,7 @@
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
+use Domain\Entities\Employee;
 
 $builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('users');
@@ -21,3 +22,7 @@ $builder->addField('email', Type::STRING);
 $builder->addField('password', Type::STRING);
 
 $builder->addField('isActive', Type::BOOLEAN);
+
+$builder->createOneToOne('employee', Employee::class)
+    ->cascadePersist()
+    ->build();

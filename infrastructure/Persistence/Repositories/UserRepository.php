@@ -7,6 +7,8 @@ namespace Infrastructure\Persistence\Repositories;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Domain\Entities\User;
@@ -30,7 +32,7 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function save(User $user): void
+    public function persist(User $user): void
     {
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
@@ -40,7 +42,7 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function update(): void
+    public function flush(): void
     {
         $this->getEntityManager()->flush();
     }
@@ -50,7 +52,7 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
      * @return object
      * @throws Exception
      */
-    public function getById(int $userId): ?User
+    public function findOneById(int $userId): ?User
     {
         $user = $this->find($userId);
 
@@ -63,10 +65,10 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
 
     /**
      * @param string $email
-     * @return User|null
+     * @return User|null|object
      * @throws EntityNotFoundException
      */
-    public function getByTheEmail(string $email): ?User
+    public function findOneByTheEmail(string $email): ?User
     {
         $user = $this->findOneBy(['email' => $email]);
 
@@ -95,7 +97,7 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
      * @return array
      * @throws Exception
      */
-    public function all(): array
+    public function findAll(): array
     {
         return $this->findAll();
     }
@@ -105,7 +107,7 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function delete(User $user): void
+    public function destroy(User $user): void
     {
         $this->getEntityManager()->remove($user);
         $this->getEntityManager()->flush();
@@ -113,10 +115,10 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
 
     /**
      * @param string $username
-     * @return User|null
+     * @return User|null|object //TODO: verificate if don't have user throw exception
      * @throws ORMException
      */
-    public function getByUsername(string $username): ?User
+    public function findOneByUsername(string $username): ?User
     {
         $user = $this->findOneBy(['username'=> $username]);
 
@@ -124,6 +126,28 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
         {
             throw new EntityNotFoundException("User with username $username not found");
         }
+        return $user;
+    }
+
+    /**
+     * @param int $employeeId
+     * @return User|null
+     * @throws EntityNotFoundException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function findOneByEmployeeId(int $employeeId): ?User
+    {
+        $dqlQuery = $this->createQueryBuilder('u');
+        $dqlQuery->where('u.employee = :employeeId')
+            ->setParameter('employeeId', $employeeId);
+
+        $user = $dqlQuery->getQuery()->getSingleResult();
+
+        if(!$user){
+            throw new EntityNotFoundException('User not found');
+        }
+
         return $user;
     }
 }

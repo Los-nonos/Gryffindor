@@ -31,7 +31,7 @@ class StoreEmployeeHandler implements HandlerInterface
         $userCommand = $this->createUserCommand($command);
 
         $user = $this->userService->createFromCommand($userCommand);
-
+        $user->setIsActive(true);
         $user->setEmployee($employee);
 
         $this->userService->persist($user);

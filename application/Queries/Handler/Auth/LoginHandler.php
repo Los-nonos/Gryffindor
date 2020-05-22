@@ -1,18 +1,14 @@
 <?php
 
-namespace Application\Commands\Handler\Auth;
+namespace Application\Queries\Handler\Auth;
 
 
-use Application\Commands\Auth\LoginCommand;
-use Application\Exceptions\EntityNotFoundException;
 use Application\Exceptions\PasswordNotMatch;
 use Application\Queries\Query\Auth\LoginQuery;
-use Application\Results\Auth\LoginResult;
-use Application\Results\Auth\LoginResultInterface;
+use Application\Queries\Results\Auth\LoginResult;
 use Application\Services\Hash\HashServiceInterface;
 use Application\Services\Token\TokenLoginServiceInterface;
 use Application\Services\Users\UserServiceInterface;
-use Domain\Interfaces\UserRepositoryInterface;
 use Exception;
 use Infrastructure\QueryBus\Result\ResultInterface;
 
@@ -42,7 +38,7 @@ class LoginHandler
         $user = $this->userService->findUserByUsernameOrFail($command->getUsername());
 
 
-        if($this->hashService->VerificateHash($user->getPassword(), $command->getPassword()))
+        if($this->hashService->check($user->getPassword(), $command->getPassword()))
         {
             $result = new LoginResult();
             $token = $this->tokenLoginService->createToken($user);

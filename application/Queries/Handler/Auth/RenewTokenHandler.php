@@ -4,7 +4,7 @@
 namespace Application\Queries\Handler\Auth;
 
 
-use Application\Results\Auth\RenewTokenResult;
+use Application\Queries\Results\Auth\RenewTokenResult;
 use Application\Services\Token\TokenLoginServiceInterface;
 use Application\Services\Token\GenerateRandomTokenService;
 use DateTime;
