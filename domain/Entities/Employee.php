@@ -43,6 +43,7 @@ class Employee
      */
     public function setRole($role): void
     {
+        //TODO: cambiar a booleans con todos los roles o verificar que los roles ingresados sean correctos con el enum
         if(is_array($role))
         {
             $role = json_encode($role);
