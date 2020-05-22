@@ -40,6 +40,10 @@ class User
      * @var bool
      */
     private bool $isActive;
+    /**
+     * @var Employee|null
+     */
+    private ?Employee $employee;
 
     /**
      * Activity constructor.
@@ -143,13 +147,17 @@ class User
         $this->isActive = $isActive;
     }
 
-    public function getRoles(): array
-    {
-        return $this->roles;
+    public function setEmployee(Employee $employee) {
+        $this->employee = $employee;
     }
 
-    public function setRole($role): void
+    public function getEmployee(): ?Employee
     {
+        return $this->employee;
+    }
 
+    public function isEmployee(): bool
+    {
+        return isset($this->employee);
     }
 }
