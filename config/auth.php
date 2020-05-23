@@ -1,5 +1,7 @@
 <?php
 
+use Domain\Entities\User;
+
 return [
 
     /*
@@ -14,7 +16,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'api',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
@@ -41,11 +43,11 @@ return [
             'provider' => 'users',
         ],
 
-        'api' => [
+        /*'api' => [
             'driver' => 'jwt',
             'provider' => 'users',
             'hash' => false,
-        ],
+        ],*/
     ],
 
     /*
@@ -66,15 +68,15 @@ return [
     */
 
     'providers' => [
-        //'users' => [
-        //    'driver' => 'doctrine',
-        //    'model' => Domain\Entities\User::class,
-        //],
+        'users' => [
+            'driver' => 'doctrine',
+            'model' => User::class,
+        ],
 
-         'users' => [
-             'driver' => 'database',
-             'table' => 'users',
-         ],
+//         'users' => [
+//             'driver' => 'database',
+//             'table' => 'users',
+//         ],
     ],
 
     /*
