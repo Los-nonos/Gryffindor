@@ -34,7 +34,7 @@ class AuthenticationRoleMiddleware
         {
             throw new Forbidden("not hash provider");
         }
-
+        //TODO: decrypt hash
         if(!$this->tokenLoginService->exist($hash))
         {
             throw new Forbidden();

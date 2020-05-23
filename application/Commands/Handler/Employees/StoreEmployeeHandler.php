@@ -6,34 +6,30 @@ namespace Application\Commands\Handler\Employees;
 
 use Application\Commands\Command\Employees\StoreEmployeeCommand;
 use Application\Commands\Command\Users\CreateUserCommand;
+use Application\Exceptions\RoleInvalid;
 use Application\Services\Users\UserServiceInterface;
 use Domain\Entities\Employee;
-use Domain\Interfaces\Repositories\EmployeeRepositoryInterface;
 use Infrastructure\CommandBus\Handler\HandlerInterface;
 
 class StoreEmployeeHandler implements HandlerInterface
 {
     private UserServiceInterface $userService;
 
-    private EmployeeRepositoryInterface $repository;
-
     public function __construct(
-        UserServiceInterface $userService,
-        EmployeeRepositoryInterface $repository
+        UserServiceInterface $userService
     )
     {
         $this->userService = $userService;
-        $this->repository = $repository;
     }
 
     /**
      * @param StoreEmployeeCommand $command
+     * @throws RoleInvalid
      */
     public function handle($command): void
     {
         $employee = new Employee();
         $employee->setRoles($command->getRole());
-        $this->repository->persist($employee);
 
         $userCommand = $this->createUserCommand($command);
 
