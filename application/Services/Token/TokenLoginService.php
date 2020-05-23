@@ -72,4 +72,15 @@ class TokenLoginService implements TokenLoginServiceInterface
     {
         $this->tokenRepository->update();
     }
+
+    public function findOrCreateToken(User $user): Token
+    {
+        $token = $this->tokenRepository->findOneByUserId($user->getId());
+
+        if(!$token) {
+            $token = $this->createToken($user);
+        }
+
+        return $token;
+    }
 }

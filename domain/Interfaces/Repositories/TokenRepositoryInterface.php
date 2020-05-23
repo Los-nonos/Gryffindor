@@ -15,4 +15,6 @@ interface TokenRepositoryInterface
     public function findOneByHash(string $tokenHash);
 
     public function update();
+
+    public function findOneByUserId(int $getId);
 }

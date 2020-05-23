@@ -42,7 +42,7 @@ class LoginHandler implements HandlerInterface
         if($passwordMatched)
         {
             $result = new LoginResult();
-            $token = $this->tokenLoginService->createToken($user);
+            $token = $this->tokenLoginService->findOrCreateToken($user);
 
             $result->setToken($token);
             return $result;

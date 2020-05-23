@@ -62,4 +62,9 @@ class TokenRepository extends EntityRepository implements TokenRepositoryInterfa
     {
         $this->getEntityManager()->flush();
     }
+
+    public function findOneByUserId(int $id)
+    {
+        return $this->findOneBy(['user' => $id]);
+    }
 }

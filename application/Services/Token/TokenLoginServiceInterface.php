@@ -18,4 +18,6 @@ interface TokenLoginServiceInterface
     public function findOneByHashOrFail(string $tokenHash): Token;
 
     public function update();
+
+    public function findOrCreateToken(User $user): Token;
 }
