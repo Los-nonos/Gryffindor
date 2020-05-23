@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Domain\Entities\Employee;
-use Domain\Entities\Token;
 use Domain\Interfaces\Repositories\EmployeeRepositoryInterface;
 
 class EmployeeRepository extends EntityRepository implements EmployeeRepositoryInterface
@@ -21,7 +20,7 @@ class EmployeeRepository extends EntityRepository implements EmployeeRepositoryI
      */
     public function __construct(EntityManager $entityManager)
     {
-        parent::__construct($entityManager, new ClassMetadata(Token::class));
+        parent::__construct($entityManager, new ClassMetadata(Employee::class));
     }
 
     /**

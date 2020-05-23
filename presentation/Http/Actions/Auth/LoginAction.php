@@ -4,10 +4,11 @@
 namespace Presentation\Http\Actions\Auth;
 
 
-use Domain\CommandBus\CommandBusInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Exceptions\InvalidBodyException;
+use Infrastructure\CommandBus\CommandBusInterface;
+use Infrastructure\QueryBus\QueryBusInterface;
 use Presentation\Http\Adapters\Auth\LoginAdapter;
 use Presentation\Http\Enums\HttpCodes;
 use Presentation\Http\Presenters\Auth\LoginPresenter;
@@ -16,18 +17,18 @@ class LoginAction
 {
     private LoginAdapter $adapter;
 
-    private CommandBusInterface $commandBus;
+    private QueryBusInterface $queryBus;
 
     private LoginPresenter $presenter;
 
     public function __construct(
         LoginAdapter $adapter,
-        CommandBusInterface $commandBus,
+        QueryBusInterface $queryBus,
         LoginPresenter $presenter
     )
     {
         $this->adapter = $adapter;
-        $this->commandBus = $commandBus;
+        $this->queryBus = $queryBus;
         $this->presenter = $presenter;
     }
 
@@ -40,10 +41,10 @@ class LoginAction
     {
         $command = $this->adapter->from($request);
 
-        $result = $this->commandBus->handle($command);
+        $result = $this->queryBus->handle($command);
 
         return new JsonResponse(
-            $this->presenter->fromResult($result)->toJWT(),
+            $this->presenter->fromResult($result)->getData(),
             HttpCodes::OK
         );
     }

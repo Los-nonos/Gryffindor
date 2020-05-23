@@ -11,9 +11,9 @@ class StoreEmployeeSchema
             'name' => 'bail|required|alpha|min:3',
             'surname' => 'bail|required|alpha|min:3',
             'username' => 'bail|required|alpha|min:3|max:25',
-            'password' => 'bail|required|alpha|min:8|max:25',
+            'password' => 'bail|required|min:8|max:25',
             'email' => 'bail|required|email',
-            'role' => 'bail|required|alpha'
+            'role' => 'bail|required|array'
         ];
     }
 }

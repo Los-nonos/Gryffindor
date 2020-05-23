@@ -2,10 +2,9 @@
 
 namespace Presentation\Http\Adapters\Auth;
 
-use Application\Commands\Auth\LoginCommand;
+use Application\Queries\Query\Auth\LoginQuery;
 use Illuminate\Http\Request;
 use App\Exceptions\InvalidBodyException;
-use Exception;
 use Presentation\Http\Validations\Schemas\Auth\LoginSchema;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
 
@@ -20,11 +19,12 @@ class LoginAdapter
         LoginSchema $loginSchema
     ) {
         $this->validator = $validator;
+        $this->loginSchema = $loginSchema;
     }
 
     /**
      * @param Request $request
-     * @return LoginCommand
+     * @return LoginQuery
      * @throws InvalidBodyException
      */
     public function from(Request $request)
@@ -35,7 +35,7 @@ class LoginAdapter
             throw new InvalidBodyException($this->validator->getErrors());
         }
 
-        return new LoginCommand(
+        return new LoginQuery(
             $request->get('username'),
             $request->get('password')
         );

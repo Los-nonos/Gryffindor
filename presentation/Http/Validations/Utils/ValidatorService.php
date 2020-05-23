@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace presentation\Http\Validations\Utils;
+namespace Presentation\Http\Validations\Utils;
 
 use Illuminate\Validation\Factory;
 

@@ -34,7 +34,9 @@ Route::group([
     Route::post('renew-token', Actions\Auth\RenewTokenAction::class)->name('renew-token');
 });
 
-Route::middleware('role.auth:admin|superhuman')->prefix('employees')->group(function () {
+/*middleware('role.auth:admin|superhuman')->*/
+
+Route::prefix('employees')->group(function () {
     Route::post('/', Actions\Employees\StoreEmployeeAction::class)->name('createEmployee');
 
 });

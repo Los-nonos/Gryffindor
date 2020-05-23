@@ -42,8 +42,9 @@ class User
     private bool $isActive;
     /**
      * @var Employee|null
+     * @ORM\OneToOne(targetEntity="Employee")
      */
-    private ?Employee $employee;
+    private $employee;
 
     /**
      * Activity constructor.

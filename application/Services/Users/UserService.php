@@ -16,7 +16,7 @@ class UserService implements UserServiceInterface
 
     private UserRepositoryInterface $repository;
 
-    private function __construct(
+    public function __construct(
         HashServiceInterface $hashService,
         UserRepositoryInterface $repository
     )

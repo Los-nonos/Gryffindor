@@ -4,10 +4,11 @@
 namespace Presentation\Http\Adapters\Employees;
 
 
+use App\Exceptions\InvalidBodyException;
 use Application\Commands\Command\Employees\StoreEmployeeCommand;
 use Illuminate\Http\Request;
 use Presentation\Http\Validations\Schemas\Users\StoreEmployeeSchema;
-use presentation\Http\Validations\Utils\ValidatorServiceInterface;
+use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
 
 class StoreEmployeeAdapter
 {
@@ -24,9 +25,19 @@ class StoreEmployeeAdapter
         $this->schema = $schema;
     }
 
+    /**
+     * @param Request $request
+     * @return StoreEmployeeCommand
+     * @throws InvalidBodyException
+     */
     public function from(Request $request)
     {
         $this->validatorService->make($request->all(), $this->schema->getRules());
+
+        if(!$this->validatorService->isValid())
+        {
+            throw new InvalidBodyException($this->validatorService->getErrors());
+        }
 
         return new StoreEmployeeCommand(
             $request->input('name'),

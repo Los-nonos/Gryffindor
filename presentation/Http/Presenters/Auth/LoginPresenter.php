@@ -4,13 +4,14 @@
 namespace Presentation\Http\Presenters\Auth;
 
 
+use Application\Queries\Results\Auth\LoginResult;
 use Application\Results\Auth\LoginResultInterface;
 use Domain\Interfaces\Services\GetUserTypeServiceInterface;
 use Firebase\JWT\JWT;
 
 class LoginPresenter
 {
-    private LoginResultInterface $result;
+    private LoginResult $result;
     private GetUserTypeServiceInterface $getUserTypeService;
 
     public function __construct(GetUserTypeServiceInterface $getUserTypeService)
@@ -18,7 +19,8 @@ class LoginPresenter
         $this->getUserTypeService = $getUserTypeService;
     }
 
-    public function fromResult(LoginResultInterface $result): LoginPresenter {
+
+    public function fromResult($result): LoginPresenter {
         $this->result = $result;
         return $this;
     }
@@ -28,32 +30,34 @@ class LoginPresenter
 
         $userTypes = $this->getUserTypeService->handle($user);
 
-        $userRoles = [];
+//        $userRoles = [];
+//
+//        if($userTypes[$this->getUserTypeService::USER_ADMIN] != null){
+//            array_push($userRoles, 'CompanyAdmin');
+//        }
+//
+//        if($userTypes[$this->getUserTypeService::USER_CUSTOMER] != null){
+//            array_push($userRoles, 'Teacher');
+//        }
 
-        if($userTypes[$this->getUserTypeService::USER_ADMIN] != null){
-            array_push($userRoles, 'CompanyAdmin');
-        }
-
-        if($userTypes[$this->getUserTypeService::USER_CUSTOMER] != null){
-            array_push($userRoles, 'Teacher');
-        }
+        $userArray = [
+            'id' => $user->getId(),
+            'firstName' => $user->getName(),
+            'lastName' => $user->getSurname(),
+            'username' => $user->getUsername(),
+            'email' => $user->getEmail(),
+            'roles' => $userTypes,
+        ];
 
         return [
-            'user' => [
-                'id' => $user->getId(),
-                'firstName' => $user->getName(),
-                'lastName' => $user->getSurname(),
-                'username' => $user->getUsername(),
-                'email' => $user->getEmail(),
-                'roles' => $userRoles
-            ],
+            'user' => $userArray,
+            'token' => $this->toJWT($userArray)
         ];
     }
 
-    public function toJWT()
+    public function toJWT($payload)
     {
         $key = "key";//todo: definir key
-        $payload = $this->getData();
         return JWT::encode($payload, $key);
     }
 }

@@ -8,17 +8,22 @@ use Application\Commands\Command\Employees\StoreEmployeeCommand;
 use Application\Commands\Command\Users\CreateUserCommand;
 use Application\Services\Users\UserServiceInterface;
 use Domain\Entities\Employee;
+use Domain\Interfaces\Repositories\EmployeeRepositoryInterface;
 use Infrastructure\CommandBus\Handler\HandlerInterface;
 
 class StoreEmployeeHandler implements HandlerInterface
 {
     private UserServiceInterface $userService;
 
+    private EmployeeRepositoryInterface $repository;
+
     public function __construct(
-        UserServiceInterface $userService
+        UserServiceInterface $userService,
+        EmployeeRepositoryInterface $repository
     )
     {
         $this->userService = $userService;
+        $this->repository = $repository;
     }
 
     /**
@@ -26,7 +31,9 @@ class StoreEmployeeHandler implements HandlerInterface
      */
     public function handle($command): void
     {
-        $employee = new Employee($command->getRole());
+        $employee = new Employee();
+        $employee->setRoles($command->getRole());
+        $this->repository->persist($employee);
 
         $userCommand = $this->createUserCommand($command);
 

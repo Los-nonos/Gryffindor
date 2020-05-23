@@ -10,7 +10,7 @@ class StoreEmployeeCommand implements CommandInterface
 {
     private string $name;
     private string $surname;
-    private string $role;
+    private array $role;
     private string $username;
     private string $password;
     private string $email;
@@ -18,7 +18,7 @@ class StoreEmployeeCommand implements CommandInterface
     public function __construct(
         string $name,
         string $surname,
-        string $role,
+        array $role,
         string $username,
         string $password,
         string $email
@@ -49,9 +49,9 @@ class StoreEmployeeCommand implements CommandInterface
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getRole(): string
+    public function getRole(): array
     {
         return $this->role;
     }

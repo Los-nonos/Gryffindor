@@ -170,14 +170,12 @@ return [
          * Application Service Providers...
          */
         Infrastructure\Providers\AppServiceProvider::class,
+        Infrastructure\Providers\CommandBusServiceProvider::class,
+        Infrastructure\Providers\QueryBusServiceProvider::class,
         Infrastructure\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
         Infrastructure\Providers\EventServiceProvider::class,
         Infrastructure\Providers\RouteServiceProvider::class,
-        Infrastructure\Providers\TacticianProvider::class,
         Infrastructure\Providers\DoctrineRepositoriesServiceProvider::class,
-        Infrastructure\Providers\CommandBusServiceProvider::class,
-        Infrastructure\Providers\QueryBusServiceProvider::class
     ],
 
     /*
@@ -227,7 +225,7 @@ return [
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'Str' => Illuminate\Support\Str::class,
         'URL' => Illuminate\Support\Facades\URL::class,
-        'ValidatorService' => Illuminate\Support\Facades\Validator::class,
+        'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
     ],
 
@@ -240,8 +238,8 @@ return [
     |
     */
 
-    'command_bus' => [
-        'commands_namespace' => 'Application\\Commands',
-        'handlers_namespace' => 'Application\\Handlers',
-    ],
+//    'command_bus' => [
+//        'commands_namespace' => 'Application\\Commands',
+//        'handlers_namespace' => 'Application\\Handlers',
+//    ],
 ];

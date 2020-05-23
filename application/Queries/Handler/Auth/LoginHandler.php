@@ -10,9 +10,10 @@ use Application\Services\Hash\HashServiceInterface;
 use Application\Services\Token\TokenLoginServiceInterface;
 use Application\Services\Users\UserServiceInterface;
 use Exception;
+use Infrastructure\QueryBus\Handler\HandlerInterface;
 use Infrastructure\QueryBus\Result\ResultInterface;
 
-class LoginHandler
+class LoginHandler implements HandlerInterface
 {
     private HashServiceInterface $hashService;
     private UserServiceInterface $userService;
@@ -33,12 +34,12 @@ class LoginHandler
      * @return LoginResult
      * @throws Exception
      */
-    public function execute(LoginQuery $command): ResultInterface
+    public function handle($command): ResultInterface
     {
         $user = $this->userService->findUserByUsernameOrFail($command->getUsername());
 
-
-        if($this->hashService->check($user->getPassword(), $command->getPassword()))
+        $passwordMatched = $this->hashService->check($command->getPassword(), $user->getPassword());
+        if($passwordMatched)
         {
             $result = new LoginResult();
             $token = $this->tokenLoginService->createToken($user);

@@ -4,6 +4,7 @@
 namespace Domain\Entities;
 
 
+use Application\Exceptions\RoleInvalid;
 use Domain\Enums\EmployeeRoles;
 
 class Employee
@@ -12,16 +13,16 @@ class Employee
      * @var int
      *
      */
-    private int $id;
+    private $id;
 
     /**
      * @var string
      */
-    private string $role;
+    private $role;
 
-    public function __construct(string $role)
+    public function __construct()
     {
-        $this->role = $role;
+        $this->role = json_encode([]);
     }
 
     /**
@@ -44,10 +45,11 @@ class Employee
      * Setting roles from array the roles matching to EmployeeRoles enum
      * ¡Warning: all roles are removed before setting roles!
      * @param array $roles
+     * @throws RoleInvalid
      */
     public function setRoles(array $roles): void
     {
-        $this->role = "";
+        $this->role = json_encode([]);
 
         foreach($roles as $role) {
             if ($role == EmployeeRoles::SALES) {
@@ -64,6 +66,8 @@ class Employee
                 $this->setFinanceRole();
             } elseif ($role == EmployeeRoles::RRHH) {
                 $this->setRRHHRole();
+            } else {
+                throw new RoleInvalid("The role named $role does not match any predefined role");
             }
         }
     }
@@ -106,7 +110,7 @@ class Employee
     private function addRole(string $role): string
     {
         $roles = json_decode($this->role);
-        $roles = array_push($roles, $role);
+        $roles[] = $role;
 
         return json_encode($roles);
     }
