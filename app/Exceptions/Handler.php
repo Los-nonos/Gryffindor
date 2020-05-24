@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Application\Exceptions\ApplicationException;
 use Application\Exceptions\EntityNotFoundException;
 use Application\Exceptions\ExistingEntityException;
 use Exception;
@@ -58,17 +59,13 @@ class Handler extends ExceptionHandler
         if($exception instanceof BasePresentationException)
         {
             return new JsonResponse(
-                json_decode($exception->getMessage()),
+                ['error' => json_decode($exception->getMessage())],
                 $exception->getStatusCode()
             );
         }
 
-        if ($exception instanceof ExistingEntityException) {
-            return new JsonResponse([ 'error' => $exception->getMessage() ], 422);
-        }
-
-        if ($exception instanceof EntityNotFoundException) {
-            return new JsonResponse([ 'error' => $exception->getMessage() ], 404);
+        if ($exception instanceof ApplicationException) {
+            return new JsonResponse([ 'error' => $exception->getMessage() ], $exception->getCode());
         }
 
         return parent::render($request, $exception);

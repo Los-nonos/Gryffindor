@@ -20,4 +20,8 @@ interface TokenLoginServiceInterface
     public function update();
 
     public function findOrCreateToken(User $user): Token;
+
+    public function createTokenJWT($payload): string;
+
+    public function decryptTokenJWT(string $hash): object;
 }

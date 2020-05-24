@@ -10,15 +10,13 @@ use Domain\Interfaces\Services\Notifications\NotifiableInterface;
 class NotifiableService implements NotifiableServiceInterface
 {
     private GenerateNotificationService $generateNotificationService;
-    private NotifiableInterface $mailable;
     private NotifiableInterface $notification;
 
-    public function __construct(GenerateNotificationService $generateNotificationService,
-                                NotifiableInterface $mailable,
-                                NotifiableInterface $notification)
+    public function __construct(
+        GenerateNotificationService $generateNotificationService,
+        NotifiableInterface $notification)
     {
         $this->generateNotificationService = $generateNotificationService;
-        $this->mailable = $mailable;
         $this->notification = $notification;
     }
 
@@ -29,7 +27,7 @@ class NotifiableService implements NotifiableServiceInterface
 
     public function sendEmail(NotifiableInterface $data): void
     {
-        EmailNotificationJob::dispatch($this->mailable->emailNotification($data))->onQueue('emails');
+        EmailNotificationJob::dispatch($this->notification->emailNotification($data))->onQueue('emails');
     }
 
     public function notificationNotificationData(): NotifiableInterface

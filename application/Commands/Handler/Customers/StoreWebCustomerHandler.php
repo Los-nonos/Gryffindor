@@ -7,23 +7,25 @@ namespace Application\Commands\Handler\Customers;
 use Application\Commands\Command\Customers\StoreWebCustomerCommand;
 use Application\Commands\Command\Users\CreateUserCommand;
 use Application\Services\Customers\CustomerServiceInterface;
+use Application\Services\Notification\NotifiableService;
 use Application\Services\Users\UserServiceInterface;
 use Domain\Entities\Customer;
+use Domain\Interfaces\Services\Notifications\NotifiableInterface;
 use Infrastructure\CommandBus\Handler\HandlerInterface;
 
 class StoreWebCustomerHandler implements HandlerInterface
 {
     private UserServiceInterface $userService;
 
-    private CustomerServiceInterface $customerService;
+    private NotifiableService $notifiableService;
 
     public function __construct(
         UserServiceInterface $userService,
-        CustomerServiceInterface $customerService
+        NotifiableService $notifiableService
     )
     {
         $this->userService = $userService;
-        $this->customerService = $customerService;
+        $this->notifiableService = $notifiableService;
     }
 
     /**
@@ -33,7 +35,9 @@ class StoreWebCustomerHandler implements HandlerInterface
     {
         $customer = new Customer();
         $customer->setEmail($command->getEmail());
-        $this->customerService->persist($customer);
+
+        $notifiable = $this->createEmailToActivateAccount();
+        $notifiable->setEmail($command->getEmail());
 
         $userCommand = $this->createUserCommand($command);
 
@@ -41,6 +45,23 @@ class StoreWebCustomerHandler implements HandlerInterface
         $user->setCustomer($customer);
 
         $this->userService->persist($user);
+
+        $this->notifiableService->sendEmail($notifiable);
+    }
+
+    private function createEmailToActivateAccount(): NotifiableInterface
+    {
+        $notifiable = $this->notifiableService->notificationNotificationData();
+        $url = env('APP_URL', null);
+        $companyName = env('APP_NAME', 'Zeep Commerce');
+        $notifiable->setUrlAction($url);
+        $notifiable->setSubject('Activate your account');
+
+        //TODO: add token for activate account
+        $tokenActivateAccount = '';
+
+        $notifiable->setMessage("Welcome to $companyName! \n please active your account here: $tokenActivateAccount \n this url is valid for one week only");
+        return $notifiable;
     }
 
     private function createUserCommand(StoreWebCustomerCommand $command): CreateUserCommand

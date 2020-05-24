@@ -3,6 +3,7 @@
 namespace Application\Queries\Handler\Auth;
 
 
+use Application\Exceptions\InactiveUser;
 use Application\Exceptions\PasswordNotMatch;
 use Application\Queries\Query\Auth\LoginQuery;
 use Application\Queries\Results\Auth\LoginResult;
@@ -41,6 +42,10 @@ class LoginHandler implements HandlerInterface
         $passwordMatched = $this->hashService->check($command->getPassword(), $user->getPassword());
         if($passwordMatched)
         {
+            if(!$user->isActive()){
+                throw new InactiveUser("Your user is inactive");
+            }
+
             $result = new LoginResult();
             $token = $this->tokenLoginService->findOrCreateToken($user);
 

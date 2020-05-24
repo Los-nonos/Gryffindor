@@ -34,7 +34,7 @@ class StoreAdminHandler implements HandlerInterface
 
         $user = $this->userService->createFromCommand($userCommand);
         $user->setAdmin($admin);
-
+        $user->setIsActive(true);
         $this->userService->persist($user);
     }
 

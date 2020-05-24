@@ -34,7 +34,9 @@ class AuthenticationRoleMiddleware
         {
             throw new Forbidden("not hash provider");
         }
-        //TODO: decrypt hash
+
+        $hash = $this->tokenLoginService->decryptTokenJWT($hash);
+
         if(!$this->tokenLoginService->exist($hash))
         {
             throw new Forbidden();
@@ -49,9 +51,10 @@ class AuthenticationRoleMiddleware
 
         $user = $token->getUser();
 
-        /*if($user->isAdmin()) {
+        if($user->isAdmin()) {
+            $admin = $user->getAdmin();
             foreach ($roles as $role){
-                if($role == 'admin'){
+                if($role == $admin->getRole()){
                     $next($request);
                 }
             }
@@ -65,8 +68,19 @@ class AuthenticationRoleMiddleware
             }
             throw new UnauthorizedException("Unauthorized");
         }
+        elseif($user->isEmployee())
+        {
+            $employeeRoles = $user->getEmployee()->getRole();
+
+            foreach ($roles as $role){
+                if(in_array($role, $employeeRoles)){
+                    $next($request);
+                }
+            }
+            throw new UnauthorizedException("Unauthorized");
+        }
         else {
             throw new UnauthorizedException("User has no role set");
-        }*/
+        }
     }
 }

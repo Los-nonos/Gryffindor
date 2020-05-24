@@ -4,11 +4,13 @@
 namespace Application\Services\Token;
 
 
+use App\Exceptions\Forbidden;
 use Application\Exceptions\EntityNotFoundException;
 use Application\Services\Token\TokenLoginServiceInterface;
 use Domain\Entities\Token;
 use Domain\Entities\User;
 use Domain\Interfaces\Repositories\TokenRepositoryInterface;
+use Firebase\JWT\JWT;
 
 class TokenLoginService implements TokenLoginServiceInterface
 {
@@ -82,5 +84,28 @@ class TokenLoginService implements TokenLoginServiceInterface
         }
 
         return $token;
+    }
+
+    public function createTokenJWT($payload): string
+    {
+        $key = env('JWT_SECRET', "pepito123");
+        return JWT::encode($payload, $key);
+    }
+
+    /**
+     * @param string $hash
+     * @return object
+     * @throws Forbidden
+     */
+    public function decryptTokenJWT(string $hash): object
+    {
+        $key = env('JWT_SECRET', "pepito123");
+        $decrypted = JWT::decode($hash, $key);
+
+        if(!$decrypted) {
+            throw new Forbidden("Token invalid");
+        }
+
+        return $decrypted;
     }
 }
