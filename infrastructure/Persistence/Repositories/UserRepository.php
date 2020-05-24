@@ -49,18 +49,11 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
 
     /**
      * @param int $userId
-     * @return object
-     * @throws Exception
+     * @return User|null
      */
     public function findOneById(int $userId): ?User
     {
-        $user = $this->find($userId);
-
-        if(!$user){
-            throw new EntityNotFoundException('User not found');
-        }
-
-        return $user;
+        return $this->find($userId);
     }
 
     /**
@@ -115,24 +108,16 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
 
     /**
      * @param string $username
-     * @return User|null|object //TODO: verificate if don't have user throw exception
-     * @throws ORMException
+     * @return User|null|object
      */
     public function findOneByUsername(string $username): ?User
     {
-        $user = $this->findOneBy(['username'=> $username]);
-
-        if(!$user)
-        {
-            throw new EntityNotFoundException("User with username $username not found");
-        }
-        return $user;
+        return $this->findOneBy(['username'=> $username]);
     }
 
     /**
      * @param int $employeeId
      * @return User|null
-     * @throws EntityNotFoundException
      * @throws NoResultException
      * @throws NonUniqueResultException
      */
@@ -142,12 +127,6 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
         $dqlQuery->where('u.employee = :employeeId')
             ->setParameter('employeeId', $employeeId);
 
-        $user = $dqlQuery->getQuery()->getSingleResult();
-
-        if(!$user){
-            throw new EntityNotFoundException('User not found');
-        }
-
-        return $user;
+        return $dqlQuery->getQuery()->getSingleResult();
     }
 }
