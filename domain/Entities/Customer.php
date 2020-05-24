@@ -31,12 +31,17 @@ class Customer
     /**
      * @var string
      */
+    private $cellPhone;
+
+    /**
+     * @var string
+     */
     private $dni;
 
     /**
      * @var DateTime
      */
-    private $birthdate;
+    private $birthday;
 
     /**
      * @var string
@@ -117,6 +122,22 @@ class Customer
     /**
      * @return string
      */
+    public function getCellPhone(): string
+    {
+        return $this->cellPhone;
+    }
+
+    /**
+     * @param string $cellPhone
+     */
+    public function setCellPhone(string $cellPhone): void
+    {
+        $this->cellPhone = $cellPhone;
+    }
+
+    /**
+     * @return string
+     */
     public function getDni(): string
     {
         return $this->dni;
@@ -133,17 +154,17 @@ class Customer
     /**
      * @return DateTime
      */
-    public function getBirthdate(): DateTime
+    public function getBirthday(): DateTime
     {
-        return $this->birthdate;
+        return $this->birthday;
     }
 
     /**
      * @param DateTime $birthdate
      */
-    public function setBirthdate(DateTime $birthdate): void
+    public function setBirthday(DateTime $birthday): void
     {
-        $this->birthdate = $birthdate;
+        $this->birthday = $birthday;
     }
 
     /**
@@ -237,7 +258,7 @@ class Customer
     /**
      * @param string $taxationKey
      */
-    public function setTaxationKey(string $taxationKey): void
+    public function setTaxationKey(?string $taxationKey): void
     {
         $this->taxationKey = $taxationKey;
     }
@@ -253,7 +274,7 @@ class Customer
     /**
      * @param string $grossIncome
      */
-    public function setGrossIncome(string $grossIncome): void
+    public function setGrossIncome(?string $grossIncome): void
     {
         $this->grossIncome = $grossIncome;
     }

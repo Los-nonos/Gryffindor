@@ -56,4 +56,49 @@ class UserService implements UserServiceInterface
     {
         $this->repository->persist($user);
     }
+
+    /**
+     * @param int $id
+     * @return User
+     * @throws EntityNotFoundException
+     */
+    public function findOneByIdOrFail(int $id): User
+    {
+        $user = $this->repository->findOneById($id);
+
+        if(!isset($user))
+        {
+            throw new EntityNotFoundException("User with id $id not found");
+        }
+
+        return $user;
+    }
+
+    /**
+     * @param string $email
+     * @return User
+     * @throws EntityNotFoundException
+     * @noinspection PhpHierarchyChecksInspection
+     */
+    public function findOneByEmailOrFail(string $email)
+    {
+        $user = $this->repository->findOneByTheEmail($email);
+
+        if(!isset($user))
+        {
+            throw new EntityNotFoundException("User with email $email does not exist");
+        }
+
+        return $user;
+    }
+
+    public function existWithEmail(string $email): bool
+    {
+        return $this->repository->existWithTheEmail($email);
+    }
+
+    public function update()
+    {
+        $this->repository->flush();
+    }
 }

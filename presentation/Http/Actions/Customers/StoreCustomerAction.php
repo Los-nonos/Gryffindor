@@ -8,16 +8,16 @@ use App\Exceptions\InvalidBodyException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Infrastructure\CommandBus\CommandBusInterface;
-use Presentation\Http\Adapters\Customers\UpdateCustomerAdapter;
+use Presentation\Http\Adapters\Customers\StoreCustomerAdapter;
 use Presentation\Http\Enums\HttpCodes;
 
-class UpdateCustomerAction
+class StoreCustomerAction
 {
-    private UpdateCustomerAdapter $adapter;
+    private StoreCustomerAdapter $adapter;
     private CommandBusInterface $commandBus;
 
     public function __construct(
-        UpdateCustomerAdapter $adapter,
+        StoreCustomerAdapter $adapter,
         CommandBusInterface $commandBus
     )
     {
@@ -37,8 +37,8 @@ class UpdateCustomerAction
         $this->commandBus->handle($command);
 
         return new JsonResponse(
-            ['message' => 'Customer has been updated successfully'],
-            HttpCodes::OK
+            ['message' => 'Customer has been created successfully'],
+            HttpCodes::CREATED
         );
     }
 }

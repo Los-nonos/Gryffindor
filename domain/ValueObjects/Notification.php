@@ -6,8 +6,9 @@ namespace Domain\ValueObjects;
 
 use Domain\Enums\Priority;
 use Domain\Interfaces\Services\Notifications\NotifiableInterface;
+use Illuminate\Mail\Mailable;
 
-abstract class Notification implements NotifiableInterface
+class Notification implements NotifiableInterface
 {
     private int $id;
     private int $userId;
@@ -98,5 +99,15 @@ abstract class Notification implements NotifiableInterface
     public function setPriority(Priority $priority): void
     {
         $this->priority = $priority;
+    }
+
+    public function emailNotification(NotifiableInterface $notifiable): Mailable
+    {
+        return new Mailable();
+    }
+
+    public function internalNotification(NotifiableInterface $notifiable): \Illuminate\Notifications\Notification
+    {
+        return new \Illuminate\Notifications\Notification();
     }
 }

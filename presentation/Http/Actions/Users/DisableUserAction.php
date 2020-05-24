@@ -1,23 +1,24 @@
 <?php
 
 
-namespace Presentation\Http\Actions\Customers;
+namespace Presentation\Http\Actions\Users;
 
 
 use App\Exceptions\InvalidBodyException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Infrastructure\CommandBus\CommandBusInterface;
-use Presentation\Http\Adapters\Customers\UpdateCustomerAdapter;
+use Presentation\Http\Adapters\Users\DisableUserAdapter;
 use Presentation\Http\Enums\HttpCodes;
 
-class UpdateCustomerAction
+class DisableUserAction
 {
-    private UpdateCustomerAdapter $adapter;
+    private DisableUserAdapter $adapter;
+
     private CommandBusInterface $commandBus;
 
     public function __construct(
-        UpdateCustomerAdapter $adapter,
+        DisableUserAdapter $adapter,
         CommandBusInterface $commandBus
     )
     {
@@ -37,7 +38,7 @@ class UpdateCustomerAction
         $this->commandBus->handle($command);
 
         return new JsonResponse(
-            ['message' => 'Customer has been updated successfully'],
+            ['message' => 'User has been disabled'],
             HttpCodes::OK
         );
     }

@@ -52,7 +52,7 @@ class StoreWebCustomerHandler implements HandlerInterface
     private function createEmailToActivateAccount(): NotifiableInterface
     {
         $notifiable = $this->notifiableService->notificationNotificationData();
-        $url = env('APP_URL', null);
+        $url = env('APP_URL', 'http://zeepcommerce.com');
         $companyName = env('APP_NAME', 'Zeep Commerce');
         $notifiable->setUrlAction($url);
         $notifiable->setSubject('Activate your account');

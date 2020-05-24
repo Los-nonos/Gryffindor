@@ -66,10 +66,10 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'uuid', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'email'];
+            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'uuid', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'email', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'age', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'cellPhone', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'dni', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'birthday', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'postalCode', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'country', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'state', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'city', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'vatCondition', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'taxationKey', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'grossIncome'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'uuid', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'email'];
+        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'uuid', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'email', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'age', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'cellPhone', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'dni', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'birthday', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'postalCode', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'country', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'state', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'city', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'vatCondition', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'taxationKey', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'grossIncome'];
     }
 
     /**
@@ -222,6 +222,248 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEmail', []);
 
         return parent::getEmail();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAge(): int
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAge', []);
+
+        return parent::getAge();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAge(int $age): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAge', [$age]);
+
+        parent::setAge($age);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCellPhone(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCellPhone', []);
+
+        return parent::getCellPhone();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCellPhone(string $cellPhone): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCellPhone', [$cellPhone]);
+
+        parent::setCellPhone($cellPhone);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDni(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDni', []);
+
+        return parent::getDni();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDni(string $dni): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDni', [$dni]);
+
+        parent::setDni($dni);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBirthday(): \DateTime
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBirthday', []);
+
+        return parent::getBirthday();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBirthday(\DateTime $birthday): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBirthday', [$birthday]);
+
+        parent::setBirthday($birthday);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPostalCode(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPostalCode', []);
+
+        return parent::getPostalCode();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPostalCode(string $postalCode): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPostalCode', [$postalCode]);
+
+        parent::setPostalCode($postalCode);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCountry(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCountry', []);
+
+        return parent::getCountry();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCountry(string $country): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCountry', [$country]);
+
+        parent::setCountry($country);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getState(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getState', []);
+
+        return parent::getState();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setState(string $state): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setState', [$state]);
+
+        parent::setState($state);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCity(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCity', []);
+
+        return parent::getCity();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCity(string $city): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCity', [$city]);
+
+        parent::setCity($city);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getVatCondition(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVatCondition', []);
+
+        return parent::getVatCondition();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setVatCondition(string $vatCondition): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setVatCondition', [$vatCondition]);
+
+        parent::setVatCondition($vatCondition);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTaxationKey(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTaxationKey', []);
+
+        return parent::getTaxationKey();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTaxationKey(?string $taxationKey): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTaxationKey', [$taxationKey]);
+
+        parent::setTaxationKey($taxationKey);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getGrossIncome(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getGrossIncome', []);
+
+        return parent::getGrossIncome();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setGrossIncome(?string $grossIncome): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setGrossIncome', [$grossIncome]);
+
+        parent::setGrossIncome($grossIncome);
     }
 
 }
