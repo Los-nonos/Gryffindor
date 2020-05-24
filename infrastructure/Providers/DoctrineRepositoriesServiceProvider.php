@@ -4,10 +4,12 @@ declare(strict_types=1);
 namespace Infrastructure\Providers;
 
 
+use Domain\Interfaces\Repositories\CustomerRepositoryInterface;
 use Domain\Interfaces\Repositories\EmployeeRepositoryInterface;
 use Domain\Interfaces\Repositories\TokenRepositoryInterface;
 use Domain\Interfaces\Repositories\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
+use Infrastructure\Persistence\Repositories\CustomerRepository;
 use Infrastructure\Persistence\Repositories\EmployeeRepository;
 use Infrastructure\Persistence\Repositories\TokenRepository;
 use Infrastructure\Persistence\Repositories\UserRepository;
@@ -21,6 +23,7 @@ final class DoctrineRepositoriesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->app->bind(CustomerRepositoryInterface::class, CustomerRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(TokenRepositoryInterface::class, TokenRepository::class);
         $this->app->bind(EmployeeRepositoryInterface::class, EmployeeRepository::class);

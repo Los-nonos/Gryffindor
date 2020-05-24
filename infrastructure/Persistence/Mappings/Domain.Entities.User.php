@@ -2,6 +2,8 @@
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
+use Domain\Entities\Admin;
+use Domain\Entities\Customer;
 use Domain\Entities\Employee;
 
 $builder = new ClassMetadataBuilder($metadata);
@@ -24,5 +26,13 @@ $builder->addField('password', Type::STRING);
 $builder->addField('isActive', Type::BOOLEAN);
 
 $builder->createOneToOne('employee', Employee::class)
+    ->cascadePersist()
+    ->build();
+
+$builder->createOneToOne('customer', Customer::class)
+    ->cascadePersist()
+    ->build();
+
+$builder->createOneToOne('admin', Admin::class)
     ->cascadePersist()
     ->build();

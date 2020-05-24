@@ -2,6 +2,8 @@
 
 namespace Infrastructure\Providers;
 
+use Application\Services\Customers\CustomerService;
+use Application\Services\Customers\CustomerServiceInterface;
 use Application\Services\Hash\HashService;
 use Application\Services\Hash\HashServiceInterface;
 
@@ -48,6 +50,8 @@ class AppServiceProvider extends ServiceProvider
             return $client;
         });
         $this->app->bind(UserServiceInterface::class, UserService::class);
+
+        $this->app->bind(CustomerServiceInterface::class, CustomerService::class);
 
         $this->app->bind(CacheItemPoolInterface::class, RedisProvider::class);
 

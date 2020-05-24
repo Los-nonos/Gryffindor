@@ -1,24 +1,24 @@
 <?php
 
 
-namespace Presentation\Http\Adapters\Employees;
+namespace Presentation\Http\Adapters\Customers;
 
 
 use App\Exceptions\InvalidBodyException;
-use Application\Commands\Command\Employees\StoreEmployeeCommand;
+use Application\Commands\Command\Customers\StoreWebCustomerCommand;
 use Illuminate\Http\Request;
-use Presentation\Http\Validations\Schemas\Employee\StoreEmployeeSchema;
+use Presentation\Http\Validations\Schemas\Customers\StoreWebCustomerSchema;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
 
-class StoreEmployeeAdapter
+class StoreWebCustomerAdapter
 {
     private ValidatorServiceInterface $validatorService;
 
-    private StoreEmployeeSchema $schema;
+    private StoreWebCustomerSchema $schema;
 
     public function __construct(
         ValidatorServiceInterface $validatorService,
-        StoreEmployeeSchema $schema
+        StoreWebCustomerSchema $schema
     )
     {
         $this->validatorService = $validatorService;
@@ -27,7 +27,7 @@ class StoreEmployeeAdapter
 
     /**
      * @param Request $request
-     * @return StoreEmployeeCommand
+     * @return StoreWebCustomerCommand
      * @throws InvalidBodyException
      */
     public function from(Request $request)
@@ -39,13 +39,12 @@ class StoreEmployeeAdapter
             throw new InvalidBodyException($this->validatorService->getErrors());
         }
 
-        return new StoreEmployeeCommand(
+        return new StoreWebCustomerCommand(
             $request->input('name'),
             $request->input('surname'),
-            $request->input('role'),
             $request->input('username'),
-            $request->input('password'),
             $request->input('email'),
+            $request->input('password'),
         );
     }
 }

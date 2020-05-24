@@ -66,10 +66,10 @@ class User extends \Domain\Entities\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'name', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'surname', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'username', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'email', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'password', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'isActive', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'employee'];
+            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'name', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'surname', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'username', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'email', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'password', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'isActive', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'employee', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'customer', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'admin'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'name', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'surname', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'username', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'email', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'password', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'isActive', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'employee'];
+        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'name', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'surname', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'username', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'email', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'password', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'isActive', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'employee', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'customer', '' . "\0" . 'Domain\\Entities\\User' . "\0" . 'admin'];
     }
 
     /**
@@ -354,6 +354,72 @@ class User extends \Domain\Entities\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isEmployee', []);
 
         return parent::isEmployee();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCustomer(\Domain\Entities\Customer $customer)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCustomer', [$customer]);
+
+        return parent::setCustomer($customer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCustomer(): ?\Domain\Entities\Customer
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCustomer', []);
+
+        return parent::getCustomer();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isCustomer(): bool
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isCustomer', []);
+
+        return parent::isCustomer();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAdmin(): \Domain\Entities\Admin
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAdmin', []);
+
+        return parent::getAdmin();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAdmin(\Domain\Entities\Admin $admin): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAdmin', [$admin]);
+
+        parent::setAdmin($admin);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isAdmin(): bool
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isAdmin', []);
+
+        return parent::isAdmin();
     }
 
 }

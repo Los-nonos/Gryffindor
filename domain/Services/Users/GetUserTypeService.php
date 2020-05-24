@@ -21,30 +21,22 @@ class GetUserTypeService implements GetUserTypeServiceInterface
     {
         $userTypes = [];
 
-        /*if($user->getAdmin()){
-            $user->getAdmin()->getId();
-            array_push($userTypes, $user->getAdmin());
-        } else {
-            array_push($userTypes, null);
+        if($user->isAdmin()) {
+            array_push($userTypes, $user->getAdmin()->getRole());
         }
 
-        if($user->getCustomer()){
-            $user->getCustomer()->getId();
-            array_push($userTypes, $user->getCustomer());
-        } else {
-            array_push($userTypes, null);
-        }*/
+        if($user->isCustomer()) {
+            array_push($userTypes, 'customer');
+        }
 
-        if($user->isEmployee()){
-            $user->getEmployee()->getId();
+        if($user->isEmployee()) {
             $userRoles = $user->getEmployee()->getRole();
 
             foreach ($userRoles as $userRole) {
                 array_push($userTypes, $userRole);
             }
-        } else {
-            array_push($userTypes, null);
         }
+
         return $userTypes;
     }
 }

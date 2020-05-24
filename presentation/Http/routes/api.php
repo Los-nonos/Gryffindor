@@ -40,3 +40,11 @@ Route::prefix('employees')->group(function () {
     Route::post('/', Actions\Employees\StoreEmployeeAction::class)->name('createEmployee');
 
 });
+
+Route::prefix('customers')->group(function () {
+    Route::post('/', Actions\Customers\StoreWebCustomerAction::class)->name('createWebCustomer');
+});
+
+Route::prefix('admins')->group(function () {
+    Route::post('/', Actions\Admins\StoreAdminAction::class)->name('createAdmin');
+});

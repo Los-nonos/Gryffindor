@@ -13,7 +13,6 @@ class User
 {
     /**
      * @var int
-     *
      */
     private int $id;
     /**
@@ -45,6 +44,18 @@ class User
      * @ORM\OneToOne(targetEntity="Employee")
      */
     private $employee;
+
+    /**
+     * @var Customer
+     * @ORM\OneToOne(targetEntity="Customer")
+     */
+    private $customer;
+
+    /**
+     * @var Admin
+     * @ORM\OneToOne(targetEntity="Admin")
+     */
+    private $admin;
 
     /**
      * Activity constructor.
@@ -148,17 +159,71 @@ class User
         $this->isActive = $isActive;
     }
 
+    /**
+     * @param Employee $employee
+     */
     public function setEmployee(Employee $employee) {
         $this->employee = $employee;
     }
 
+    /**
+     * @return Employee|null
+     */
     public function getEmployee(): ?Employee
     {
         return $this->employee;
     }
 
+    /**
+     * @return bool
+     */
     public function isEmployee(): bool
     {
         return isset($this->employee);
+    }
+
+    /**
+     * @param Customer $customer
+     */
+    public function setCustomer(Customer $customer)
+    {
+        $this->customer = $customer;
+    }
+
+    /**
+     * @return Customer|null
+     */
+    public function getCustomer(): ?Customer
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCustomer(): bool
+    {
+        return isset($this->customer);
+    }
+
+    /**
+     * @return Admin
+     */
+    public function getAdmin(): Admin
+    {
+        return $this->admin;
+    }
+
+    /**
+     * @param Admin $admin
+     */
+    public function setAdmin(Admin $admin): void
+    {
+        $this->admin = $admin;
+    }
+
+    public function isAdmin(): bool
+    {
+        return isset($this->admin);
     }
 }

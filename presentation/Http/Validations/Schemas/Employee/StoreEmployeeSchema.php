@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Presentation\Http\Validations\Schemas\Users;
+namespace Presentation\Http\Validations\Schemas\Employee;
 
 
 class StoreEmployeeSchema
