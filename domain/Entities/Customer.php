@@ -4,6 +4,8 @@
 namespace Domain\Entities;
 
 
+use DateTime;
+
 class Customer
 {
     /**
@@ -20,6 +22,56 @@ class Customer
      * @var string
      */
     private $email;
+
+    /**
+     * @var int
+     */
+    private $age;
+
+    /**
+     * @var string
+     */
+    private $dni;
+
+    /**
+     * @var DateTime
+     */
+    private $birthdate;
+
+    /**
+     * @var string
+     */
+    private $postalCode;
+
+    /**
+     * @var string
+     */
+    private $country;
+
+    /**
+     * @var string
+     */
+    private $state;
+
+    /**
+     * @var string
+     */
+    private $city;
+
+    /**
+     * @var string
+     */
+    private $vatCondition;
+
+    /**
+     * @var string
+     */
+    private $taxationKey;
+
+    /**
+     * @var string
+     */
+    private $grossIncome;
 
     public function __construct()
     {
@@ -44,5 +96,165 @@ class Customer
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAge(): int
+    {
+        return $this->age;
+    }
+
+    /**
+     * @param int $age
+     */
+    public function setAge(int $age): void
+    {
+        $this->age = $age;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDni(): string
+    {
+        return $this->dni;
+    }
+
+    /**
+     * @param string $dni
+     */
+    public function setDni(string $dni): void
+    {
+        $this->dni = $dni;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getBirthdate(): DateTime
+    {
+        return $this->birthdate;
+    }
+
+    /**
+     * @param DateTime $birthdate
+     */
+    public function setBirthdate(DateTime $birthdate): void
+    {
+        $this->birthdate = $birthdate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostalCode(): string
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @param string $postalCode
+     */
+    public function setPostalCode(string $postalCode): void
+    {
+        $this->postalCode = $postalCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry(string $country): void
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return string
+     */
+    public function getState(): string
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param string $state
+     */
+    public function setState(string $state): void
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity(): string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity(string $city): void
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVatCondition(): string
+    {
+        return $this->vatCondition;
+    }
+
+    /**
+     * @param string $vatCondition
+     */
+    public function setVatCondition(string $vatCondition): void
+    {
+        $this->vatCondition = $vatCondition;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTaxationKey(): string
+    {
+        return $this->taxationKey;
+    }
+
+    /**
+     * @param string $taxationKey
+     */
+    public function setTaxationKey(string $taxationKey): void
+    {
+        $this->taxationKey = $taxationKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGrossIncome(): string
+    {
+        return $this->grossIncome;
+    }
+
+    /**
+     * @param string $grossIncome
+     */
+    public function setGrossIncome(string $grossIncome): void
+    {
+        $this->grossIncome = $grossIncome;
     }
 }
