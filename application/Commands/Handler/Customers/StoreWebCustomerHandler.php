@@ -8,8 +8,10 @@ use Application\Commands\Command\Customers\StoreWebCustomerCommand;
 use Application\Commands\Command\Users\CreateUserCommand;
 use Application\Services\Customers\CustomerServiceInterface;
 use Application\Services\Notification\NotifiableService;
+use Application\Services\Token\TokenLoginServiceInterface;
 use Application\Services\Users\UserServiceInterface;
 use Domain\Entities\Customer;
+use Domain\Entities\User;
 use Domain\Interfaces\Services\Notifications\NotifiableInterface;
 use Infrastructure\CommandBus\Handler\HandlerInterface;
 
@@ -19,13 +21,17 @@ class StoreWebCustomerHandler implements HandlerInterface
 
     private NotifiableService $notifiableService;
 
+    private TokenLoginServiceInterface $tokenService;
+
     public function __construct(
         UserServiceInterface $userService,
-        NotifiableService $notifiableService
+        NotifiableService $notifiableService,
+        TokenLoginServiceInterface $tokenLoginService
     )
     {
         $this->userService = $userService;
         $this->notifiableService = $notifiableService;
+        $this->tokenService = $tokenLoginService;
     }
 
     /**
@@ -36,9 +42,6 @@ class StoreWebCustomerHandler implements HandlerInterface
         $customer = new Customer();
         $customer->setEmail($command->getEmail());
 
-        $notifiable = $this->createEmailToActivateAccount();
-        $notifiable->setEmail($command->getEmail());
-
         $userCommand = $this->createUserCommand($command);
 
         $user = $this->userService->createFromCommand($userCommand);
@@ -46,10 +49,12 @@ class StoreWebCustomerHandler implements HandlerInterface
 
         $this->userService->persist($user);
 
+        $notifiable = $this->createEmailToActivateAccount($user);
+        $notifiable->setEmail($command->getEmail());
         $this->notifiableService->sendEmail($notifiable);
     }
 
-    private function createEmailToActivateAccount(): NotifiableInterface
+    private function createEmailToActivateAccount(User $user): NotifiableInterface
     {
         $notifiable = $this->notifiableService->notificationNotificationData();
         $url = env('APP_URL', 'http://zeepcommerce.com');
@@ -57,8 +62,11 @@ class StoreWebCustomerHandler implements HandlerInterface
         $notifiable->setUrlAction($url);
         $notifiable->setSubject('Activate your account');
 
-        //TODO: add token for activate account
-        $tokenActivateAccount = '';
+        $token = $this->tokenService->findOrCreateToken($user);
+        $this->tokenService->persist($token);
+        $payload = [ 'id' => $user->getId(), 'name' => $user->getName(), 'surname' => $user->getSurname() ];
+
+        $tokenActivateAccount = "$url/activate?token=".$this->tokenService->createTokenJWT($payload);
 
         $notifiable->setMessage("Welcome to $companyName! \n please active your account here: $tokenActivateAccount \n this url is valid for one week only");
         return $notifiable;
