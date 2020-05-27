@@ -23,12 +23,12 @@ class EmailNotificationEventData extends Mailable implements ShouldQueue
     public function build(){
         return $this->view('email.test')
                     ->from(with(array(
-                        'email' => $this->emailDetail->getEmail(),
-                        'name' => $this->emailDetail->getName() . " " . $this->emailDetail->getSurname(),
+                        'email' => $this->emailDetail->getEmailFrom(),
+                        'name' => $this->emailDetail->getNameFrom(),
                     )))
                     ->with([
                         'subject' => $this->emailDetail->getSubject(),
                         'message' => $this->emailDetail->getMessage(),
-                    ]);
+                    ])->to($this->emailDetail->getEmail());
     }
 }

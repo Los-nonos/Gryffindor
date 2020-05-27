@@ -78,9 +78,8 @@ class UserService implements UserServiceInterface
      * @param string $email
      * @return User
      * @throws EntityNotFoundException
-     * @noinspection PhpHierarchyChecksInspection
      */
-    public function findOneByEmailOrFail(string $email)
+    public function findOneByEmailOrFail(string $email): User
     {
         $user = $this->repository->findOneByTheEmail($email);
 

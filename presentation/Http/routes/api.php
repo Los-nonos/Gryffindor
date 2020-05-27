@@ -16,6 +16,8 @@ use Presentation\Http\Actions;
 |
 */
 
+Route::get('/send_email', Actions\SendEmail::class);
+
 Route::prefix('users')->group(function(){
     Route::get('/{id}/enable', Actions\Users\EnableUserAction::class)->name('enableUser');
     Route::get('/{id}/disable', Actions\Users\DisableUserAction::class)->name('disableUser');
@@ -30,7 +32,6 @@ Route::group([
     Route::post('signup', Actions\Customers\StoreWebCustomerAction::class)->name('createWebCustomer');
 });
 
-/*middleware('role.auth:admin|superhuman')->*/
 
 Route::prefix('employees')->group(function () {
     Route::post('/', Actions\Employees\StoreEmployeeAction::class)->name('createEmployee');

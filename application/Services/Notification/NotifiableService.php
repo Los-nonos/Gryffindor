@@ -27,7 +27,7 @@ class NotifiableService implements NotifiableServiceInterface
 
     public function sendEmail(NotifiableInterface $data): void
     {
-        //EmailNotificationJob::dispatch($this->notification->emailNotification($data))->onQueue('emails');
+        EmailNotificationJob::dispatch($data->emailNotification())->onQueue('emails');
     }
 
     public function notificationNotificationData(): NotifiableInterface
