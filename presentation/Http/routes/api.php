@@ -24,7 +24,6 @@ Route::prefix('users')->group(function(){
 });
 
 Route::group([
-    'middleware' => 'api',
     'prefix' => 'auth',
 ], function ($router) {
     Route::post('login', Actions\Auth\LoginAction::class)->name('login');

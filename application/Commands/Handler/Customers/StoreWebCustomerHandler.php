@@ -50,6 +50,7 @@ class StoreWebCustomerHandler implements HandlerInterface
         $this->userService->persist($user);
 
         $notifiable = $this->createEmailToActivateAccount($user);
+        $notifiable->setName($command->getName() . " " . $command->getSurname());
         $notifiable->setEmail($command->getEmail());
         $this->notifiableService->sendEmail($notifiable);
     }
@@ -68,7 +69,7 @@ class StoreWebCustomerHandler implements HandlerInterface
 
         $tokenActivateAccount = "$url/activate?token=".$this->tokenService->createTokenJWT($payload);
 
-        $notifiable->setMessage("Welcome to $companyName! \n please active your account here: $tokenActivateAccount \n this url is valid for one week only");
+        $notifiable->setMessage("Welcome to $companyName! \n please active your account here: $tokenActivateAccount \n this url is valid for one hour only");
         return $notifiable;
     }
 

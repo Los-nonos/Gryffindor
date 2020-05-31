@@ -77,7 +77,7 @@ class TokenLoginService implements TokenLoginServiceInterface
 
     public function findOrCreateToken(User $user): Token
     {
-        $token = $this->findOneByUserIdOrFail($user->getId());
+        $token = $this->tokenRepository->findOneByUserId($user->getId());
 
         if(!$token) {
             $token = $this->createToken($user);
@@ -95,7 +95,7 @@ class TokenLoginService implements TokenLoginServiceInterface
             'exp' => $time + (60*60),
             'data' => $payload
         );
-        
+
         return JWT::encode($jwt, $key);
     }
 
