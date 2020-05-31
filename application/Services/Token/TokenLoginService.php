@@ -89,7 +89,14 @@ class TokenLoginService implements TokenLoginServiceInterface
     public function createTokenJWT($payload): string
     {
         $key = env('JWT_SECRET', "pepito123");
-        return JWT::encode($payload, $key);
+        $time = time();
+        $jwt = array(
+            'iat' => $time,
+            'exp' => $time + (60*60),
+            'data' => $payload
+        );
+        
+        return JWT::encode($jwt, $key);
     }
 
     /**
