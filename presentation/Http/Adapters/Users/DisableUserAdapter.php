@@ -32,7 +32,8 @@ class DisableUserAdapter
      */
     public function from(Request $request)
     {
-        $this->validatorService->make((array)$request->route('id'), $this->schema->getRule());
+        $id = $request->route('id');
+        $this->validatorService->make(['id' => $id], $this->schema->getRule());
 
         if(!$this->validatorService->isValid())
         {

@@ -32,12 +32,12 @@ class EnableUserAdapter
      */
     public function from(Request $request)
     {
-        $this->validatorService->make((array)$request->route('id'), $this->schema->getRule());
+        $id = $request->route('id');
+        $this->validatorService->make(['id' => $id], $this->schema->getRule());
 
-        if(!$this->validatorService->isValid())
-        {
-            throw new InvalidBodyException($this->validatorService->getErrors());
-        }
+         if (!$this->validatorService->isValid()) {
+             throw new InvalidBodyException($this->validatorService->getErrors());
+         }
 
         return new EnableUserCommand(
             $request->route('id')

@@ -4,20 +4,20 @@
 namespace Presentation\Http\Actions\Auth;
 
 
-use Domain\CommandBus\CommandBusInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Exceptions\InvalidBodyException;
-use presentation\Http\Adapters\Auth\RenewTokenAdapter;
+use Infrastructure\QueryBus\QueryBusInterface;
+use Presentation\Http\Adapters\Auth\RenewTokenAdapter;
 use Presentation\Http\Enums\HttpCodes;
-use presentation\Http\Presenters\Auth\LoginPresenter;
+use Presentation\Http\Presenters\Auth\LoginPresenter;
 
 class RenewTokenAction
 {
     /**
-     * @var CommandBusInterface
+     * @var QueryBusInterface
      */
-    private CommandBusInterface $commandBus;
+    private QueryBusInterface $queryBus;
 
     /**
      * @var RenewTokenAdapter
@@ -29,17 +29,17 @@ class RenewTokenAction
     /**
      * RenewTokenAction constructor.
      * @param RenewTokenAdapter $adapter
-     * @param CommandBusInterface $commandBus
+     * @param QueryBusInterface $queryBus
      * @param LoginPresenter $presenter
      */
     public function __construct(
         RenewTokenAdapter $adapter,
-        CommandBusInterface $commandBus,
+        QueryBusInterface $queryBus,
         LoginPresenter $presenter
     )
     {
         $this->adapter = $adapter;
-        $this->commandBus = $commandBus;
+        $this->queryBus = $queryBus;
         $this->presenter = $presenter;
     }
 
@@ -52,10 +52,10 @@ class RenewTokenAction
     {
         $command = $this->adapter->from($request);
 
-        $result = $this->commandBus->handle($command);
+        $result = $this->queryBus->handle($command);
 
         return new JsonResponse(
-            $this->presenter->fromResult($result)->toJWT(),
+            $this->presenter->fromResult($result)->getData(),
             HttpCodes::OK
         );
     }

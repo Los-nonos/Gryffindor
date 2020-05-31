@@ -5,6 +5,7 @@ namespace Presentation\Http\Presenters\Auth;
 
 
 use Application\Queries\Results\Auth\LoginResult;
+use Application\Queries\Results\Auth\RenewTokenResult;
 use Application\Results\Auth\LoginResultInterface;
 use Application\Services\Token\TokenLoginServiceInterface;
 use Domain\Interfaces\Services\GetUserTypeServiceInterface;
@@ -12,7 +13,10 @@ use Firebase\JWT\JWT;
 
 class LoginPresenter
 {
-    private LoginResult $result;
+    /**
+     * @var LoginResult|RenewTokenResult
+     */
+    private $result;
     private GetUserTypeServiceInterface $getUserTypeService;
     private TokenLoginServiceInterface $tokenLoginService;
 

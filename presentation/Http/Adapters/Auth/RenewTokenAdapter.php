@@ -4,7 +4,7 @@
 namespace Presentation\Http\Adapters\Auth;
 
 
-use Application\Commands\Auth\RenewTokenCommand;
+use Application\Queries\Query\Auth\RenewTokenQuery;
 use Application\Services\Token\TokenLoginServiceInterface;
 use Illuminate\Http\Request;
 use App\Exceptions\InvalidBodyException;
@@ -32,7 +32,7 @@ class RenewTokenAdapter
 
     /**
      * @param Request $request
-     * @return RenewTokenCommand
+     * @return RenewTokenQuery
      * @throws InvalidBodyException
      */
     public function from(Request $request)
@@ -45,13 +45,13 @@ class RenewTokenAdapter
         }
 
         $token = $request->input('token');
-
-        if(!$this->tokenService->exist($token)) {
-            throw new InvalidBodyException("Token invalid, not exist");
+        try {
+            $token = $this->tokenService->decryptTokenJWT($token);
+            return new RenewTokenQuery(
+                $token->id,
+            );
+        }catch (\Exception $exception) {
+            throw new InvalidBodyException(["Token invalid, not exist"]);
         }
-
-        return new RenewTokenCommand(
-            $token,
-        );
     }
 }
