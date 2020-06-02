@@ -40,6 +40,7 @@ class StoreWebCustomerHandler implements HandlerInterface
     public function handle($command): void
     {
         $customer = new Customer();
+        //lack verificate email don't saved in db
         $customer->setEmail($command->getEmail());
 
         $userCommand = $this->createUserCommand($command);
@@ -69,7 +70,7 @@ class StoreWebCustomerHandler implements HandlerInterface
 
         $tokenActivateAccount = "$url/activate?token=".$this->tokenService->createTokenJWT($payload);
 
-        $notifiable->setMessage("Welcome to $companyName! \n please active your account here: $tokenActivateAccount \n this url is valid for one hour only");
+        $notifiable->setMessage("Welcome to $companyName! \n please active your account here: $tokenActivateAccount this url is valid for one hour only");
         return $notifiable;
     }
 
