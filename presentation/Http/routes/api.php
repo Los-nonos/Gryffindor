@@ -20,6 +20,7 @@ Route::get('/send_email', Actions\SendEmail::class);
 
 Route::prefix('users')->group(function(){
     Route::post('/recovery', Actions\Users\RecoveryPasswordAction::class)->name('recoveryPassword');
+    Route::post('/forgot', Actions\Users\ChangePasswordFromRecoveryAction::class)->name('changePasswordFromRecovery');
     Route::get('/{id}/enable', Actions\Users\EnableUserAction::class)->name('enableUser');
     Route::get('/{id}/disable', Actions\Users\DisableUserAction::class)->name('disableUser');
 });
