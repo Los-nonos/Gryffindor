@@ -5,7 +5,9 @@ namespace Application\Services\Users;
 
 
 use Application\Commands\Command\Users\CreateUserCommand;
+use Application\Exceptions\EmailAlreadyRegistered;
 use Application\Exceptions\EntityNotFoundException;
+use Application\Exceptions\UsernameAlreadyRegistered;
 use Application\Services\Hash\HashServiceInterface;
 use Domain\Entities\User;
 use Domain\Interfaces\Repositories\UserRepositoryInterface;
@@ -28,7 +30,7 @@ class UserService implements UserServiceInterface
 
     public function findUserByUsernameOrFail(string $username)
     {
-        $user = $this->repository->findOneByUsername($username);
+        $user = $this->findOneUserByUsername($username);
 
         if(!isset($user))
         {
@@ -38,8 +40,28 @@ class UserService implements UserServiceInterface
         return $user;
     }
 
+    private function findOneUserByUsername(string $username): ?User
+    {
+        return $this->repository->findOneByUsername($username);
+    }
+
+    /**
+     * @param CreateUserCommand $userCommand
+     * @return User
+     * @throws EmailAlreadyRegistered|UsernameAlreadyRegistered
+     */
     public function createFromCommand(CreateUserCommand $userCommand)
     {
+        if($this->existWithEmail($userCommand->getEmail())){
+            throw new EmailAlreadyRegistered();
+        }
+
+        $user = $this->findOneUserByUsername($userCommand->getUsername());
+
+        if($user) {
+            throw new UsernameAlreadyRegistered();
+        }
+
         $user = new User();
 
         $user->setName($userCommand->getName());
