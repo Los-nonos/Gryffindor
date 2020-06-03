@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
 
-      - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
+      - run: sudo apt upgrade && sudo apt-get -f install zlib1g-dev libsqlite3-dev php-redis
       - run: sudo docker-php-ext-install zip
 
       # Download and cache dependencies
@@ -31,7 +31,7 @@ jobs:
 
       # prepare the database
       - run: touch database/database.sqlite
-      - run: php artisan migrate --env=testing --database=sqlite_testing --force
+      - run: php artisan doctrine:migrations:migrate --env=testing --database=sqlite_testing --force
 
       # run tests with phpunit or codecept
       - run: vendor/bin/phpunit

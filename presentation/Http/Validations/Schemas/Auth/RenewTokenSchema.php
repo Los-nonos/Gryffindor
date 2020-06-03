@@ -9,7 +9,7 @@ class RenewTokenSchema
     public function getRules():array
     {
         return [
-            'token' => 'bail|required'
+            'token' => 'bail|required|min:3'
         ];
     }
 }

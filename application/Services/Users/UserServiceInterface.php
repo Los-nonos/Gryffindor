@@ -28,4 +28,12 @@ interface UserServiceInterface
      * @return void
      */
     public function persist(User $user);
+
+    public function findOneByIdOrFail(int $id): User;
+
+    public function findOneByEmailOrFail(string $email): User;
+
+    public function existWithEmail(string $email): bool;
+
+    public function update();
 }

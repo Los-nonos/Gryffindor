@@ -34,7 +34,7 @@ class RenewTokenHandler implements HandlerInterface
 
     public function handle($query): ResultInterface
     {
-        $token = $this->tokenService->findOneByHashOrFail($query->getToken());
+        $token = $this->tokenService->findOneByUserIdOrFail($query->getToken());
 
         $token->setUpdatedAt(new DateTime());
 

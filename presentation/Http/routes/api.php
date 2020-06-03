@@ -16,25 +16,23 @@ use Presentation\Http\Actions;
 |
 */
 
-//Route::get('/users', ['middleware' => 'auth.role:admin,zeeper', 'uses' => 'Users\IndexUsersAction@execute', 'as' => 'indexUsers']);
+Route::get('/send_email', Actions\SendEmail::class);
 
-//Route::get('/users/{id}',['middleware' => 'auth.role:admin', 'uses' => 'Users\FindByIdUserAction@execute', 'as' => 'usersById']);
-
-//Route::post('/users',['middleware' => 'auth.role:admin', 'uses' => 'Users\StoreUserAction@execute', 'as' => 'createUser']);
-
-//Route::delete('/users/{id}', ['middleware' => 'auth.role:admin', 'uses' => 'Users\DeleteUserAction@execute', 'as' => 'removeUser']);
-
-Route::put('/users/{id}', ['middleware' => 'auth.role:admin', 'uses' => 'Users\UpdateUserAction@execute', 'as' => 'editUser']);
+Route::prefix('users')->group(function(){
+    Route::post('/recovery', Actions\Users\RecoveryPasswordAction::class)->name('recoveryPassword');
+    Route::post('/forgot', Actions\Users\ChangePasswordFromRecoveryAction::class)->name('changePasswordFromRecovery');
+    Route::get('/{id}/enable', Actions\Users\EnableUserAction::class)->name('enableUser');
+    Route::get('/{id}/disable', Actions\Users\DisableUserAction::class)->name('disableUser');
+});
 
 Route::group([
-    'middleware' => 'api',
     'prefix' => 'auth',
 ], function ($router) {
     Route::post('login', Actions\Auth\LoginAction::class)->name('login');
     Route::post('renew-token', Actions\Auth\RenewTokenAction::class)->name('renew-token');
+    Route::post('signup', Actions\Customers\StoreWebCustomerAction::class)->name('createWebCustomer');
 });
 
-/*middleware('role.auth:admin|superhuman')->*/
 
 Route::prefix('employees')->group(function () {
     Route::post('/', Actions\Employees\StoreEmployeeAction::class)->name('createEmployee');
@@ -42,7 +40,8 @@ Route::prefix('employees')->group(function () {
 });
 
 Route::prefix('customers')->group(function () {
-    Route::post('/', Actions\Customers\StoreWebCustomerAction::class)->name('createWebCustomer');
+    Route::post('/', Actions\Customers\StoreCustomerAction::class)->name('createCustomer');
+    Route::put('/{id}', Actions\Customers\UpdateCustomerAction::class)->name('updateCustomer');
 });
 
 Route::prefix('admins')->group(function () {

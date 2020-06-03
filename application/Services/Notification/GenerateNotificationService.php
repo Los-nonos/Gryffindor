@@ -17,15 +17,14 @@ class GenerateNotificationService
 
     public function generateEmailData(): NotifiableInterface
     {
-        $this->notificationData->setEmail(env('MAIL_FROM_ADDRESS'));
-        $this->notificationData->setName(env('MAIL_FROM_NAME'));
+        $this->notificationData->setEmailFrom(env('MAIL_FROM_ADDRESS', "zeeporganization@gmail.com"));
+        $this->notificationData->setNameFrom(env('MAIL_FROM_NAME', "Zeep Organization"));
 
         return $this->notificationData;
     }
 
     public function generateNotificationData(): NotifiableInterface
     {
-        //Implementar funcionalidad
-        return $this->notificationData;
+        return $this->generateEmailData();
     }
 }

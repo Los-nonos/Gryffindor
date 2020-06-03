@@ -29,7 +29,7 @@ class LoginAdapter
      */
     public function from(Request $request)
     {
-        $this->validator->make($request->all(),$this->loginSchema->getRules());
+        $this->validator->make($request->all(), $this->loginSchema->getRules());
 
         if(!$this->validator->isValid()){
             throw new InvalidBodyException($this->validator->getErrors());

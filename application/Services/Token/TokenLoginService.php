@@ -89,7 +89,14 @@ class TokenLoginService implements TokenLoginServiceInterface
     public function createTokenJWT($payload): string
     {
         $key = env('JWT_SECRET', "pepito123");
-        return JWT::encode($payload, $key);
+        $time = time();
+        $jwt = array(
+            'iat' => $time,
+            'exp' => $time + (60*60),
+            'data' => $payload
+        );
+
+        return JWT::encode($jwt, $key);
     }
 
     /**
@@ -100,12 +107,28 @@ class TokenLoginService implements TokenLoginServiceInterface
     public function decryptTokenJWT(string $hash): object
     {
         $key = env('JWT_SECRET', "pepito123");
-        $decrypted = JWT::decode($hash, $key);
+        $decrypted = JWT::decode($hash, $key, array('HS256'));
 
         if(!$decrypted) {
             throw new Forbidden("Token invalid");
         }
 
         return $decrypted;
+    }
+
+    /**
+     * @param int $userId
+     * @return Token
+     * @throws EntityNotFoundException
+     */
+    public function findOneByUserIdOrFail(int $userId): Token
+    {
+        $token = $this->tokenRepository->findOneByUserId($userId);
+
+        if(!$token) {
+            throw new EntityNotFoundException("Token not found");
+        }
+
+        return $token;
     }
 }

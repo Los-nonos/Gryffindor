@@ -4,20 +4,25 @@
 namespace Domain\ValueObjects;
 
 
+use Application\Events\EmailNotificationEventData;
 use Domain\Enums\Priority;
 use Domain\Interfaces\Services\Notifications\NotifiableInterface;
+use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\Mail;
 
-abstract class Notification implements NotifiableInterface
+class Notification implements NotifiableInterface
 {
     private int $id;
     private int $userId;
-    private string $email;
-    private string $name;
-    private string $surname;
-    private string $subject;
-    private string $message;
-    private string $urlAction;
+    private $email;
+    private $emailFrom;
+    private $name;
+    private $surname;
+    private $subject;
+    private $message;
+    private $urlAction;
     private Priority $priority;
+    private $nameFrom;
 
     public function getId(): int
     {
@@ -98,5 +103,35 @@ abstract class Notification implements NotifiableInterface
     public function setPriority(Priority $priority): void
     {
         $this->priority = $priority;
+    }
+
+    public function emailNotification(): Mailable
+    {
+        return new EmailNotificationEventData($this);
+    }
+
+    public function internalNotification(): \Illuminate\Notifications\Notification
+    {
+        return new \Illuminate\Notifications\Notification();
+    }
+
+    public function setEmailFrom($email): void
+    {
+        $this->emailFrom = $email;
+    }
+
+    public function getEmailFrom(): string
+    {
+        return $this->emailFrom;
+    }
+
+    public function setNameFrom($name)
+    {
+        $this->nameFrom = $name;
+    }
+
+    public function getNameFrom(): string
+    {
+        return $this->nameFrom;
     }
 }

@@ -7,6 +7,8 @@ use Application\Services\Customers\CustomerServiceInterface;
 use Application\Services\Hash\HashService;
 use Application\Services\Hash\HashServiceInterface;
 
+use Application\Services\Notification\NotifiableService;
+use Application\Services\Notification\NotifiableServiceInterface;
 use Application\Services\Token\TokenLoginService;
 use Application\Services\Token\TokenLoginServiceInterface;
 
@@ -14,8 +16,10 @@ use Application\Services\Users\UserService;
 use Application\Services\Users\UserServiceInterface;
 
 use Domain\Interfaces\Services\GetUserTypeServiceInterface;
+use Domain\Interfaces\Services\Notifications\NotifiableInterface;
 use Domain\Services\Users\GetUserTypeService;
 
+use Domain\ValueObjects\Notification;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
@@ -58,6 +62,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(TokenLoginServiceInterface::class, TokenLoginService::class);
 
         $this->app->bind(GetUserTypeServiceInterface::class, GetUserTypeService::class);
+
+        $this->app->bind(NotifiableServiceInterface::class, NotifiableService::class);
+
+        $this->app->bind(NotifiableInterface::class, Notification::class);
 
         $this->app->bind(ValidatorServiceInterface::class, ValidatorService::class);
     }
