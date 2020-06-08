@@ -20,6 +20,11 @@ class Employee
      */
     private $role;
 
+    /**
+     * @var Order[]
+     */
+    private $orders;
+
     public function __construct()
     {
         $this->role = json_encode([]);
@@ -113,5 +118,21 @@ class Employee
         $roles[] = $role;
 
         return json_encode($roles);
+    }
+
+    /**
+     * @return Order[]
+     */
+    public function getOrders(): array
+    {
+        return $this->orders;
+    }
+
+    /**
+     * @param Order[] $orders
+     */
+    public function setOrders(array $orders): void
+    {
+        $this->orders = $orders;
     }
 }

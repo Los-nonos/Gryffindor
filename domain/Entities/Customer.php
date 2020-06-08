@@ -78,6 +78,11 @@ class Customer
      */
     private $grossIncome;
 
+    /**
+     * @var Order[]
+     */
+    private $orders;
+
     public function __construct()
     {
 
@@ -277,5 +282,21 @@ class Customer
     public function setGrossIncome(?string $grossIncome): void
     {
         $this->grossIncome = $grossIncome;
+    }
+
+    /**
+     * @return Order[]
+     */
+    public function getOrders(): array
+    {
+        return $this->orders;
+    }
+
+    /**
+     * @param Order[] $orders
+     */
+    public function setOrders(array $orders): void
+    {
+        $this->orders = $orders;
     }
 }
