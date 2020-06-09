@@ -23,6 +23,11 @@ class Characteristic
     private $property;
 
     /**
+     * @var Product
+     */
+    private $product;
+
+    /**
      * @return int
      */
     public function getId(): int

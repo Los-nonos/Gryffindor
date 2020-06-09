@@ -47,6 +47,11 @@ class Product
     private $characteristics;
 
     /**
+     * @var Order[]
+     */
+    private $orders;
+
+    /**
      * Product constructor.
      */
     public function __construct()

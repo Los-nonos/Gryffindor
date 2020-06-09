@@ -12,6 +12,11 @@ class Category
     private $id;
 
     /**
+     * @var string
+     */
+    private $name;
+
+    /**
      * @var Filter[]
      */
     private $filters;
@@ -38,11 +43,19 @@ class Category
     }
 
     /**
-     * @param int $id
+     * @return string
      */
-    public function setId(int $id): void
+    public function getName(): string
     {
-        $this->id = $id;
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
     }
 
     /**

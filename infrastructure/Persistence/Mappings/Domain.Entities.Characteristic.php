@@ -2,9 +2,12 @@
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
+use Doctrine\ORM\Mapping\ClassMetadata;
+use Domain\Entities\Characteristic;
+use Domain\Entities\Product;
 
-$builder = new ClassMetadataBuilder($metadata);
-$builder->setTable('users');
+$builder = new ClassMetadataBuilder(new ClassMetadata(Characteristic::class));
+$builder->setTable('characteristic');
 $builder->createField('id', Type::INTEGER)
     ->makePrimaryKey()
     ->generatedValue()
@@ -13,3 +16,7 @@ $builder->createField('id', Type::INTEGER)
 $builder->addField('name', Type::STRING);
 
 $builder->addField('property', Type::STRING);
+
+$builder->createManyToOne('product', Product::class)
+    ->inversedBy('characteristics')
+    ->build();

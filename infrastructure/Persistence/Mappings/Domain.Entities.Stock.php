@@ -2,10 +2,11 @@
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Domain\Entities\Product;
 
-$builder = new ClassMetadataBuilder($metadata);
-$builder->setTable('users');
+$builder = new ClassMetadataBuilder(new ClassMetadata(\Domain\Entities\Stock::class));
+$builder->setTable('stocks');
 $builder->createField('id', Type::INTEGER)
     ->makePrimaryKey()
     ->generatedValue()

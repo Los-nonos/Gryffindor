@@ -9,7 +9,7 @@ class Order
     /**
      * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @var Product[]
@@ -30,6 +30,11 @@ class Order
      * @var float
      */
     private $amount;
+
+    public function __construct()
+    {
+
+    }
 
     /**
      * @return int
