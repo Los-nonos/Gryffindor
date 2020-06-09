@@ -1,13 +1,11 @@
 <?php
 
-use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Types\Types as Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
-use Doctrine\ORM\Mapping\ClassMetadata;
-use Domain\Entities\Category;
 use Domain\Entities\Filter;
 use Domain\Entities\Product;
 
-$builder = new ClassMetadataBuilder(new ClassMetadata(Category::class));
+$builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('categories');
 $builder->createField('id', Type::INTEGER)
     ->makePrimaryKey()
@@ -19,6 +17,7 @@ $builder->addField('name', Type::STRING);
 $builder->createOneToMany('filters', Filter::class)
     ->cascadePersist()
     ->inversedBy('category')
+    ->mappedBy('filters')
     ->build();
 
 $builder->createManyToOne('products', Product::class)

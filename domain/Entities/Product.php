@@ -3,11 +3,13 @@
 
 namespace Domain\Entities;
 
+use Doctrine\ORM\Mapping as ORM;
 
 class Product
 {
     /**
      * @var int
+     * @ORM\Id
      */
     private $id;
 

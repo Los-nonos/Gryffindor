@@ -1,11 +1,11 @@
 <?php
 
-use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Types\Types as Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Domain\Entities\Product;
 
-$builder = new ClassMetadataBuilder(new ClassMetadata(\Domain\Entities\Stock::class));
+$builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('stocks');
 $builder->createField('id', Type::INTEGER)
     ->makePrimaryKey()

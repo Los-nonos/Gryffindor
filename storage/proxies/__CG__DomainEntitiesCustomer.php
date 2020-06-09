@@ -66,10 +66,10 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'uuid', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'email', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'age', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'cellPhone', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'dni', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'birthday', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'postalCode', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'country', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'state', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'city', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'vatCondition', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'taxationKey', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'grossIncome'];
+            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'uuid', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'email', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'age', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'cellPhone', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'dni', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'birthday', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'postalCode', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'country', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'state', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'city', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'vatCondition', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'taxationKey', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'grossIncome', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'orders'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'uuid', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'email', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'age', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'cellPhone', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'dni', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'birthday', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'postalCode', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'country', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'state', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'city', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'vatCondition', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'taxationKey', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'grossIncome'];
+        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'uuid', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'email', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'age', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'cellPhone', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'dni', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'birthday', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'postalCode', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'country', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'state', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'city', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'vatCondition', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'taxationKey', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'grossIncome', '' . "\0" . 'Domain\\Entities\\Customer' . "\0" . 'orders'];
     }
 
     /**
@@ -464,6 +464,28 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setGrossIncome', [$grossIncome]);
 
         parent::setGrossIncome($grossIncome);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getOrders(): array
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOrders', []);
+
+        return parent::getOrders();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOrders(array $orders): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOrders', [$orders]);
+
+        parent::setOrders($orders);
     }
 
 }

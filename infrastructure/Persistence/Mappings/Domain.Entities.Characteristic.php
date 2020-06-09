@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 use Domain\Entities\Characteristic;
 use Domain\Entities\Product;
 
-$builder = new ClassMetadataBuilder(new ClassMetadata(Characteristic::class));
+$builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('characteristic');
 $builder->createField('id', Type::INTEGER)
     ->makePrimaryKey()

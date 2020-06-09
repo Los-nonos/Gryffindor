@@ -1,12 +1,12 @@
 <?php
 
-use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Types\Types as Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Domain\Entities\Filter;
 use Domain\Entities\FilterOption;
 
-$builder = new ClassMetadataBuilder(new ClassMetadata(FilterOption::class));
+$builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('filter_options');
 
 $builder->createField('id', Type::INTEGER)
@@ -16,4 +16,7 @@ $builder->createField('id', Type::INTEGER)
 
 $builder->addField('name', Type::STRING);
 
-$builder->createOneToMany('filter', Filter::class)->build();
+$builder->createManyToOne('filter', Filter::class)
+    ->cascadePersist()
+    ->inversedBy('options')
+    ->build();

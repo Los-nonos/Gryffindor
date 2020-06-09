@@ -17,6 +17,11 @@ class FilterOption
     private $name;
 
     /**
+     * @var Filter
+     */
+    private $filter;
+
+    /**
      * @return int
      */
     public function getId(): int
