@@ -50,3 +50,37 @@ Route::prefix('customers')->group(function () {
 Route::prefix('admins')->group(function () {
     Route::post('/', Actions\Admins\StoreAdminAction::class)->name('createAdmin');
 });
+
+Route::prefix('products')->group(function () {
+    Route::post('/', Actions\Products\StoreProductAction::class)->name('createProduct');
+    Route::put('/{id}', Actions\Products\UpdateProductAction::class)->name('updateProduct');
+    Route::get('/{id}', Actions\Products\FindProductAction::class)->name('findProduct');
+    Route::delete('/{id}', Actions\Products\DestroyProductAction::class)->name('destroyProduct');
+});
+
+Route::prefix('search')->group(function () {
+    Route::get('/', Actions\Products\SearchProductsAction::class)->name('searchProducts');
+});
+
+Route::prefix('inventory')->group(function () {
+    Route::post('/{id}', Actions\Products\UpdateInventory::class)->name('updateInventoryProduct');
+    Route::get('/', Actions\Stock\IndexProductStock::class)->name('indexProductsStock');
+    Route::get('/{id}', Actions\Stock\FindProductStock::class)->name('findProductsStock');
+});
+
+Route::prefix('filters')->group(function () {
+    Route::get('/', Actions\Filters\IndexFiltersAction::class)->name('indexFilters');
+    Route::post('/', Actions\Filters\StoreFiltersAction::class)->name('addFilter');
+    Route::put('/{id}', Actions\Filters\UpdateFiltersAction::class)->name('updateFilter');
+    Route::delete('/{id}', Actions\Filters\DestroyFilterAction::class)->name('destroyFilter');
+});
+
+Route::prefix('categories')->group(function () {
+    Route::post('/', Actions\Categories\StoreCategoryAction::class)->name('storeCategory');
+    Route::put('/{id}', Actions\Categories\UpdateCategoryAction::class)->name('updateCategory');
+    Route::get('/', Actions\Categories\IndexCategoryAction::class)->name('indexCategory');
+});
+
+Route::prefix('payments')->group(function () {
+    Route::post('/mercadopago', Actions\Payments\MercadoPagoExecute::class)->name('paymentMercadoPago');
+});
