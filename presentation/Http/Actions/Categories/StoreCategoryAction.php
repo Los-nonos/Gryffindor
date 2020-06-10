@@ -38,7 +38,7 @@ class StoreCategoryAction
 
         return new JsonResponse(
             ['message' => 'Category has been created successfully'],
-            HttpCodes::OK
+            HttpCodes::CREATED
         );
     }
 }

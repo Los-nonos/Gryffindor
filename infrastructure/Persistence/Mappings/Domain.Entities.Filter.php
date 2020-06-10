@@ -25,4 +25,5 @@ $builder->addField('name', Type::STRING);
 $builder->createOneToMany('options', FilterOption::class)
     ->mappedBy('filter')
     ->cascadePersist()
+    ->cascadeRemove()
     ->build();
