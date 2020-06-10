@@ -6,6 +6,8 @@ use Application\Services\Category\CategoryService;
 use Application\Services\Category\CategoryServiceInterface;
 use Application\Services\Customers\CustomerService;
 use Application\Services\Customers\CustomerServiceInterface;
+use Application\Services\Filters\FilterService;
+use Application\Services\Filters\FilterServiceInterface;
 use Application\Services\Hash\HashService;
 use Application\Services\Hash\HashServiceInterface;
 
@@ -68,6 +70,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(NotifiableServiceInterface::class, NotifiableService::class);
 
         $this->app->bind(CategoryServiceInterface::class, CategoryService::class);
+
+        $this->app->bind(FilterServiceInterface::class, FilterService::class);
 
         $this->app->bind(NotifiableInterface::class, Notification::class);
 

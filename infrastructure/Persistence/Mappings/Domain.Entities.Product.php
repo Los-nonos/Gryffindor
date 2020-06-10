@@ -24,10 +24,8 @@ $builder->addField('price', Type::FLOAT);
 
 $builder->addField('taxes', Type::FLOAT);
 
-$builder->createOneToMany('categories', Category::class)
-    ->cascadePersist()
+$builder->createManyToMany('categories', Category::class)
     ->inversedBy('products')
-    ->mappedBy('categories')
     ->build();
 
 $builder->createOneToOne('stock', Stock::class)
@@ -39,8 +37,4 @@ $builder->createOneToOne('stock', Stock::class)
 //    ->mappedBy('orders')
 //    ->build();
 
-$builder->createOneToMany('characteristics', Characteristic::class)
-    ->cascadePersist()
-    ->inversedBy('product')
-    ->mappedBy('characteristics')
-    ->build();
+$builder->addOneToMany('characteristics', Characteristic::class, 'product');

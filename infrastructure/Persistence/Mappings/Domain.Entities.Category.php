@@ -15,8 +15,9 @@ $builder->createField('id', Type::INTEGER)
 $builder->addField('name', Type::STRING);
 
 $builder->createOneToMany('filters', Filter::class)
-    ->mappedBy('filters')
+    ->mappedBy('category')
     ->cascadePersist()
+    ->addJoinColumn('filters', 'id')
     ->build();
 
-$builder->addManyToOne('products', Product::class, 'categories');
+$builder->addInverseManyToMany('products', Product::class, 'categories');

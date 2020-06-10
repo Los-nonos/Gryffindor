@@ -39,16 +39,19 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
 
     public function indexAndPaginated($page, $size): array
     {
+        //return $this->findAll();
+
         // get entity manager
-        $em = $this->getEntityManager();
+        //$em = $this->getEntityManager();
         // get the user repository
 
         // build the query for the doctrine paginator
         $query = $this->_em->createQueryBuilder()
             //->orderBy('c.id', 'ASC')
-            ->select('c')
-            ->from(Category::class, 'c')
-            ->innerJoin('c.filters', 'f', 'WITH', 'f.category = 1')
+            ->select('category', 'f', 'o')
+            ->from(Category::class, 'category')
+            ->innerJoin('category.filters', 'f', Expr\Join::WITH, 'f.category = category.id')
+            ->leftJoin('f.options', 'o', Expr\Join::WITH, 'o.filter = f.id')
             ->getQuery();
 
         // load doctrine Paginator

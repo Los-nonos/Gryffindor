@@ -28,6 +28,11 @@ class Filter
      */
     private $options;
 
+    public function __construct()
+    {
+        $this->options = new ArrayCollection();
+    }
+
     /**
      * @return int
      */
@@ -71,7 +76,7 @@ class Filter
     /**
      * @return FilterOption[]
      */
-    public function getOptions(): array
+    public function getOptions()
     {
         return $this->options;
     }
@@ -81,10 +86,6 @@ class Filter
      */
     public function addOption(FilterOption $options): void
     {
-        if(!$this->options){
-            $this->options = new ArrayCollection();
-        }
-
         $this->options[] = $options;
     }
 

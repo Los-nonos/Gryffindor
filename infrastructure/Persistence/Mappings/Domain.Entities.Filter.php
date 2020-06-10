@@ -16,13 +16,13 @@ $builder->createField('id', Type::INTEGER)
     ->build();
 
 $builder->createManyToOne('category', Category::class)
-    ->inversedBy('Filters')
+    ->inversedBy('filters')
     ->cascadePersist()
     ->build();
 
 $builder->addField('name', Type::STRING);
 
 $builder->createOneToMany('options', FilterOption::class)
-    ->mappedBy('options')
+    ->mappedBy('filter')
     ->cascadePersist()
     ->build();

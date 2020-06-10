@@ -6,10 +6,10 @@ namespace Application\Commands\Handler\Categories;
 
 use Application\Commands\Command\Categories\StoreCategoryCommand;
 use Application\Services\Category\CategoryServiceInterface;
+use Application\Services\Filters\FilterServiceInterface;
 use Domain\Entities\Category;
 use Domain\Entities\Filter;
 use Domain\Entities\FilterOption;
-use Infrastructure\CommandBus\Command\CommandInterface;
 use Infrastructure\CommandBus\Handler\HandlerInterface;
 
 class StoreCategoryHandler implements HandlerInterface
@@ -41,6 +41,7 @@ class StoreCategoryHandler implements HandlerInterface
             foreach ($filter['options'] as $option) {
                 $optionObject = new FilterOption();
                 $optionObject->setName($option);
+                $optionObject->setFilter($objectFilter);
                 $objectFilter->addOption($optionObject);
             }
 
