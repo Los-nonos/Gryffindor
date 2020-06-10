@@ -25,13 +25,32 @@ class IndexCategoryPresenter
         foreach ($data as $category) {
             array_push($cleanData, [
                 'name' => $category->getName(),
-                'filters' => array(
-                    'name' => $category->getFilters()[0]->getName(),
-                    'options' => $category->getFilters()[0]->getOptions()[0],
-                ),
+                'filters' => $this->clearFilters($category->getFilters()),
             ]);
         }
 
         return $cleanData;
+    }
+
+    private function clearOptions($data): array {
+        $clearData = [];
+        foreach ($data as $option) {
+            array_push($clearData, [
+                'name' => $option->getName() ? $option->getName() : null,
+            ]);
+        }
+        return $clearData;
+    }
+
+    private function clearFilters($filters): array {
+        $clear_filters = [];
+
+        foreach ($filters as $filter) {
+            array_push($clear_filters, [
+                'name' => $filter->getName(),
+                'options' => $this->clearOptions($filter->getOptions())
+            ]);
+        }
+        return $clear_filters;
     }
 }
