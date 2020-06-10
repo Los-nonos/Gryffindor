@@ -4,6 +4,8 @@
 namespace Domain\Entities;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class Category
 {
     /**
@@ -61,7 +63,7 @@ class Category
     /**
      * @return Filter[]
      */
-    public function getFilters(): array
+    public function getFilters()
     {
         return $this->filters;
     }
@@ -71,6 +73,10 @@ class Category
      */
     public function addFilters(Filter $filters): void
     {
+        if(!$this->filters) {
+            $this->filters = new ArrayCollection();
+        }
+
         $this->filters[] = $filters;
     }
 

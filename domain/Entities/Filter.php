@@ -4,6 +4,8 @@
 namespace Domain\Entities;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class Filter
 {
     /**
@@ -79,6 +81,10 @@ class Filter
      */
     public function addOption(FilterOption $options): void
     {
+        if(!$this->options){
+            $this->options = new ArrayCollection();
+        }
+
         $this->options[] = $options;
     }
 

@@ -35,7 +35,7 @@ class StoreCategoryHandler implements HandlerInterface
 
         foreach ($filters as $filter) {
             $objectFilter = new Filter();
-            //$objectFilter->setCategory($category);
+            $objectFilter->setCategory($category);
             $objectFilter->setName($filter['name']);
 
             foreach ($filter['options'] as $option) {

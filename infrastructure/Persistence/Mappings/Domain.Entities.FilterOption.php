@@ -16,7 +16,4 @@ $builder->createField('id', Type::INTEGER)
 
 $builder->addField('name', Type::STRING);
 
-$builder->createManyToOne('filter', Filter::class)
-    ->cascadePersist()
-    ->inversedBy('options')
-    ->build();
+$builder->addManyToOne('filter', Filter::class, 'options');

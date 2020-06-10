@@ -216,7 +216,7 @@ class Category extends \Domain\Entities\Category implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getFilters(): array
+    public function getFilters()
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFilters', []);
