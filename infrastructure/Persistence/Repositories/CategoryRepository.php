@@ -77,4 +77,15 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
 
         return $categoryList;
     }
+
+    /**
+     * @param Category $category
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function destroy(Category $category)
+    {
+        $this->getEntityManager()->remove($category);
+        $this->getEntityManager()->flush();
+    }
 }

@@ -18,7 +18,7 @@ use Presentation\Http\Actions;
 
 Route::get('/send_email', Actions\SendEmail::class);
 
-Route::prefix('users')->group(function(){
+Route::prefix('users')->group(function() {
     Route::post('/recovery', Actions\Users\RecoveryPasswordAction::class)->name('recoveryPassword');
 
     Route::post('/forgot', Actions\Users\ChangePasswordFromRecoveryAction::class)->name('changePasswordFromRecovery');
@@ -79,6 +79,7 @@ Route::prefix('categories')->group(function () {
     Route::post('/', Actions\Categories\StoreCategoryAction::class)->name('storeCategory');
     Route::put('/{id}', Actions\Categories\UpdateCategoryAction::class)->name('updateCategory');
     Route::get('/', Actions\Categories\IndexCategoryAction::class)->name('indexCategory');
+    Route::delete('/{id}', Actions\Categories\DestroyCategoryAction::class)->name('destroyCategory');
 });
 
 Route::prefix('payments')->group(function () {

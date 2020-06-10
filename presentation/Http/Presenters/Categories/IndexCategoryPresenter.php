@@ -24,6 +24,7 @@ class IndexCategoryPresenter
 
         foreach ($data as $category) {
             array_push($cleanData, [
+                'id' => $category->getId(),
                 'name' => $category->getName(),
                 'filters' => $this->clearFilters($category->getFilters()),
             ]);
@@ -47,6 +48,7 @@ class IndexCategoryPresenter
 
         foreach ($filters as $filter) {
             array_push($clear_filters, [
+                'id' => $filter->getId(),
                 'name' => $filter->getName(),
                 'options' => $this->clearOptions($filter->getOptions())
             ]);

@@ -22,4 +22,9 @@ class FilterService implements FilterServiceInterface
     {
         $this->repository->persist($filter);
     }
+
+    public function destroy(Filter $item): void
+    {
+        $this->repository->destroy($item);
+    }
 }

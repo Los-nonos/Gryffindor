@@ -13,4 +13,6 @@ interface CategoryRepositoryInterface
     public function findOneById($id): ?Category;
 
     public function indexAndPaginated($page, $size): array;
+
+    public function destroy(Category $category);
 }

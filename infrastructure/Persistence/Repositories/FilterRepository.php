@@ -29,4 +29,15 @@ class FilterRepository extends EntityRepository implements FilterRepositoryInter
         $this->getEntityManager()->persist($filter);
         $this->getEntityManager()->flush();
     }
+
+    /**
+     * @param Filter $item
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function destroy(Filter $item)
+    {
+        $this->getEntityManager()->remove($item);
+        $this->getEntityManager()->flush();
+    }
 }

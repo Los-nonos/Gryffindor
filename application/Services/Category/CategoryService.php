@@ -48,4 +48,9 @@ class CategoryService implements CategoryServiceInterface
 
         return $this->repository->indexAndPaginated($page, $size);
     }
+
+    public function destroy(Category $category)
+    {
+        $this->repository->destroy($category);
+    }
 }
