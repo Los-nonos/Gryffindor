@@ -10,21 +10,29 @@
     "require": {
         "php": "^7.4",
         "ext-json": "*",
-        "darkaonline/l5-swagger": "*",
+        "darkaonline/l5-swagger": "6.*",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
-        "laravel-doctrine/orm": "*",
-        "laravel/framework": "^7.10",
-        "laravel/sanctum": "^2.1",
-        "laravel/tinker": "^2.0"
+        "joselfonseca/laravel-tactician": "^1.0",
+        "laravel-doctrine/orm": "1.5.*",
+        "laravel-doctrine/migrations": "^1.3",
+        "laravel/framework": "6.0",
+        "firebase/php-jwt": "^5.1",
+        "pda/pheanstalk": "4.0",
+        "laravel/tinker": "^2.0",
+        "league/tactician": "^1.0",
+        "ext-redis": "*",
+        "predis/predis": "^1.1",
+        "psr/cache": "1.0.0",
+        "sendgrid/sendgrid": "~7"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
-        "facade/ignition": "^2.0",
+        "facade/ignition": "^1.0",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.3.1",
-        "nunomaduro/collision": "^4.1",
+        "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^8.5"
     },
     "config": {
@@ -39,10 +47,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "Application/",
-            "Presentation\\": "Presentation/",
-            "Domain\\": "Domain/",
-            "Infrastructure\\": "Infrastructure/"
+            "App\\": "app/",
+            "Application\\": "application/",
+            "Presentation\\": "presentation/",
+            "Domain\\": "domain/",
+            "Infrastructure\\": "infrastructure/",
+            "Console\\": "console/"
         },
         "classmap": [
             "database/seeds",

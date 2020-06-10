@@ -1,5 +1,7 @@
 <?php
 
+use Domain\Entities\User;
+
 return [
 
     /*
@@ -41,11 +43,11 @@ return [
             'provider' => 'users',
         ],
 
-        'api' => [
-            'driver' => 'token',
+        /*'api' => [
+            'driver' => 'jwt',
             'provider' => 'users',
             'hash' => false,
-        ],
+        ],*/
     ],
 
     /*
@@ -67,14 +69,14 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'eloquent',
-            'model' => Domain\Entities\User::class,
+            'driver' => 'doctrine',
+            'model' => User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+//         'users' => [
+//             'driver' => 'database',
+//             'table' => 'users',
+//         ],
     ],
 
     /*
