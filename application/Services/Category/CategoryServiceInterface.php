@@ -13,4 +13,6 @@ interface CategoryServiceInterface
     public function findOneByIdOrFail($id): Category;
 
     public function indexAndPaginated($page, $size): array;
+
+    public function destroy(Category $category);
 }

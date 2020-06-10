@@ -17,6 +17,7 @@ $builder->addField('name', Type::STRING);
 $builder->createOneToMany('filters', Filter::class)
     ->mappedBy('category')
     ->cascadePersist()
+    ->cascadeRemove()
     ->addJoinColumn('filters', 'id')
     ->build();
 
