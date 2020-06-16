@@ -54,7 +54,7 @@ Route::prefix('admins')->group(function () {
 Route::prefix('products')->group(function () {
     Route::post('/', Actions\Products\StoreProductAction::class)->name('createProduct');
     Route::put('/{id}', Actions\Products\UpdateProductAction::class)->name('updateProduct');
-    Route::get('/{id}', Actions\Products\FindProductAction::class)->name('findProduct');
+    Route::get('/{uuid}', Actions\Products\FindProductAction::class)->name('findProduct');
     Route::delete('/{id}', Actions\Products\DestroyProductAction::class)->name('destroyProduct');
 });
 

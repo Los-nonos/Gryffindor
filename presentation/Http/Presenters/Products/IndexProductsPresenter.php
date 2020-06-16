@@ -22,6 +22,7 @@ class IndexProductsPresenter
 
                 ),
                 'price' => '900',
+                'uuid' => 'uuid-number-one',
             ],
             [
                 'name' => 'Notebook asus',
@@ -30,6 +31,7 @@ class IndexProductsPresenter
 
                 ),
                 'price' => '900',
+                'uuid' => 'uuid-number-two',
             ],
         ];
 
