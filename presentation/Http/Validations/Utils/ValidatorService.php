@@ -9,7 +9,7 @@ use Illuminate\Validation\Factory;
 class ValidatorService implements ValidatorServiceInterface
 {
 
-    private $validatorFactory;
+    private Factory $validatorFactory;
     private $validated;
 
     public function __construct(Factory $validatorFactory)

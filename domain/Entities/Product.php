@@ -18,7 +18,7 @@ class Product
     /**
      * @var string
      */
-    private string $title;
+    private string $name;
 
     /**
      * @var string
@@ -79,17 +79,17 @@ class Product
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getName(): string
     {
-        return $this->title;
+        return $this->name;
     }
 
     /**
-     * @param string $title
+     * @param string name
      */
-    public function setTitle(string $title): void
+    public function setTitle(string $name): void
     {
-        $this->title = $title;
+        $this->name = $name;
     }
 
     /**
@@ -127,17 +127,17 @@ class Product
     /**
      * @return float
      */
-    public function getTaxes(): float
+    public function getIva(): float
     {
-        return $this->taxes;
+        return $this->iva;
     }
 
     /**
-     * @param float $taxes
+     * @param float $iva
      */
-    public function setTaxes(float $taxes): void
+    public function setIva(float $iva): void
     {
-        $this->taxes = $taxes;
+        $this->iva = $iva;
     }
 
     /**
