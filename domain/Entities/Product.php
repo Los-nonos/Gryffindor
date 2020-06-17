@@ -3,7 +3,9 @@
 
 namespace Domain\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Illuminate\Support\Arr;
 
 class Product
 {
@@ -11,47 +13,52 @@ class Product
      * @var int
      * @ORM\Id
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      */
-    private $title;
+    private string $title;
 
     /**
      * @var string
      */
-    private $description;
+    private string $description;
 
     /**
      * @var float
      */
-    private $price;
+    private float $price;
 
     /**
      * @var float
      */
-    private $taxes;
+    private float $iva;
 
     /**
-     * @var Category[]
+     * @var ArrayCollection
      */
-    private $categories;
+    private ArrayCollection $categories;
 
     /**
-     * @var Stock
+     * @var int
      */
-    private $stock;
+    private int $stock;
 
     /**
-     * @var Characteristic[]
+     * @var ArrayCollection
      */
-    private $characteristics;
+    private ArrayCollection $characteristics;
 
     /**
-     * @var Order[]
+     * @var ArrayCollection
      */
-    private $orders;
+    private ArrayCollection $orders;
+
+    /**
+     * @var ArrayCollection .
+     */
+    private ArrayCollection $providers;
 
     /**
      * Product constructor.
@@ -134,9 +141,9 @@ class Product
     }
 
     /**
-     * @return Category[]
+     * @return ArrayCollection
      */
-    public function getCategories(): array
+    public function getCategories(): ArrayCollection
     {
         return $this->categories;
     }
@@ -150,25 +157,25 @@ class Product
     }
 
     /**
-     * @return Stock
+     * @return int
      */
-    public function getStock(): Stock
+    public function getStock(): int
     {
         return $this->stock;
     }
 
     /**
-     * @param Stock $stock
+     * @param int $stock
      */
-    public function setStock(Stock $stock): void
+    public function setStock(int $stock): void
     {
         $this->stock = $stock;
     }
 
     /**
-     * @return Characteristic[]
+     * @return ArrayCollection
      */
-    public function getCharacteristics(): array
+    public function getCharacteristics(): ArrayCollection
     {
         return $this->characteristics;
     }
