@@ -12,10 +12,21 @@ use Presentation\Http\Enums\HttpCodes;
 
 class StoreProductAction
 {
-
+    /**
+     * @var StoreProductAdapter 
+     */
     private StoreProductAdapter $adapter;
+
+    /**
+     * @var CommandBusInterface
+     */
     private CommandBusInterface $commandBus;
 
+    /**
+     * StoreProductAction constructor.
+     * @param StoreProductAdapter $storeProductAdapter
+     * @param CommandBusInterface $commandBusInterface
+     */
     public function __construct
     (
         StoreProductAdapter $storeProductAdapter,
@@ -26,6 +37,10 @@ class StoreProductAction
         $this->commandBus = $commandBusInterface;
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function __invoke(Request $request)
     {
         $command = $this->adapter->adapt($request);

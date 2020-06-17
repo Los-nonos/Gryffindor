@@ -6,6 +6,9 @@ namespace Presentation\Http\Validations\Schemas\Products;
 
 class StoreProductSchema
 {
+    /**
+     * @return array|string[]
+     */
     public function getRules(): array
     {
         return [
@@ -19,8 +22,13 @@ class StoreProductSchema
             'provider' => 'bail|required|array'
         ];
     }
+
+    /**
+     * @return array|string[]
+     */
     public function getMessages() : array
     {
+
         return [
             'name.required' => 'Debe ingresar el nombre del producto',
             'name.regex' => 'El nombre del producto solo puede contener números y letras',

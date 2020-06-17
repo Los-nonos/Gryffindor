@@ -37,7 +37,10 @@ class StoreProductAdapter
         $this->productSchema = $storeProductSchema;
     }
 
-
+    /**
+     * @param Request $request
+     * @return StoreProductCommand
+     */
     public function adapt(Request $request)
     {
         $this->validatorService->make($request->all(),$this->productSchema->getRules(),$this->productSchema->getMessages());
