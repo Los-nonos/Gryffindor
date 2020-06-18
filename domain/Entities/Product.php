@@ -24,6 +24,11 @@ class Product
     private string $description;
 
     /**
+     * @var bool
+     */
+    private bool $available;
+
+    /**
      * @var float
      */
     private float $price;
@@ -36,7 +41,12 @@ class Product
     /**
      * @var array
      */
-    private array $categories;
+    private array $categoriesId;
+
+    /**
+     * @var array
+     */
+    private array $brandsId;
 
     /**
      * @var int
@@ -51,12 +61,12 @@ class Product
     /**
      * @var array
      */
-    private array $orders;
+    private array $ordersId;
 
     /**
      * @var array .
      */
-    private array $providers;
+    private array $providersId;
 
     /**
      * Product constructor.
@@ -143,7 +153,7 @@ class Product
      */
     public function getCategories(): array
     {
-        return $this->categories;
+        return $this->categoriesId;
     }
 
     /**
@@ -151,7 +161,7 @@ class Product
      */
     public function setCategories(Category $categories): void
     {
-        $this->categories[] = $categories;
+        $this->categoriesId[] = $categories;
     }
 
     /**
@@ -181,8 +191,72 @@ class Product
     /**
      * @param Characteristic $characteristics
      */
-    public function addCharacteristics(Characteristic $characteristics): void
+    public function setCharacteristics(Characteristic $characteristics): void
     {
         $this->characteristics[] = $characteristics;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getAvailability() : bool
+    {
+        return $this->available;
+    }
+
+    /**
+     * @param bool $notAvailable
+     */
+    public function setNotAvailable(bool $notAvailable) : void
+    {
+        $this->available = $notAvailable;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOrders() : array
+    {
+        return $this->ordersId;
+    }
+
+    /**
+     * @param Order $newOrder
+     */
+    public function setOrder(Order $newOrder) : void
+    {
+        $this->ordersId [] =$newOrder;
+    }
+
+    /**
+     * @return array
+     */
+    public function getProviders() : array
+    {
+        return $this->providersId;
+    }
+
+    /**
+     * @param Provider $newProvider
+     */
+    public function setProvider(Provider $newProvider) : void
+    {
+        $this->providersId [] = $newProvider;
+    }
+
+    /**
+     * @return array
+     */
+    public function getBrands() : array
+    {
+        return $this->brandsId;
+    }
+
+    /**
+     * @param Brand $newBrand
+     */
+    public function setBrand(Brand $newBrand) : void
+    {
+        $this->brandsId[] = $newBrand;
     }
 }

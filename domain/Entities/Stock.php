@@ -147,4 +147,5 @@ class Stock
         $this->categories = serialize($category);
     }
 
+    //TODO TERMINAR CON LAS RELACIONES ENTRE ENTIDADES
 }

@@ -38,9 +38,11 @@ class StoreProductAdapter
         $this->productSchema = $storeProductSchema;
     }
 
+
     /**
      * @param Request $request
      * @return StoreProductCommand
+     * @throws InvalidBodyException
      */
     public function adapt(Request $request)
     {
@@ -54,11 +56,11 @@ class StoreProductAdapter
             $request->input('description'),
             $request->input('price'),
             $request->input('categories'),
+            $request->input('brands'),
             $request->input('stock'),
             $request->input('characteristics'),
-            $request->input('orders'),
+            $request->input('order'),
             $request->input('provider')
-            //TODO Terminar Adapter Aquí
         );
 
     }

@@ -13,16 +13,19 @@ class StoreProductCommand implements CommandInterface
     private float $price;
     private array $categories;
     private int $stock;
+    private float $iva;
+    private array $brand;
     private array $characteristics;
-    private array $orders;
+    private string $order;
     private array $provider;
 
 
     public function __construct
     (
-        //TODO Finish StoreProductCommand
+
     )
     {
+
     }
 
 }

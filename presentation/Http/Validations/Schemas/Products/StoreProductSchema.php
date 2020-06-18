@@ -17,8 +17,10 @@ class StoreProductSchema
             'price' => 'bail|required|numeric|regex:/^\d*(\.\d{2})?$/|min:0.01',
             'categories' => 'bail|required|array',
             'stock' => 'bail|required|numeric|integer|min:0',
+            'iva' => 'bail|required|numeric|min:0',
+            'brand' => 'bail|required|regex:/^[\pL\s]+$/u|min:10|array',
             'characteristics' => 'bail|required|array',
-            'orders' => 'alpha_num|array',
+            'order' => 'bail|required|alpha_num',
             'provider' => 'bail|required|array'
         ];
     }
@@ -46,9 +48,15 @@ class StoreProductSchema
             'stock.required' => 'Debe ingresar el stock del producto',
             'stock.integer' => 'El stock debe ser un número entero',
             'stock.min' => 'El stock mínimo permitido es 0',
+            'iva.required' => 'Debe ingresar el porcentaje de IVA del producto',
+            'iva.numeric' => 'El IVA ingresado debe ser un número',
+            'iva.min' => 'El IVA mínimo permitido es 0%',
+            'brand.required' => 'Debe ingresar una marca para el producto',
+            'brand.regex' => 'La marca ingresada para el producto cotenre solo números y letras',
             'characteristics.required' => 'Debe ingresar las características del producto',
-            'orders.alpha_num' => 'La orden ingresada solo debe contener números y letras',
-            'provider.required' => 'Debe seleccionar el proveedor que ha vendido el producto'
+            'order.alpha_num' => 'La orden ingresada solo debe contener números y letras',
+            'order.required' => 'Debe ingresar el número de orden de compra del producto',
+            'provider.required' => 'Debe seleccionar el proveedor al que se le ha comprado el producto'
         ];
     }
 }
