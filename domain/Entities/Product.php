@@ -3,9 +3,7 @@
 
 namespace Domain\Entities;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Illuminate\Support\Arr;
 
 class Product
 {
@@ -36,9 +34,9 @@ class Product
     private float $iva;
 
     /**
-     * @var ArrayCollection
+     * @var array
      */
-    private ArrayCollection $categories;
+    private array $categories;
 
     /**
      * @var int
@@ -46,19 +44,19 @@ class Product
     private int $stock;
 
     /**
-     * @var ArrayCollection
+     * @var array
      */
-    private ArrayCollection $characteristics;
+    private array $characteristics;
 
     /**
-     * @var ArrayCollection
+     * @var array
      */
-    private ArrayCollection $orders;
+    private array $orders;
 
     /**
-     * @var ArrayCollection .
+     * @var array .
      */
-    private ArrayCollection $providers;
+    private array $providers;
 
     /**
      * Product constructor.
@@ -141,9 +139,9 @@ class Product
     }
 
     /**
-     * @return ArrayCollection
+     * @return array
      */
-    public function getCategories(): ArrayCollection
+    public function getCategories(): array
     {
         return $this->categories;
     }
@@ -173,9 +171,9 @@ class Product
     }
 
     /**
-     * @return ArrayCollection
+     * @return array
      */
-    public function getCharacteristics(): ArrayCollection
+    public function getCharacteristics(): array
     {
         return $this->characteristics;
     }

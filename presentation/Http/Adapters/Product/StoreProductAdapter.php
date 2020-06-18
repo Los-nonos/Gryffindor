@@ -5,6 +5,7 @@ namespace Presentation\Http\Adapters\Product;
 
 
 use App\Exceptions\InvalidBodyException;
+use Application\Commands\Command\Products\StoreProductCommand;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\In;
 use Presentation\Http\Validations\Schemas\Products\StoreProductSchema;
@@ -45,7 +46,7 @@ class StoreProductAdapter
     {
         $this->validatorService->make($request->all(),$this->productSchema->getRules(),$this->productSchema->getMessages());
         if(!$this->validatorService->isValid()){
-            trhow new InvalidBodyException($this->validatorService->getErrors());
+            throw new InvalidBodyException($this->validatorService->getErrors());
         }
 
         return new StoreProductCommand(
@@ -57,7 +58,9 @@ class StoreProductAdapter
             $request->input('characteristics'),
             $request->input('orders'),
             $request->input('provider')
-        )
+            //TODO Terminar Adapter Aquí
+        );
+
     }
 
 }
