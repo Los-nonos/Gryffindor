@@ -4,27 +4,44 @@
 namespace Domain\Entities;
 
 
+use phpDocumentor\Reflection\DocBlock\Serializer;
+
 class Stock
 {
     /**
      * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @var Product
      */
-    private $product;
+    private Product $product;
 
     /**
      * @var int
      */
-    private $quantity;
+    private int $quantity;
 
     /**
      * @var int
      */
-    private $remanentQuantity;
+    private int $remanentQuantity;
+
+    /**
+     * @var array
+     */
+    private array $brands;
+
+    /**
+     * @var array
+     */
+    private array $reserved;
+
+    /**
+     * @var array
+     */
+    private array $categories;
 
     /**
      * @return int
@@ -81,4 +98,53 @@ class Stock
     {
         $this->remanentQuantity = $remanentQuantity;
     }
+
+    /**
+     * @return array
+     */
+    public function getBrands() : array
+    {
+        return $this->brands;
+    }
+
+    /**
+     * @param string $brand
+     */
+    public function setBrands(string $brand) : void
+    {
+        $this->brands = serialize($brand);
+    }
+
+    /**
+     * @return array
+     */
+    private function getReservations() : array
+    {
+        return $this->reserved;
+    }
+
+    /**
+     * @param string $reservation
+     */
+    public function setReservation(string $reservation) : void
+    {
+        $this->reserved = serialize($reservation);
+    }
+
+    /**
+     * @return array
+     */
+    public function getCategories() : array
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param string $category
+     */
+    public function setCategory(string $category) : void
+    {
+        $this->categories = serialize($category);
+    }
+
 }
