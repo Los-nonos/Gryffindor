@@ -7,7 +7,7 @@ namespace App\Exceptions;
 
 use Presentation\Http\Enums\HttpCodes;
 
-class InvalidBodyException extends BasePresentationException
+class InvalidBodyException extends \Exception
 {
     private array $messages;
 

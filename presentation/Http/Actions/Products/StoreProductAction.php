@@ -13,7 +13,7 @@ use Presentation\Http\Enums\HttpCodes;
 class StoreProductAction
 {
     /**
-     * @var StoreProductAdapter 
+     * @var StoreProductAdapter
      */
     private StoreProductAdapter $adapter;
 
@@ -40,6 +40,7 @@ class StoreProductAction
     /**
      * @param Request $request
      * @return JsonResponse
+     * @throws \App\Exceptions\InvalidBodyException
      */
     public function __invoke(Request $request)
     {
