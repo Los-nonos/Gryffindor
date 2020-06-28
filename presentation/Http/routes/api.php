@@ -60,17 +60,12 @@ Route::group([
     Route::put('/{id}', Actions\Products\UpdateProductAction::class)->name('updateProduct');
     Route::get('/{uuid}', Actions\Products\FindProductAction::class)->name('findProduct');
     Route::delete('/{id}', Actions\Products\DestroyProductAction::class)->name('destroyProduct');
-
-});
-
-Route::post('products', Actions\Products\StoreProductAction::class)->name('createProduct');
-
-Route::options('products', function($route) {
-   return new \Illuminate\Http\JsonResponse([], 204);
+    Route::post('/', Actions\Products\StoreProductAction::class)->name('createProduct');
 });
 
 Route::prefix('search')->group(function () {
     Route::get('/', Actions\Products\SearchProductsAction::class)->name('searchProducts');
+    Route::get('home', Actions\Products\SearchProductsForHomeAction::class)->name('searchProducts');
 });
 
 Route::prefix('inventory')->group(function () {
