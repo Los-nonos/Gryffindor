@@ -26,6 +26,8 @@ Route::prefix('users')->group(function() {
     Route::get('/{id}/enable', Actions\Users\EnableUserAction::class)->name('enableUser');
 
     Route::get('/{id}/disable', Actions\Users\DisableUserAction::class)->name('disableUser');
+
+    Route::get('/{id}', Actions\Users\ShowUserAction::class)->name('showOneUser');
 });
 
 Route::group([
@@ -39,23 +41,32 @@ Route::group([
 
 Route::prefix('employees')->group(function () {
     Route::post('/', Actions\Employees\StoreEmployeeAction::class)->name('createEmployee');
-
+    Route::get('/', Actions\Employees\FindEmployeeAction::class)->name('listEmployee');
 });
 
 Route::prefix('customers')->group(function () {
     Route::post('/', Actions\Customers\StoreCustomerAction::class)->name('createCustomer');
     Route::put('/{id}', Actions\Customers\UpdateCustomerAction::class)->name('updateCustomer');
+    Route::get('/', Actions\Customers\FindCustomerAction::class)->name('listCustomers');
 });
 
 Route::prefix('admins')->group(function () {
     Route::post('/', Actions\Admins\StoreAdminAction::class)->name('createAdmin');
 });
 
-Route::prefix('products')->group(function () {
-    Route::post('/', Actions\Products\StoreProductAction::class)->name('createProduct');
+Route::group([
+    'prefix' => 'products'
+],function ($router) {
     Route::put('/{id}', Actions\Products\UpdateProductAction::class)->name('updateProduct');
     Route::get('/{uuid}', Actions\Products\FindProductAction::class)->name('findProduct');
     Route::delete('/{id}', Actions\Products\DestroyProductAction::class)->name('destroyProduct');
+
+});
+
+Route::post('products', Actions\Products\StoreProductAction::class)->name('createProduct');
+
+Route::options('products', function($route) {
+   return new \Illuminate\Http\JsonResponse([], 204);
 });
 
 Route::prefix('search')->group(function () {
@@ -84,4 +95,8 @@ Route::prefix('categories')->group(function () {
 
 Route::prefix('payments')->group(function () {
     Route::post('/mercadopago', Actions\Payments\MercadoPagoExecute::class)->name('paymentMercadoPago');
+});
+
+Route::prefix('notifications')->group(function() {
+    Route::post('/', Actions\Notifications\CheckNotificationUser::class)->name('checkNotificationUser');
 });

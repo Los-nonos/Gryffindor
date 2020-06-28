@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Presentation\Http\Actions\Products;
+namespace Presentation\Http\Actions\Notifications;
 
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Presentation\Http\Enums\HttpCodes;
 
-class StoreProductAction
+class CheckNotificationUser
 {
     public function __construct()
     {
@@ -18,7 +18,9 @@ class StoreProductAction
     public function __invoke(Request $request)
     {
         return new JsonResponse([
-            'message' => 'Product created successfully',
-        ], HttpCodes::CREATED);
+            'data' => [
+                'notifications' => array(),
+            ],
+        ], HttpCodes::OK);
     }
 }
