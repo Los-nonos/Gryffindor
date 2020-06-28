@@ -30,7 +30,7 @@ class IndexCategoryPresenter
             ]);
         }
 
-        return $cleanData;
+        return [ 'categories' => $cleanData ];
     }
 
     private function clearOptions($data): array {
