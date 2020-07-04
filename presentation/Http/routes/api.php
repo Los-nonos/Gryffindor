@@ -36,6 +36,7 @@ Route::group([
     Route::post('login', Actions\Auth\LoginAction::class)->name('login');
     Route::post('renew-token', Actions\Auth\RenewTokenAction::class)->name('renew-token');
     Route::post('signup', Actions\Customers\StoreWebCustomerAction::class)->name('createWebCustomer');
+    Route::post('change-password', Actions\Auth\ChangePasswordAction::class)->name('change-password');
 });
 
 
