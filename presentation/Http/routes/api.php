@@ -96,3 +96,7 @@ Route::prefix('payments')->group(function () {
 Route::prefix('notifications')->group(function() {
     Route::post('/', Actions\Notifications\CheckNotificationUser::class)->name('checkNotificationUser');
 });
+
+Route::prefix('orders')->group(function () {
+    Route::get('/', Actions\Orders\IndexOrdersAction::class)->name('getOrders');
+});

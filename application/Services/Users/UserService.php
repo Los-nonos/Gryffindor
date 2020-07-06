@@ -125,7 +125,7 @@ class UserService implements UserServiceInterface
 
     public function findEmployees($page, $size): array
     {
-        $page = $page ? $page : 0;
+        $page = $page ? $page : 1;
         $size = $size ? $size : 10;
 
         return $this->repository->findEmployees($page, $size);

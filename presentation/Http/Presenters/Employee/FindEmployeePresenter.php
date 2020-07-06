@@ -20,7 +20,14 @@ class FindEmployeePresenter
         $employees = $this->result->getEmployees();
 
         foreach ($employees as $employee) {
-            array_push($result, $employee);
+            //dd($employee);
+            array_push($result, [
+                'id' => $employee->getId(),
+                'name' => $employee->getName(),
+                'surname' => $employee->getSurname(),
+                'email' => $employee->getEmail(),
+                'roles' => $employee->getEmployee()->getRole(),
+            ]);
         }
 
         return $result;

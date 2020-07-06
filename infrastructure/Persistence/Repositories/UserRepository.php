@@ -11,6 +11,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Domain\Entities\User;
 use Domain\Interfaces\Repositories\UserRepositoryInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -132,10 +133,33 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
 
     public function findEmployees($page, $size)
     {
-        $dqlQuery = $this->createQueryBuilder('u');
-        $dqlQuery->where('NOT u.employee IS null');
-        $dqlQuery->setFirstResult($page);
-        $dqlQuery->setMaxResults($size);
-        return $dqlQuery->getQuery()->getArrayResult();
+        // get entity manager
+        $em = $this->getEntityManager();
+
+        // get the user repository
+        $employees = $em->getRepository(User::class);
+
+        // build the query for the doctrine paginator
+        $query = $employees->createQueryBuilder('u')
+            ->where('NOT u.employee IS null')
+            //->orderBy('u.id', 'DESC')
+            ->getQuery();
+
+        // load doctrine Paginator
+        $paginator = new Paginator($query);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($size * ($page-1)) // set the offset
+            ->setMaxResults($size); // set the limit
+
+        $productList = [];
+
+        foreach ($paginator as $item) {
+            array_push($productList, $item);
+        }
+
+        return $productList;
     }
 }

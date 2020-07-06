@@ -5,6 +5,7 @@ namespace Domain\Entities;
 
 
 use DateTime;
+use Ramsey\Uuid\Uuid;
 
 class Customer
 {
@@ -85,7 +86,7 @@ class Customer
 
     public function __construct()
     {
-
+        $this->uuid = Uuid::uuid4();
     }
 
     public function getId(): int
