@@ -36,4 +36,6 @@ interface UserServiceInterface
     public function existWithEmail(string $email): bool;
 
     public function update();
+
+    public function findEmployees($getPage, $getSize): array;
 }

@@ -129,4 +129,13 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
 
         return $dqlQuery->getQuery()->getSingleResult();
     }
+
+    public function findEmployees($page, $size)
+    {
+        $dqlQuery = $this->createQueryBuilder('u');
+        $dqlQuery->where('NOT u.employee IS null');
+        $dqlQuery->setFirstResult($page);
+        $dqlQuery->setMaxResults($size);
+        return $dqlQuery->getQuery()->getArrayResult();
+    }
 }

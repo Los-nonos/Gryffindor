@@ -11,7 +11,7 @@ $builder->createField('id', Type::INTEGER)
     ->generatedValue()
     ->build();
 
-$builder->addField('uuid', Type::STRING);
+$builder->addField('uuid', Type::GUID);
 
 $builder->addField('email', Type::STRING);
 

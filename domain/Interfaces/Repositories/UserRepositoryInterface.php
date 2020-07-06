@@ -17,4 +17,5 @@ interface UserRepositoryInterface
     public function existWithTheEmail(string $email): bool;
     public function findAll(): array;
     public function destroy(User $user): void;
+    public function findEmployees($page, $size);
 }
