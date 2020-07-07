@@ -3,6 +3,7 @@
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
+use Domain\Entities\Order;
 
 $builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('customers');
@@ -11,7 +12,9 @@ $builder->createField('id', Type::INTEGER)
     ->generatedValue()
     ->build();
 
-$builder->addField('uuid', Type::GUID);
+$builder->createField('uuid', Type::GUID)
+    ->generatedValue()
+    ->build();
 
 $builder->addField('email', Type::STRING);
 
@@ -34,3 +37,9 @@ $builder->addField('city', Type::STRING);
 $builder->addField('vatCondition', Type::STRING);
 
 $builder->addField('grossIncome', Type::STRING);
+
+$builder->createOneToMany('orders', Order::class)
+    ->cascadePersist()
+    ->cascadeRemove()
+    ->mappedBy('customer')
+    ->build();

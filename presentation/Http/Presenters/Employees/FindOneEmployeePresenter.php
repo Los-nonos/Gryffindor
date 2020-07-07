@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Presentation\Http\Presenters\Employee;
+namespace Presentation\Http\Presenters\Employees;
 
 
 use Application\Queries\Results\Employees\FindOneEmployeeResult;

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Infrastructure\QueryBus\QueryBusInterface;
 use Presentation\Http\Adapters\Employees\FindEmployeeAdapter;
 use Presentation\Http\Enums\HttpCodes;
-use Presentation\Http\Presenters\Employee\FindEmployeePresenter;
+use Presentation\Http\Presenters\Employees\FindEmployeePresenter;
 
 class FindEmployeeAction
 {

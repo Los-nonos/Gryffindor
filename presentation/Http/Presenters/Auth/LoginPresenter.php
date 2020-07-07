@@ -54,10 +54,4 @@ class LoginPresenter
             'token' => $this->tokenLoginService->createTokenJWT($userArray)
         ];
     }
-
-    public function toJWT($payload)
-    {
-        $key = "key";//todo: definir key
-
-    }
 }
