@@ -24,4 +24,12 @@ class OrderService implements OrderServiceInterface
 
         return $this->repository->indexAndFiltered($page, $size, $userId);
     }
+
+    public function indexAll($page, $size): array
+    {
+        $page = $page ? $page : 1;
+        $size = $size ? $size : 10;
+
+        return $this->repository->indexAll($page, $size);
+    }
 }

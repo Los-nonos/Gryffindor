@@ -100,4 +100,5 @@ Route::prefix('notifications')->group(function() {
 
 Route::prefix('orders')->group(function () {
     Route::get('/', Actions\Orders\IndexOrdersAction::class)->name('getOrders');
+    Route::get('all', Actions\Orders\IndexAllOrdersAction::class)->name('getAllOrders');
 });
