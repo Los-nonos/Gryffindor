@@ -83,4 +83,13 @@ class OrderRepository extends EntityRepository implements OrderRepositoryInterfa
 
         return $customersList;
     }
+
+    /**
+     * @param string $uuid
+     * @return Order|null
+     */
+    public function findByUuid(string $uuid): ?Order
+    {
+        return $this->findOneBy(['numberSell' => $uuid]);
+    }
 }
