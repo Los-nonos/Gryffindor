@@ -94,7 +94,7 @@ class Customer
         return $this->id;
     }
 
-    public function getUuid(): string
+    public function getUuid(): ?string
     {
         return $this->uuid;
     }
@@ -104,7 +104,7 @@ class Customer
         $this->email = $email;
     }
 
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -112,7 +112,7 @@ class Customer
     /**
      * @return int
      */
-    public function getAge(): int
+    public function getAge(): ?int
     {
         return $this->age;
     }
@@ -128,7 +128,7 @@ class Customer
     /**
      * @return string
      */
-    public function getCellPhone(): string
+    public function getPhoneNumber(): ?string
     {
         return $this->cellPhone;
     }
@@ -136,7 +136,7 @@ class Customer
     /**
      * @param string $cellPhone
      */
-    public function setCellPhone(string $cellPhone): void
+    public function setPhoneNumber(string $cellPhone): void
     {
         $this->cellPhone = $cellPhone;
     }
@@ -144,7 +144,7 @@ class Customer
     /**
      * @return string
      */
-    public function getDni(): string
+    public function getDni(): ?string
     {
         return $this->dni;
     }
@@ -160,13 +160,13 @@ class Customer
     /**
      * @return DateTime
      */
-    public function getBirthday(): DateTime
+    public function getBirthday(): ?DateTime
     {
         return $this->birthday;
     }
 
     /**
-     * @param DateTime $birthdate
+     * @param DateTime $birthday
      */
     public function setBirthday(DateTime $birthday): void
     {
@@ -176,7 +176,7 @@ class Customer
     /**
      * @return string
      */
-    public function getPostalCode(): string
+    public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
@@ -192,7 +192,7 @@ class Customer
     /**
      * @return string
      */
-    public function getCountry(): string
+    public function getCountry(): ?string
     {
         return $this->country;
     }
@@ -208,7 +208,7 @@ class Customer
     /**
      * @return string
      */
-    public function getState(): string
+    public function getState(): ?string
     {
         return $this->state;
     }
@@ -224,7 +224,7 @@ class Customer
     /**
      * @return string
      */
-    public function getCity(): string
+    public function getCity(): ?string
     {
         return $this->city;
     }
@@ -240,7 +240,7 @@ class Customer
     /**
      * @return string
      */
-    public function getVatCondition(): string
+    public function getVatCondition(): ?string
     {
         return $this->vatCondition;
     }
@@ -256,7 +256,7 @@ class Customer
     /**
      * @return string
      */
-    public function getTaxationKey(): string
+    public function getTaxationKey(): ?string
     {
         return $this->taxationKey;
     }
@@ -272,7 +272,7 @@ class Customer
     /**
      * @return string
      */
-    public function getGrossIncome(): string
+    public function getGrossIncome(): ?string
     {
         return $this->grossIncome;
     }

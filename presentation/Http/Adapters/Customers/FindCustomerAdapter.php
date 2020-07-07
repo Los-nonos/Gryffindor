@@ -31,7 +31,7 @@ class FindCustomerAdapter
      * @throws InvalidBodyException
      */
     public function from(Request $request) {
-        $this->validatorService->make([$request->route('id')], $this->idSchema->getRule());
+        $this->validatorService->make(['id' => $request->route('id')], $this->idSchema->getRule());
 
         if(!$this->validatorService->isValid()) {
             throw new InvalidBodyException($this->validatorService->getErrors());

@@ -25,6 +25,19 @@ class FindCustomerPresenter
             'name' => $user->getName(),
             'surname' => $user->getSurname(),
             'email' => $user->getEmail(),
+            'isActive' => $user->isActive(),
+            'uuid' => $customer->getUuid(),
+            'age' => $customer->getAge(),
+            'dni' => $customer->getDni(),
+            'birthday' => $customer->getBirthday(),
+            'postalCode' => $customer->getPostalCode(),
+            'country' => $customer->getCountry(),
+            'state' => $customer->getState(),
+            'city' => $customer->getCity(),
+            'vatCondition' => $customer->getVatCondition(),
+            'taxationKey' => $customer->getTaxationKey(),
+            'grossIncome' => $customer->getGrossIncome(),
+            'phoneNumber' => $customer->getPhoneNumber(),
         ];
     }
 }
