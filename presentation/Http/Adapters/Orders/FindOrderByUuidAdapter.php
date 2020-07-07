@@ -24,7 +24,7 @@ class FindOrderByUuidAdapter
      * @throws InvalidBodyException
      */
     public function from(Request $request) {
-        $this->validatorService->make([ 'uuid' => $request->route('uuid') ], []);
+        $this->validatorService->make([ 'uuid' => $request->route('uuid') ], [ 'uuid' => 'bail|required|alpha_dash']);
 
         if (!$this->validatorService->isValid()) {
             throw new InvalidBodyException($this->validatorService->getErrors());

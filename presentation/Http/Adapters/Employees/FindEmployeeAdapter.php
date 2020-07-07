@@ -7,6 +7,7 @@ namespace Presentation\Http\Adapters\Employees;
 use App\Exceptions\InvalidBodyException;
 use Application\Queries\Query\Employees\FindEmployeeQuery;
 use Illuminate\Http\Request;
+use Presentation\Http\Validations\Schemas\PageSizeSchema;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
 
 class FindEmployeeAdapter
@@ -25,7 +26,7 @@ class FindEmployeeAdapter
      */
     public function from(Request $request)
     {
-        $this->validatorService->make($request->all(), []);
+        $this->validatorService->make($request->all(), PageSizeSchema::getRules());
 
         if(!$this->validatorService->isValid()) {
             throw new InvalidBodyException($this->validatorService->getErrors());

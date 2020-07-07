@@ -7,6 +7,7 @@ namespace Presentation\Http\Adapters\Orders;
 use App\Exceptions\InvalidBodyException;
 use Application\Queries\Query\Orders\IndexOrdersQuery;
 use Illuminate\Http\Request;
+use Presentation\Http\Validations\Schemas\Orders\IndexOrdersSchema;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
 
 class IndexOrdersAdapter
@@ -21,7 +22,7 @@ class IndexOrdersAdapter
     }
 
     public function from(Request $request) {
-        $this->validatorService->make($request->all(), []);
+        $this->validatorService->make($request->all(), IndexOrdersSchema::getFiltered());
 
         if (!$this->validatorService->isValid()) {
             throw new InvalidBodyException($this->validatorService->getErrors());
