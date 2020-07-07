@@ -47,9 +47,9 @@ Route::prefix('employees')->group(function () {
 
 Route::prefix('customers')->group(function () {
     Route::post('/', Actions\Customers\StoreCustomerAction::class)->name('createCustomer');
-    Route::get('/{id}', Actions\Customers\FindCustomerAction::class)->name('createCustomer');
+    Route::get('/{id}', Actions\Customers\FindCustomerAction::class)->name('findCustomer');
     Route::put('/{id}', Actions\Customers\UpdateCustomerAction::class)->name('updateCustomer');
-    //Route::get('/', Actions\Customers\FindCustomerAction::class)->name('listCustomers');
+    Route::get('/', Actions\Customers\IndexCustomerAction::class)->name('listCustomers');
 });
 
 Route::prefix('admins')->group(function () {

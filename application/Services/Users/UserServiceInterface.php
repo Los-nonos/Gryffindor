@@ -37,5 +37,7 @@ interface UserServiceInterface
 
     public function update();
 
-    public function findEmployees($getPage, $getSize): array;
+    public function findEmployees($page, $size): array;
+
+    public function findCustomers($page, $size);
 }

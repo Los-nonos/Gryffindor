@@ -19,7 +19,6 @@ class FindCustomerPresenter
         $user = $this->result->getCustomer();
         $customer = $user->getCustomer();
 
-        //TODO: agregar campos que faltan
         return [
             'id' => $user->getId(),
             'name' => $user->getName(),

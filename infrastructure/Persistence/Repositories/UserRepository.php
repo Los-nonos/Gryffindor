@@ -154,12 +154,44 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
             ->setFirstResult($size * ($page-1)) // set the offset
             ->setMaxResults($size); // set the limit
 
-        $productList = [];
+        $employeesList = [];
 
         foreach ($paginator as $item) {
-            array_push($productList, $item);
+            array_push($employeesList, $item);
         }
 
-        return $productList;
+        return $employeesList;
+    }
+
+    public function findCustomers(int $page, int $size)
+    {
+        // get entity manager
+        $em = $this->getEntityManager();
+
+        // get the user repository
+        $customers = $em->getRepository(User::class);
+
+        // build the query for the doctrine paginator
+        $query = $customers->createQueryBuilder('u')
+            ->where('NOT u.customer IS null')
+            //->orderBy('u.id', 'DESC')
+            ->getQuery();
+
+        // load doctrine Paginator
+        $paginator = new Paginator($query);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($size * ($page-1)) // set the offset
+            ->setMaxResults($size); // set the limit
+
+        $customersList = [];
+
+        foreach ($paginator as $item) {
+            array_push($customersList, $item);
+        }
+
+        return $customersList;
     }
 }
