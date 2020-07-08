@@ -46,7 +46,7 @@ class StoreProductAdapter
      */
     public function adapt(Request $request)
     {
-        $this->validatorService->make($request->all(),$this->productSchema->getRules(),$this->productSchema->getMessages());
+        $this->validatorService->make($request->all(), $this->productSchema->getRules(), $this->productSchema->getMessages());
         if(!$this->validatorService->isValid()){
             throw new InvalidBodyException($this->validatorService->getErrors());
         }

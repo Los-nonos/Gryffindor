@@ -1,0 +1,8 @@
+build:
+  docker:
+    web: zeepdocker/docker-compose
+    worker: worker/docker-compose
+  config:
+    RAILS_ENV: production
+run:
+  web:

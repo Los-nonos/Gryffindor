@@ -4,6 +4,7 @@
 namespace Presentation\Http\Actions\Products;
 
 
+use App\Exceptions\InvalidBodyException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Infrastructure\CommandBus\CommandBusInterface;
@@ -40,7 +41,7 @@ class StoreProductAction
     /**
      * @param Request $request
      * @return JsonResponse
-     * @throws \App\Exceptions\InvalidBodyException
+     * @throws InvalidBodyException
      */
     public function __invoke(Request $request)
     {
