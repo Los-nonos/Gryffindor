@@ -8,32 +8,38 @@ use Infrastructure\CommandBus\Command\CommandInterface;
 
 class ChangePasswordCommand implements CommandInterface
 {
-    private string $password;
-    private string $email;
+    private int $id;
+    private string $oldPassword;
+    private string $newPassword;
+
+    public function __construct($id, $oldPassword, $newPassword)
+    {
+        $this->id = $id;
+        $this->oldPassword = $oldPassword;
+        $this->newPassword = $newPassword;
+    }
 
     /**
-     * ChangePasswordCommand constructor.
-     * @param string $email
-     * @param string $password
+     * @return int
      */
-    public function __construct(string $email, string $password)
+    public function getId(): int
     {
-        $this->password = $password;
+        return $this->id;
     }
 
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getOldPassword(): string
     {
-        return $this->email;
+        return $this->oldPassword;
     }
 
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getNewPassword(): string
     {
-        return $this->password;
+        return $this->newPassword;
     }
 }
