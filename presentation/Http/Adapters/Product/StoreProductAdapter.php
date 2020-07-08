@@ -56,8 +56,9 @@ class StoreProductAdapter
             $request->input('description'),
             $request->input('price'),
             $request->input('categories'),
-            $request->input('brands'),
             $request->input('stock'),
+            $request->input('iva'),
+            $request->input('brands'),
             $request->input('characteristics'),
             $request->input('order'),
             $request->input('provider')

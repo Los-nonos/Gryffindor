@@ -41,12 +41,12 @@ class Product
     /**
      * @var array
      */
-    private array $categoriesId;
+    private array $categories;
 
     /**
      * @var array
      */
-    private array $brandsId;
+    private array $brands;
 
     /**
      * @var int
@@ -61,12 +61,12 @@ class Product
     /**
      * @var array
      */
-    private array $ordersId;
+    private array $orders;
 
     /**
      * @var array .
      */
-    private array $providersId;
+    private array $providers;
 
     /**
      * Product constructor.
@@ -153,15 +153,15 @@ class Product
      */
     public function getCategories(): array
     {
-        return $this->categoriesId;
+        return $this->categories;
     }
 
     /**
      * @param Category $categories
      */
-    public function setCategories(Category $categories): void
+    public function addCategories(Category $categories): void
     {
-        $this->categoriesId[] = $categories;
+        $this->categories[] = $categories;
     }
 
     /**
@@ -217,7 +217,7 @@ class Product
      */
     public function getOrders() : array
     {
-        return $this->ordersId;
+        return $this->orders;
     }
 
     /**
@@ -225,7 +225,7 @@ class Product
      */
     public function setOrder(Order $newOrder) : void
     {
-        $this->ordersId [] =$newOrder;
+        $this->orders[] = $newOrder;
     }
 
     /**
@@ -233,7 +233,7 @@ class Product
      */
     public function getProviders() : array
     {
-        return $this->providersId;
+        return $this->providers;
     }
 
     /**
@@ -241,7 +241,7 @@ class Product
      */
     public function setProvider(Provider $newProvider) : void
     {
-        $this->providersId [] = $newProvider;
+        $this->providers[] = $newProvider;
     }
 
     /**
@@ -249,7 +249,7 @@ class Product
      */
     public function getBrands() : array
     {
-        return $this->brandsId;
+        return $this->brands;
     }
 
     /**
@@ -257,6 +257,6 @@ class Product
      */
     public function setBrand(Brand $newBrand) : void
     {
-        $this->brandsId[] = $newBrand;
+        $this->brands[] = $newBrand;
     }
 }
