@@ -5,7 +5,9 @@ namespace Presentation\Http\Adapters\Product;
 
 
 use App\Exceptions\InvalidBodyException;
+use Application\Queries\Query\Products\SearchProductsQuery;
 use Illuminate\Http\Request;
+use Presentation\Http\Validations\Schemas\Products\SearchProductsSchema;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
 
 class SearchProductsAdapter
@@ -23,7 +25,7 @@ class SearchProductsAdapter
      * @throws InvalidBodyException
      */
     public function from(Request $request) {
-        $this->validatorService->make($request->all(), []);
+        $this->validatorService->make($request->all(), SearchProductsSchema::getRules(), []);
 
         if (!$this->validatorService->isValid()) {
             throw new InvalidBodyException($this->validatorService->getErrors());
