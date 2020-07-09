@@ -95,7 +95,7 @@ Route::prefix('payments')->group(function () {
 });
 
 Route::prefix('notifications')->group(function() {
-    Route::post('/', Actions\Notifications\CheckNotificationUser::class)->name('checkNotificationUser');
+    Route::post('/', Actions\Notifications\CheckNotificationUserAction::class)->name('checkNotificationUser');
 });
 
 Route::prefix('orders')->group(function () {

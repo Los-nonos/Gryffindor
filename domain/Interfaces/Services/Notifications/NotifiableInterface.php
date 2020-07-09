@@ -27,7 +27,7 @@ interface NotifiableInterface
     public function setUrlAction(string $urlAction):void;
     public function setPriority(Priority $priority): void;
     public function emailNotification(): Mailable;
-    public function internalNotification(): Notification;
+    public function internalNotification(NotifiableInterface $notifiable): \Domain\Entities\Notification;
     public function setEmailFrom($email): void;
     public function getEmailFrom(): string;
     public function setNameFrom($name);

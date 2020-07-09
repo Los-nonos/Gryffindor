@@ -20,6 +20,8 @@ class InternalNotificationJob implements ShouldQueue
 
     public function handle($entity,$data)
     {
+
+
         Notification::send($entity,$data);
     }
 }

@@ -110,9 +110,14 @@ class Notification implements NotifiableInterface
         return new EmailNotificationEventData($this);
     }
 
-    public function internalNotification(): \Illuminate\Notifications\Notification
+    public function internalNotification(NotifiableInterface $notifiable): \Domain\Entities\Notification
     {
-        return new \Illuminate\Notifications\Notification();
+        $notification = new \Domain\Entities\Notification();
+        $notification->setEmail($this->getEmail());
+        $notification->setMessage($this->getMessage());
+        $notification->setRole($this->getSubject()); //TODO : search role from userId and save or added role field in notification
+
+        return $notification;
     }
 
     public function setEmailFrom($email): void
