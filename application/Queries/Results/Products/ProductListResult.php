@@ -10,9 +10,12 @@ class ProductListResult implements ResultInterface
 {
     private array $products;
 
-    public function __construct(array $products)
+    private int $totalQuantity;
+
+    public function __construct(array $products, int $totalQuantity)
     {
         $this->products = $products;
+        $this->totalQuantity = $totalQuantity;
     }
 
     /**
@@ -21,5 +24,13 @@ class ProductListResult implements ResultInterface
     public function getProducts(): array
     {
         return $this->products;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalQuantity(): int
+    {
+        return $this->totalQuantity;
     }
 }

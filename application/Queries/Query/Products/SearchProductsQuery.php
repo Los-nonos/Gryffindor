@@ -8,22 +8,22 @@ use Infrastructure\QueryBus\Query\QueryInterface;
 
 class SearchProductsQuery implements QueryInterface
 {
-    private string $query;
-    private array $categories;
-    private array $brands;
-    private array $providers;
+    private ?string $query;
+    private ?array $categories;
+    private ?array $brands;
+    private ?array $providers;
     private ?int $page;
     private ?int $size;
-    private string $orderBy;
+    private ?string $orderBy;
 
     public function __construct(
-        string $query,
-        array $categories,
-        array $brands,
-        array $providers,
+        ?string $query,
+        ?array $categories,
+        ?array $brands,
+        ?array $providers,
         ?int $page,
         ?int $size,
-        string $orderBy
+        ?string $orderBy
     )
     {
         $this->query = $query;
@@ -36,33 +36,33 @@ class SearchProductsQuery implements QueryInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getQuery(): string
+    public function getQuery(): ?string
     {
         return $this->query;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getCategories(): array
+    public function getCategories(): ?array
     {
         return $this->categories;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getBrands(): array
+    public function getBrands(): ?array
     {
         return $this->brands;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getProviders(): array
+    public function getProviders(): ?array
     {
         return $this->providers;
     }
@@ -84,9 +84,9 @@ class SearchProductsQuery implements QueryInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getOrderBy(): string
+    public function getOrderBy(): ?string
     {
         return $this->orderBy;
     }

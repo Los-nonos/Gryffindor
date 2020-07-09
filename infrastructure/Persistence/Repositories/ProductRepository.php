@@ -46,13 +46,14 @@ class ProductRepository extends EntityRepository implements ProductRepositoryInt
             $productQueryBuilder->addPageAndLimitBy($page, $limit);
         }
 
-        $productIds = $productQueryBuilder->executeQueryBuilder();
-        $products = [];
-        foreach ($productIds as $productId) {
-            $products[] = $this->findOneBy(['id' => (int)$productId['id']]);
-        }
-
-        return $products;
+        return $productQueryBuilder->executeQueryBuilder();
+//        $products = [];
+//        foreach ($productIds as $productId) {
+//            dd($productId);
+//            $products[] = $this->findOneBy(['id' => (int)$productId['id']]);
+//        }
+//
+//        return $products;
     }
 
     public function findAllPaginated($page, $size): array

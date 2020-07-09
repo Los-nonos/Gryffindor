@@ -2,6 +2,7 @@
 
 namespace Infrastructure\Providers;
 
+use Application\Services\Brands\BrandService;
 use Application\Services\Category\CategoryService;
 use Application\Services\Category\CategoryServiceInterface;
 use Application\Services\Customers\CustomerService;
@@ -21,6 +22,7 @@ use Application\Services\Token\TokenLoginServiceInterface;
 use Application\Services\Users\UserService;
 use Application\Services\Users\UserServiceInterface;
 
+use Domain\Interfaces\Services\Brands\BrandServiceInterface;
 use Domain\Interfaces\Services\GetUserTypeServiceInterface;
 use Domain\Interfaces\Services\Notifications\NotifiableInterface;
 use Domain\Interfaces\Services\Orders\OrderServiceInterface;
@@ -84,6 +86,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(OrderServiceInterface::class,OrderService::class);
 
         $this->app->bind(ProductServiceInterface::class, ProductService::class);
+
+        $this->app->bind(BrandServiceInterface::class, BrandService::class);
     }
 
     /**

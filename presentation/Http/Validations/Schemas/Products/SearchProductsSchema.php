@@ -12,12 +12,13 @@ class SearchProductsSchema
         return [
           'query' => 'bail|alpha_dash',
           'categories' => 'bail|array',
-          'categories.*' => 'bail|integer',
+          'categories.*' => 'bail|integer|min:0',
           'brands' => 'bail|array',
-          'brands.*' => 'bail|integer',
+          'brands.*' => 'bail|integer|min:0',
           'providers' => 'bail|array',
-          'providers.*' => 'bail|integer',
-          ...PageSizeSchema::getRules(),
+          'providers.*' => 'bail|integer|min:0',
+          'page' => 'bail|integer|min:0',
+          'size' => 'bail|integer|min:0',
           'orderBy' => 'bail|alpha|length:3'
         ];
     }

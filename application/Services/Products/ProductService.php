@@ -31,4 +31,9 @@ class ProductService implements ProductServiceInterface
 
         return $this->repository->findByQuery($query, $categories, $brands, $provider, $page, $size, $orderBy);
     }
+
+    public function count(): int
+    {
+        return $this->repository->count([]);
+    }
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Infrastructure\Persistence\Queries;
 
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping;
@@ -38,7 +37,7 @@ class ProductQueryBuilder extends EntityRepository
      */
     public function byQuery(string $query): ProductQueryBuilder
     {
-        $this->dqlQuery->where('p.name LIKE :query')
+        $this->dqlQuery->where('p.title LIKE :query')
             ->orWhere('p.description LIKE :query')
             ->setParameter('query', '%' . $query . '%');
 

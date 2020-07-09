@@ -26,6 +26,7 @@ class SearchProductsAction
         IndexProductsPresenter $presenter
     )
     {
+        $this->adapter = $adapter;
         $this->queryBus = $queryBus;
         $this->presenter = $presenter;
     }

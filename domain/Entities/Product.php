@@ -16,7 +16,7 @@ class Product
     /**
      * @var string
      */
-    private string $name;
+    private string $title;
 
     /**
      * @var string
@@ -36,17 +36,17 @@ class Product
     /**
      * @var float
      */
-    private float $iva;
+    private float $taxes;
 
     /**
      * @var array
      */
-    private array $categories;
+    private $categories;
 
     /**
      * @var array
      */
-    private array $brands;
+    private $brands;
 
     /**
      * @var int
@@ -56,17 +56,17 @@ class Product
     /**
      * @var array
      */
-    private array $characteristics;
+    private $characteristics;
 
     /**
      * @var array
      */
-    private array $orders;
+    private $orders;
 
     /**
      * @var array .
      */
-    private array $providers;
+    private $providers;
 
     /**
      * Product constructor.
@@ -87,17 +87,17 @@ class Product
     /**
      * @return string
      */
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
      * @param string name
      */
-    public function setTitle(string $name): void
+    public function setTitle(string $title): void
     {
-        $this->name = $name;
+        $this->title = $title;
     }
 
     /**
@@ -135,23 +135,23 @@ class Product
     /**
      * @return float
      */
-    public function getIva(): float
+    public function getTaxes(): float
     {
-        return $this->iva;
+        return $this->taxes;
     }
 
     /**
      * @param float $iva
      */
-    public function setIva(float $iva): void
+    public function setTaxes(float $iva): void
     {
-        $this->iva = $iva;
+        $this->taxes = $iva;
     }
 
     /**
      * @return array
      */
-    public function getCategories(): array
+    public function getCategories()
     {
         return $this->categories;
     }
@@ -183,7 +183,7 @@ class Product
     /**
      * @return array
      */
-    public function getCharacteristics(): array
+    public function getCharacteristics()
     {
         return $this->characteristics;
     }
@@ -215,7 +215,7 @@ class Product
     /**
      * @return array
      */
-    public function getOrders() : array
+    public function getOrders()
     {
         return $this->orders;
     }
@@ -231,7 +231,7 @@ class Product
     /**
      * @return array
      */
-    public function getProviders() : array
+    public function getProviders()
     {
         return $this->providers;
     }
@@ -247,7 +247,7 @@ class Product
     /**
      * @return array
      */
-    public function getBrands() : array
+    public function getBrands()
     {
         return $this->brands;
     }

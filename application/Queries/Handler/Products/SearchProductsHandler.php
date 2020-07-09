@@ -40,7 +40,8 @@ class SearchProductsHandler implements HandlerInterface
     {
         if (!$query->getQuery() && !$query->getCategories() && !$query->getBrands() && !$query->getProviders()) {
             $products = $this->productService->findAll($query->getPage(), $query->getSize());
-            return new ProductListResult($products);
+            $totalCount = $this->productService->count();
+            return new ProductListResult($products, $totalCount);
         }
 
         $queryInput = null;
@@ -51,18 +52,23 @@ class SearchProductsHandler implements HandlerInterface
             $queryInput = $query->getQuery();
         }
 
-        foreach ($query->getBrands() as $brandId) {
-            $brand = $this->brandService->findOneByIdOrFail($brandId);
-            $brandIds[] = $brand->getId();
+        if($query->getBrands()) {
+            foreach ($query->getBrands() as $brandId) {
+                $brand = $this->brandService->findOneByIdOrFail($brandId);
+                $brandIds[] = $brand->getId();
+            }
         }
-
-        foreach ($query->getCategories() as $categoryId) {
-            $category = $this->categoryService->findOneByIdOrFail($categoryId);
-            $categoriesIds[] = $category->getId();
+        
+        if($query->getCategories()) {
+            foreach ($query->getCategories() as $categoryId) {
+                $category = $this->categoryService->findOneByIdOrFail($categoryId);
+                $categoriesIds[] = $category->getId();
+            }
         }
 
         $products = $this->productService->findByQuery($queryInput, $categoriesIds, $brandIds, [], $query->getPage(), $query->getSize(), $query->getOrderBy());
+        $totalCount = $this->productService->count();
 
-        return new ProductListResult($products);
+        return new ProductListResult($products, $totalCount);
     }
 }
