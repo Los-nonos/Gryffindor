@@ -24,6 +24,7 @@ class NotificationsUserPresenter
         foreach ($notifications as $notification) {
             array_push($notificationsList, [
                 'id' => $notification->getId(),
+                'subject' => $notification->getSubject(),
                 'message' => $notification->getMessage(),
                 'read' => $notification->getRead(),
             ]);
