@@ -13,4 +13,6 @@ interface NotificationServiceInterface
     public function findByIdOrFail(int $id): ?Notification;
 
     public function findByEmail(string $email): array;
+
+    public function persist(Notification $notification): void;
 }

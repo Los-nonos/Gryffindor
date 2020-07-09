@@ -23,6 +23,7 @@ class Notification implements NotifiableInterface
     private $urlAction;
     private Priority $priority;
     private $nameFrom;
+    private $role;
 
     public function getId(): int
     {
@@ -110,12 +111,13 @@ class Notification implements NotifiableInterface
         return new EmailNotificationEventData($this);
     }
 
-    public function internalNotification(NotifiableInterface $notifiable): \Domain\Entities\Notification
+    public function internalNotification(): \Domain\Entities\Notification
     {
         $notification = new \Domain\Entities\Notification();
         $notification->setEmail($this->getEmail());
         $notification->setMessage($this->getMessage());
-        $notification->setRole($this->getSubject()); //TODO : search role from userId and save or added role field in notification
+        $notification->setRole($this->getRole());
+        $notification->setSubject($this->getSubject());
 
         return $notification;
     }
@@ -138,5 +140,15 @@ class Notification implements NotifiableInterface
     public function getNameFrom(): string
     {
         return $this->nameFrom;
+    }
+
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
+    }
+
+    public function getRole(): string
+    {
+        return $this->role;
     }
 }

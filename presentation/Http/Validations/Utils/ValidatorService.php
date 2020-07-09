@@ -17,7 +17,7 @@ class ValidatorService implements ValidatorServiceInterface
         $this->validatorFactory = $validatorFactory;
     }
 
-    public function make(array $options, array $rules, array $messages)
+    public function make(array $options, array $rules, array $messages = [])
     {
         $this->validated = $this->validatorFactory->make($options, $rules, $messages);
 

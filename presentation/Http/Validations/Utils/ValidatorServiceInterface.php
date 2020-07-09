@@ -6,7 +6,7 @@ namespace Presentation\Http\Validations\Utils;
 
 interface ValidatorServiceInterface
 {
-    public function make(array $options, array $rules, array $messages);
+    public function make(array $options, array $rules, array $messages = []);
 
     public function isValid();
 

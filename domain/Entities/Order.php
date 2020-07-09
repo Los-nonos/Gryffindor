@@ -10,7 +10,7 @@ class Order
     private $id;
 
     /**
-     * @var User
+     * @var Customer
      */
     private $customer;
 
@@ -22,7 +22,7 @@ class Order
     private $numberSell;
 
     /**
-     * @var User
+     * @var Employee
      */
     private $employee;
 
@@ -42,22 +42,6 @@ class Order
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return User
-     */
-    public function getUser(): User
-    {
-        return $this->customer;
-    }
-
-    /**
-     * @param User $user
-     */
-    public function setUser(User $user): void
-    {
-        $this->customer = $user;
     }
 
     /**
@@ -93,17 +77,17 @@ class Order
     }
 
     /**
-     * @return User
+     * @return Employee
      */
-    public function getEmployee(): User
+    public function getEmployee(): Employee
     {
         return $this->employee;
     }
 
     /**
-     * @param User $employee
+     * @param Employee $employee
      */
-    public function setEmployee(User $employee): void
+    public function setEmployee(Employee $employee): void
     {
         $this->employee = $employee;
     }
@@ -122,5 +106,13 @@ class Order
     public function setProducts(array $products): void
     {
         $this->products = $products;
+    }
+
+    public function getCustomer() {
+        return $this->customer;
+    }
+
+    public function setCustomer($customer) {
+        $this->customer = $customer;
     }
 }

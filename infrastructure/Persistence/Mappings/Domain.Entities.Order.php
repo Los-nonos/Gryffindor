@@ -18,8 +18,8 @@ $builder->addField('amount', Type::INTEGER);
 
 $builder->addField('numberSell', Type::STRING);
 
-$builder->addManyToOne('employee', Employee::class);
-
-$builder->addManyToOne('customer', Customer::class);
-
 $builder->addInverseManyToMany('products', Product::class, 'orders');
+
+$builder->addManyToOne('customer', Customer::class,'orders');
+
+$builder->addManyToOne('employee', Employee::class, 'orders');

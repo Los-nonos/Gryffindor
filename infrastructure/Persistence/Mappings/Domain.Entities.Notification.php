@@ -17,4 +17,6 @@ $builder->addField('email', Type::STRING);
 
 $builder->addField('role', Type::STRING);
 
-$builder->addField('read', Type::BOOLEAN);
+$builder->addField('subject', Type::STRING);
+
+$builder->addField('notificationRead', Type::BOOLEAN);

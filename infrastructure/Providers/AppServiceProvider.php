@@ -14,6 +14,7 @@ use Application\Services\Hash\HashServiceInterface;
 
 use Application\Services\Notification\NotifiableService;
 use Application\Services\Notification\NotifiableServiceInterface;
+use Application\Services\Notification\NotificationService;
 use Application\Services\Orders\OrderService;
 use Application\Services\Products\ProductService;
 use Application\Services\Token\TokenLoginService;
@@ -25,6 +26,7 @@ use Application\Services\Users\UserServiceInterface;
 use Domain\Interfaces\Services\Brands\BrandServiceInterface;
 use Domain\Interfaces\Services\GetUserTypeServiceInterface;
 use Domain\Interfaces\Services\Notifications\NotifiableInterface;
+use Domain\Interfaces\Services\Notifications\NotificationServiceInterface;
 use Domain\Interfaces\Services\Orders\OrderServiceInterface;
 use Domain\Interfaces\Services\Products\ProductServiceInterface;
 use Domain\Services\Users\GetUserTypeService;
@@ -88,6 +90,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ProductServiceInterface::class, ProductService::class);
 
         $this->app->bind(BrandServiceInterface::class, BrandService::class);
+
+        $this->app->bind(NotificationServiceInterface::class, NotificationService::class);
     }
 
     /**

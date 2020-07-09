@@ -54,6 +54,10 @@ class StoreWebCustomerHandler implements HandlerInterface
         $notifiable->setName($command->getName() . " " . $command->getSurname());
         $notifiable->setEmail($command->getEmail());
         $this->notifiableService->sendEmail($notifiable);
+
+        $notifiable->setMessage("Please activate your account checking your email");
+
+        $this->notifiableService->sendNotification($notifiable);
     }
 
     private function createEmailToActivateAccount(User $user): NotifiableInterface

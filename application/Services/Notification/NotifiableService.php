@@ -37,6 +37,6 @@ class NotifiableService implements NotifiableServiceInterface
 
     public function sendNotification(NotifiableInterface $data): void
     {
-        InternalNotificationJob::dispatch($this->notification->internalNotification($data))->onQueue('notifications');
+        InternalNotificationJob::dispatchNow($data);
     }
 }

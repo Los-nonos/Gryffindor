@@ -4,6 +4,8 @@
 namespace Application\Jobs;
 
 
+use Domain\Interfaces\Services\Notifications\NotifiableInterface;
+use Domain\Interfaces\Services\Notifications\NotificationServiceInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -18,10 +20,18 @@ class InternalNotificationJob implements ShouldQueue
 {
     use Dispatchable, Notifiable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public function handle($entity,$data)
+    /**
+     * @var NotifiableInterface
+     */
+    private NotifiableInterface $notifiable;
+
+    public function __construct(NotifiableInterface $notifiable)
     {
+        $this->notifiable = $notifiable;
+    }
 
-
-        Notification::send($entity,$data);
+    public function handle(NotificationServiceInterface $notificationService)
+    {
+        $notificationService->persist($this->notifiable->internalNotification());
     }
 }

@@ -8,17 +8,18 @@ class Notification
 {
     private int $id;
 
-    private $email;
+    private string $email;
 
-    private $role;
+    private string $role;
 
-    private $message;
+    private string $message;
 
-    private $read;
+    private bool $notificationRead;
+    private string $subject;
 
     public function __construct()
     {
-        $this->read = false;
+        $this->notificationRead = false;
     }
 
     /**
@@ -82,7 +83,7 @@ class Notification
      */
     public function isRead(): bool
     {
-        return $this->read;
+        return $this->notificationRead;
     }
 
     /**
@@ -90,6 +91,16 @@ class Notification
      */
     public function setRead(bool $read): void
     {
-        $this->read = $read;
+        $this->notificationRead = $read;
+    }
+
+    public function setSubject(string $subject)
+    {
+        $this->subject = $subject;
+    }
+
+    public function getSubject(): string
+    {
+        return $this->subject;
     }
 }
