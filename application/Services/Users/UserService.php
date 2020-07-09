@@ -122,4 +122,20 @@ class UserService implements UserServiceInterface
     {
         $this->repository->flush();
     }
+
+    public function findEmployees($page, $size): array
+    {
+        $page = $page ? $page : 1;
+        $size = $size ? $size : 10;
+
+        return $this->repository->findEmployees($page, $size);
+    }
+
+    public function findCustomers($page, $size)
+    {
+        $page = $page ? $page : 1;
+        $size = $size ? $size : 10;
+
+        return $this->repository->findCustomers($page, $size);
+    }
 }

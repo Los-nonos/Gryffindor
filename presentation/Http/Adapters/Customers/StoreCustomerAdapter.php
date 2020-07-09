@@ -7,6 +7,7 @@ namespace Presentation\Http\Adapters\Customers;
 use App\Exceptions\InvalidBodyException;
 use Application\Commands\Command\Customers\StoreCustomerCommand;
 use DateTime;
+use Exception;
 use Illuminate\Http\Request;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
 
@@ -25,6 +26,7 @@ class StoreCustomerAdapter
      * @param Request $request
      * @return StoreCustomerCommand
      * @throws InvalidBodyException
+     * @throws Exception
      */
     public function from(Request $request)
     {
@@ -36,7 +38,11 @@ class StoreCustomerAdapter
         }
 
         return new StoreCustomerCommand(
+            $request->input('name'),
+            $request->input('surname'),
+            $request->input('email'),
             $request->input('vat_condition'),
+            $request->input('age'),
             new Datetime($request->input('birthday')),
             $request->input('country'),
             $request->input('state'),
@@ -45,7 +51,7 @@ class StoreCustomerAdapter
             $request->input('cell_phone'),
             $request->input('dni'),
             $request->input('taxation_key'),
-            $request->input('gross_income')
+            $request->input('gross_income'),
         );
     }
 }

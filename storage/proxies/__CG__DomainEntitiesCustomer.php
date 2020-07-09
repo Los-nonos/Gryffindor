@@ -194,7 +194,7 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getUuid(): string
+    public function getUuid(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUuid', []);
@@ -216,7 +216,7 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEmail', []);
@@ -227,7 +227,7 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getAge(): int
+    public function getAge(): ?int
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAge', []);
@@ -249,29 +249,29 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getCellPhone(): string
+    public function getPhoneNumber(): ?string
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCellPhone', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhoneNumber', []);
 
-        return parent::getCellPhone();
+        return parent::getPhoneNumber();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setCellPhone(string $cellPhone): void
+    public function setPhoneNumber(string $cellPhone): void
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCellPhone', [$cellPhone]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhoneNumber', [$cellPhone]);
 
-        parent::setCellPhone($cellPhone);
+        parent::setPhoneNumber($cellPhone);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getDni(): string
+    public function getDni(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDni', []);
@@ -293,7 +293,7 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getBirthday(): \DateTime
+    public function getBirthday(): ?\DateTime
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBirthday', []);
@@ -315,7 +315,7 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getPostalCode(): string
+    public function getPostalCode(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPostalCode', []);
@@ -337,7 +337,7 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getCountry(): string
+    public function getCountry(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCountry', []);
@@ -359,7 +359,7 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getState(): string
+    public function getState(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getState', []);
@@ -381,7 +381,7 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getCity(): string
+    public function getCity(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCity', []);
@@ -403,7 +403,7 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getVatCondition(): string
+    public function getVatCondition(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVatCondition', []);
@@ -425,7 +425,7 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getTaxationKey(): string
+    public function getTaxationKey(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTaxationKey', []);
@@ -447,7 +447,7 @@ class Customer extends \Domain\Entities\Customer implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getGrossIncome(): string
+    public function getGrossIncome(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getGrossIncome', []);

@@ -5,7 +5,7 @@ namespace Presentation\Http\Adapters\Users;
 
 
 use App\Exceptions\InvalidBodyException;
-use Application\Commands\Command\Auth\ChangePasswordCommand;
+use Application\Commands\Command\Auth\ChangePasswordFromRecoveryCommand;
 use Application\Services\Token\TokenLoginServiceInterface;
 use Illuminate\Http\Request;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
@@ -27,7 +27,7 @@ class ChangePasswordFromRecoveryAdapter
 
     /**
      * @param Request $request
-     * @return ChangePasswordCommand
+     * @return ChangePasswordFromRecoveryCommand
      * @throws InvalidBodyException
      */
     public function from(Request $request)
@@ -42,7 +42,7 @@ class ChangePasswordFromRecoveryAdapter
         $hash = $this->tokenLoginService->decryptTokenJWT($request->input('token'));
         $token = $this->tokenLoginService->findOneByHashOrFail($hash);
 
-        return new ChangePasswordCommand(
+        return new ChangePasswordFromRecoveryCommand(
             $token->getUser()->getEmail(),
             $request->input('password')
         );

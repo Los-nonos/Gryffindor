@@ -16,7 +16,7 @@ class Product
     /**
      * @var string
      */
-    private string $name;
+    private string $title;
 
     /**
      * @var string
@@ -36,17 +36,17 @@ class Product
     /**
      * @var float
      */
-    private float $iva;
+    private float $taxes;
 
     /**
      * @var array
      */
-    private array $categoriesId;
+    private $categories;
 
     /**
      * @var array
      */
-    private array $brandsId;
+    private $brands;
 
     /**
      * @var int
@@ -56,17 +56,17 @@ class Product
     /**
      * @var array
      */
-    private array $characteristics;
+    private $characteristics;
 
     /**
      * @var array
      */
-    private array $ordersId;
+    private $orders;
 
     /**
      * @var array .
      */
-    private array $providersId;
+    private $providers;
 
     /**
      * Product constructor.
@@ -87,17 +87,17 @@ class Product
     /**
      * @return string
      */
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
      * @param string name
      */
-    public function setTitle(string $name): void
+    public function setTitle(string $title): void
     {
-        $this->name = $name;
+        $this->title = $title;
     }
 
     /**
@@ -135,33 +135,33 @@ class Product
     /**
      * @return float
      */
-    public function getIva(): float
+    public function getTaxes(): float
     {
-        return $this->iva;
+        return $this->taxes;
     }
 
     /**
      * @param float $iva
      */
-    public function setIva(float $iva): void
+    public function setTaxes(float $iva): void
     {
-        $this->iva = $iva;
+        $this->taxes = $iva;
     }
 
     /**
      * @return array
      */
-    public function getCategories(): array
+    public function getCategories()
     {
-        return $this->categoriesId;
+        return $this->categories;
     }
 
     /**
      * @param Category $categories
      */
-    public function setCategories(Category $categories): void
+    public function addCategories(Category $categories): void
     {
-        $this->categoriesId[] = $categories;
+        $this->categories[] = $categories;
     }
 
     /**
@@ -183,7 +183,7 @@ class Product
     /**
      * @return array
      */
-    public function getCharacteristics(): array
+    public function getCharacteristics()
     {
         return $this->characteristics;
     }
@@ -215,9 +215,9 @@ class Product
     /**
      * @return array
      */
-    public function getOrders() : array
+    public function getOrders()
     {
-        return $this->ordersId;
+        return $this->orders;
     }
 
     /**
@@ -225,15 +225,15 @@ class Product
      */
     public function setOrder(Order $newOrder) : void
     {
-        $this->ordersId [] =$newOrder;
+        $this->orders[] = $newOrder;
     }
 
     /**
      * @return array
      */
-    public function getProviders() : array
+    public function getProviders()
     {
-        return $this->providersId;
+        return $this->providers;
     }
 
     /**
@@ -241,15 +241,15 @@ class Product
      */
     public function setProvider(Provider $newProvider) : void
     {
-        $this->providersId [] = $newProvider;
+        $this->providers[] = $newProvider;
     }
 
     /**
      * @return array
      */
-    public function getBrands() : array
+    public function getBrands()
     {
-        return $this->brandsId;
+        return $this->brands;
     }
 
     /**
@@ -257,6 +257,6 @@ class Product
      */
     public function setBrand(Brand $newBrand) : void
     {
-        $this->brandsId[] = $newBrand;
+        $this->brands[] = $newBrand;
     }
 }

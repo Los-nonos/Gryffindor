@@ -2,6 +2,7 @@
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
+use Domain\Entities\Order;
 
 $builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('employees');
@@ -11,3 +12,9 @@ $builder->createField('id', Type::INTEGER)
     ->build();
 
 $builder->addField('role', Type::STRING);
+
+$builder->createOneToMany('orders', Order::class)
+    ->cascadePersist()
+    ->cascadeRemove()
+    ->mappedBy('employee')
+    ->build();

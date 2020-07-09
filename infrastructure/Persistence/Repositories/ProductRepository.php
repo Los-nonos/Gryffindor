@@ -7,9 +7,12 @@ namespace Infrastructure\Persistence\Repositories;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Domain\Entities\Product;
+use Domain\Interfaces\Repositories\ProductRepositoryInterface;
+use Infrastructure\Persistence\Queries\ProductQueryBuilder;
 
-class ProductRepository extends EntityRepository
+class ProductRepository extends EntityRepository implements ProductRepositoryInterface
 {
     public function __construct(EntityManagerInterface $em)
     {

@@ -46,7 +46,7 @@ class StoreProductAdapter
      */
     public function adapt(Request $request)
     {
-        $this->validatorService->make($request->all(),$this->productSchema->getRules(),$this->productSchema->getMessages());
+        $this->validatorService->make($request->all(), $this->productSchema->getRules(), $this->productSchema->getMessages());
         if(!$this->validatorService->isValid()){
             throw new InvalidBodyException($this->validatorService->getErrors());
         }
@@ -56,8 +56,9 @@ class StoreProductAdapter
             $request->input('description'),
             $request->input('price'),
             $request->input('categories'),
-            $request->input('brands'),
             $request->input('stock'),
+            $request->input('iva'),
+            $request->input('brands'),
             $request->input('characteristics'),
             $request->input('order'),
             $request->input('provider')

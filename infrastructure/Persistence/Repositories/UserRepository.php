@@ -11,6 +11,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Domain\Entities\User;
 use Domain\Interfaces\Repositories\UserRepositoryInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -128,5 +129,69 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
             ->setParameter('employeeId', $employeeId);
 
         return $dqlQuery->getQuery()->getSingleResult();
+    }
+
+    public function findEmployees($page, $size)
+    {
+        // get entity manager
+        $em = $this->getEntityManager();
+
+        // get the user repository
+        $employees = $em->getRepository(User::class);
+
+        // build the query for the doctrine paginator
+        $query = $employees->createQueryBuilder('u')
+            ->where('NOT u.employee IS null')
+            //->orderBy('u.id', 'DESC')
+            ->getQuery();
+
+        // load doctrine Paginator
+        $paginator = new Paginator($query);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($size * ($page-1)) // set the offset
+            ->setMaxResults($size); // set the limit
+
+        $employeesList = [];
+
+        foreach ($paginator as $item) {
+            array_push($employeesList, $item);
+        }
+
+        return $employeesList;
+    }
+
+    public function findCustomers(int $page, int $size)
+    {
+        // get entity manager
+        $em = $this->getEntityManager();
+
+        // get the user repository
+        $customers = $em->getRepository(User::class);
+
+        // build the query for the doctrine paginator
+        $query = $customers->createQueryBuilder('u')
+            ->where('NOT u.customer IS null')
+            //->orderBy('u.id', 'DESC')
+            ->getQuery();
+
+        // load doctrine Paginator
+        $paginator = new Paginator($query);
+
+        // now get one page's items:
+        $paginator
+            ->getQuery()
+            ->setFirstResult($size * ($page-1)) // set the offset
+            ->setMaxResults($size); // set the limit
+
+        $customersList = [];
+
+        foreach ($paginator as $item) {
+            array_push($customersList, $item);
+        }
+
+        return $customersList;
     }
 }
