@@ -73,7 +73,7 @@ Route::prefix('search')->group(function () {
 Route::prefix('inventory')->group(function () {
     Route::post('/{id}', Actions\Products\UpdateInventory::class)->name('updateInventoryProduct');
     Route::get('/', Actions\Stock\IndexProductStock::class)->name('indexProductsStock');
-    Route::get('/{id}', Actions\Stock\FindProductStock::class)->name('findProductsStock');
+    Route::get('/{id}', Actions\Stock\FindProductStockAction::class)->name('findProductsStock');
 });
 
 Route::prefix('filters')->group(function () {

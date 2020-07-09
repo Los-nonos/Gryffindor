@@ -49,9 +49,9 @@ class Product
     private $brands;
 
     /**
-     * @var int
+     * @var Stock
      */
-    private int $stock;
+    private $stock;
 
     /**
      * @var array
@@ -165,9 +165,9 @@ class Product
     }
 
     /**
-     * @return int
+     * @return Stock
      */
-    public function getStock(): int
+    public function getStock(): Stock
     {
         return $this->stock;
     }
