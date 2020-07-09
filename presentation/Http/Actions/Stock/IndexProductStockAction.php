@@ -4,7 +4,7 @@
 namespace Presentation\Http\Actions\Stock;
 
 
-class IndexProductStock
+class IndexProductStockAction
 {
     public function __construct()
     {
