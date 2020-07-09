@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Infrastructure\Providers;
 
 
+use Domain\Interfaces\Repositories\BrandRepositoryInterface;
 use Domain\Interfaces\Repositories\CategoryRepositoryInterface;
 use Domain\Interfaces\Repositories\CustomerRepositoryInterface;
 use Domain\Interfaces\Repositories\EmployeeRepositoryInterface;
@@ -13,6 +14,7 @@ use Domain\Interfaces\Repositories\ProductRepositoryInterface;
 use Domain\Interfaces\Repositories\TokenRepositoryInterface;
 use Domain\Interfaces\Repositories\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
+use Infrastructure\Persistence\Repositories\BrandRepository;
 use Infrastructure\Persistence\Repositories\CategoryRepository;
 use Infrastructure\Persistence\Repositories\CustomerRepository;
 use Infrastructure\Persistence\Repositories\EmployeeRepository;
@@ -39,5 +41,6 @@ final class DoctrineRepositoriesServiceProvider extends ServiceProvider
         $this->app->bind(FilterRepositoryInterface::class, FilterRepository::class);
         $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
+        $this->app->bind(BrandRepositoryInterface::class, BrandRepository::class);
     }
 }

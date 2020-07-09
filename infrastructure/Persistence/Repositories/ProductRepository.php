@@ -17,7 +17,6 @@ class ProductRepository extends EntityRepository implements ProductRepositoryInt
     public function __construct(EntityManagerInterface $em)
     {
         parent::__construct($em, new Mapping\ClassMetadata(Product::class));
-        //TODO WTF? REPOSITORY?? DOOOOCTRINE
     }
 
     public function findByQuery(
@@ -78,5 +77,21 @@ class ProductRepository extends EntityRepository implements ProductRepositoryInt
         }
 
         return $employeesList;
+    }
+
+    public function persist(Product $product)
+    {
+        $this->getEntityManager()->persist($product);
+        $this->getEntityManager()->flush();
+    }
+
+    public function findOneById(int $id): ?Product
+    {
+        return $this->findOneBy(['id' => $id]);
+    }
+
+    public function findOneByUuid(string $uuid): ?Product
+    {
+        return $this->findOneBy(['uuid' => $uuid]);
     }
 }
