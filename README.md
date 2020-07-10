@@ -94,7 +94,7 @@ DB_USERNAME=test
 DB_PASSWORD=test
 ```
 
-1. Entramos al `bash nginx` del Lord Commander ubicados en `lacade/docalacade` ejecutar: `./webapp`.
+1. Entramos al `bash nginx` del Lord Commander ubicados en `Gryffindor/` ejecutar: `./webapp`.
 
 ##### Los comandos deben ser tirados siempre dentro del bash del comandante.
 
