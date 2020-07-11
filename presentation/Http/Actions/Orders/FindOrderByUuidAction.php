@@ -4,6 +4,7 @@
 namespace Presentation\Http\Actions\Orders;
 
 
+use App\Exceptions\InvalidBodyException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Infrastructure\QueryBus\QueryBusInterface;
@@ -30,6 +31,11 @@ class FindOrderByUuidAction
         $this->presenter = $presenter;
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws InvalidBodyException
+     */
     public function __invoke(Request $request)
     {
         $query = $this->adapter->from($request);

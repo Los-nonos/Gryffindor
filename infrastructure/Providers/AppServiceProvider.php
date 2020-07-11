@@ -65,6 +65,7 @@ class AppServiceProvider extends ServiceProvider
 
             return $client;
         });
+
         $this->app->bind(UserServiceInterface::class, UserService::class);
 
         $this->app->bind(CustomerServiceInterface::class, CustomerService::class);
