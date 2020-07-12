@@ -17,7 +17,7 @@ class StoreProductCommand implements CommandInterface
     private float $iva;
     private array $brands;
     private array $characteristics;
-    private array $orders;
+    private string $purchaseOrder;
     private array $providers;
 
 
@@ -31,7 +31,7 @@ class StoreProductCommand implements CommandInterface
         float $iva,
         array $brands,
         array $characteristics,
-        array $orders,
+        string $purchaseOrder,
         array $providers
     )
     {
@@ -43,7 +43,7 @@ class StoreProductCommand implements CommandInterface
         $this->iva = $iva;
         $this->brands = $brands;
         $this->characteristics = $characteristics;
-        $this->orders = $orders;
+        $this->purchaseOrder = $purchaseOrder;
         $this->providers = $providers;
     }
 
@@ -87,9 +87,9 @@ class StoreProductCommand implements CommandInterface
         return $this->characteristics;
     }
 
-    public function getOrder() : array
+    public function getPurchaseNumber() : string
     {
-        return $this->orders;
+        return $this->purchaseOrder;
     }
 
     public function getProvider() : array

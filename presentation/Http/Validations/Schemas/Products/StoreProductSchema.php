@@ -20,7 +20,7 @@ class StoreProductSchema
             'iva' => 'bail|required|numeric|min:0',
             'brands' => 'bail|required|min:1|array',
             'characteristics' => 'bail|required|array',
-            'orders' => 'bail|required|array',
+            'purchaseOrderNumber' => 'bail|required',
             'providers' => 'bail|required|array',
         ];
     }
@@ -52,8 +52,8 @@ class StoreProductSchema
             'brands.required' => 'Debe ingresar una marca para el producto',
             'brands.min' => 'La marca ingresada debe tener al menos 1 caracter',
             'characteristics.required' => 'Debe ingresar las características del producto',
-            'orders.alpha_num' => 'La orden ingresada solo debe contener números y letras',
-            'orders.required' => 'Debe ingresar el número de orden de compra del producto',
+            'purchaseOrderNumber.alpha_num' => 'La orden ingresada solo debe contener números y letras',
+            'purchaseOrderNumber.required' => 'Debe ingresar el número de orden de compra del producto',
             'providers.required' => 'Debe seleccionar el proveedor al que se le ha comprado el producto'
         ];
     }

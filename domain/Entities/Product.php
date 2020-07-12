@@ -66,6 +66,16 @@ class Product
     private $providers;
 
     /**
+     * @var array
+     */
+    private $purchaseOrder;
+
+    /**
+     * @var bool
+     */
+    private bool $featured;
+
+    /**
      * Product constructor.
      */
     public function __construct()
@@ -79,6 +89,22 @@ class Product
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPurchaseOrder(): array
+    {
+        return $this->purchaseOrder;
+    }
+
+    /**
+     * @param array $purchaseOrder
+     */
+    public function setPurchaseOrder(array $purchaseOrder): void
+    {
+        $this->purchaseOrder = $purchaseOrder;
     }
 
     /**
@@ -154,6 +180,22 @@ class Product
     }
 
     /**
+     * @return bool
+     */
+    public function isFeatured(): bool
+    {
+        return $this->featured;
+    }
+
+    /**
+     * @param bool $featured
+     */
+    public function setFeatured(bool $featured): void
+    {
+        $this->featured = $featured;
+    }
+
+    /**
      * @param Category $categories
      */
     public function addCategories(Category $categories): void
@@ -196,15 +238,32 @@ class Product
     /**
      * @return bool
      */
-    public function getAvailability() : bool
+    public function getAvailability(): bool
     {
         return $this->available;
     }
 
     /**
+     * @return bool
+     */
+    public function isAvailable(): bool
+    {
+        return $this->available;
+    }
+
+    /**
+     * @param bool $available
+     */
+    public function setAvailable(bool $available): void
+    {
+        $this->available = $available;
+    }
+
+
+    /**
      * @param bool $notAvailable
      */
-    public function setNotAvailable(bool $notAvailable) : void
+    public function setNotAvailable(bool $notAvailable): void
     {
         $this->available = $notAvailable;
     }

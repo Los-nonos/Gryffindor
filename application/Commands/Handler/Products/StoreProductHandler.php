@@ -7,6 +7,7 @@ namespace Application\Commands\Handler\Products;
 use Application\Commands\Command\Products\StoreProductCommand;
 use Domain\Entities\Order;
 use Domain\Entities\Product;
+use Domain\Entities\PurchaseOrder;
 use Domain\Entities\Stock;
 use Domain\Interfaces\Services\Products\ProductServiceInterface;
 use Infrastructure\CommandBus\Handler\HandlerInterface;
@@ -37,9 +38,9 @@ class StoreProductHandler implements HandlerInterface
         $product->setStock($stock);
         $product->setTaxes($command->getIva());
         //$product->setBrand($command->getBrands()); Corregir BRAND
-        $order = new Order();
-        $order->setNumberSell($command->);
-        $product->setOrder();
+        $purchase = new PurchaseOrder();
+        $purchase->setPurchaseNumber($command->getPurchaseNumber());
+        $product->set
 
         $this->productService->persist($product);
 
