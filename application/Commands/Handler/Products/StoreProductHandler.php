@@ -5,23 +5,19 @@ namespace Application\Commands\Handler\Products;
 
 
 use Application\Commands\Command\Products\StoreProductCommand;
+use Domain\Entities\Product;
+use Domain\Interfaces\Services\Products\ProductServiceInterface;
 use Infrastructure\CommandBus\Handler\HandlerInterface;
-use Infrastructure\Persistence\Repositories\ProductRepository;
 
 class StoreProductHandler implements HandlerInterface
 {
-    private ProductRepository $productRepository;
-
-    /**
-     * StoreProductHandler constructor.
-     * @param ProductRepository $repository
-     */
+    private ProductServiceInterface $productService;
     public function __construct
     (
-        ProductRepository $repository
+        ProductServiceInterface $productServiceInterface
     )
     {
-        $this->productRepository = $repository;
+        $this->productService = $productServiceInterface;
     }
 
     /**
@@ -29,7 +25,8 @@ class StoreProductHandler implements HandlerInterface
      */
     public function handle($command) : void
     {
-        //TODO FINISH HANDLER AND PERSIST
+        $product = new Product();
+        $this->productService->persist($product);
     }
 
 }

@@ -14,6 +14,7 @@ class InvalidBodyException extends \Exception
     /**
      * InvalidBodyException constructor.
      * @param $responseMessage
+     * @param $statusCode
      */
     public function __construct($responseMessage = ""|[])
     {
