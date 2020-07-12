@@ -61,7 +61,7 @@ class StoreProductAdapter
             $request->input('iva'),
             $request->input('brands'),
             $request->input('characteristics'),
-            $request->input('order'),
+            $request->input('orders'),
             $request->input('providers')
         );
 

@@ -3,13 +3,10 @@
 
 namespace Domain\Entities;
 
-use Doctrine\ORM\Mapping as ORM;
-
 class Product
 {
     /**
      * @var int
-     * @ORM\Id
      */
     private int $id;
 
@@ -49,9 +46,9 @@ class Product
     private $brands;
 
     /**
-     * @var int
+     * @var Stock
      */
-    private int $stock;
+    private Stock $stock;
 
     /**
      * @var array
@@ -165,17 +162,17 @@ class Product
     }
 
     /**
-     * @return int
+     * @return Stock
      */
-    public function getStock(): int
+    public function getStock(): Stock
     {
         return $this->stock;
     }
 
     /**
-     * @param int $stock
+     * @param Stock $stock
      */
-    public function setStock(int $stock): void
+    public function setStock(Stock $stock): void
     {
         $this->stock = $stock;
     }

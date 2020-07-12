@@ -20,7 +20,7 @@ class StoreProductSchema
             'iva' => 'bail|required|numeric|min:0',
             'brands' => 'bail|required|min:1|array',
             'characteristics' => 'bail|required|array',
-            'order' => 'bail|required|alpha_num',
+            'orders' => 'bail|required|array',
             'providers' => 'bail|required|array',
         ];
     }
@@ -49,12 +49,12 @@ class StoreProductSchema
             'iva.required' => 'Debe ingresar el porcentaje de IVA del producto',
             'iva.numeric' => 'El IVA ingresado debe ser un número',
             'iva.min' => 'El IVA mínimo permitido es 0%',
-            'brand.required' => 'Debe ingresar una marca para el producto',
-            'brand.min' => 'La marca ingresada debe tener al menos 1 caracter',
+            'brands.required' => 'Debe ingresar una marca para el producto',
+            'brands.min' => 'La marca ingresada debe tener al menos 1 caracter',
             'characteristics.required' => 'Debe ingresar las características del producto',
-            'order.alpha_num' => 'La orden ingresada solo debe contener números y letras',
-            'order.required' => 'Debe ingresar el número de orden de compra del producto',
-            'provider.required' => 'Debe seleccionar el proveedor al que se le ha comprado el producto'
+            'orders.alpha_num' => 'La orden ingresada solo debe contener números y letras',
+            'orders.required' => 'Debe ingresar el número de orden de compra del producto',
+            'providers.required' => 'Debe seleccionar el proveedor al que se le ha comprado el producto'
         ];
     }
 }

@@ -15,10 +15,10 @@ class StoreProductCommand implements CommandInterface
     private array $categories;
     private int $stock;
     private float $iva;
-    private array $brand;
+    private array $brands;
     private array $characteristics;
-    private string $order;
-    private array $provider;
+    private array $orders;
+    private array $providers;
 
 
     public function __construct
@@ -29,10 +29,10 @@ class StoreProductCommand implements CommandInterface
         array $categories,
         int $stock,
         float $iva,
-        array $brand,
+        array $brands,
         array $characteristics,
-        string $order,
-        array $provider
+        array $orders,
+        array $providers
     )
     {
         $this->name = $name;
@@ -41,10 +41,10 @@ class StoreProductCommand implements CommandInterface
         $this->categories = $categories;
         $this->stock = $stock;
         $this->iva = $iva;
-        $this->brand = $brand;
+        $this->brands = $brands;
         $this->characteristics = $characteristics;
-        $this->order = $order;
-        $this->provider = $provider;
+        $this->orders = $orders;
+        $this->providers = $providers;
     }
 
     public function getName(): string
@@ -79,7 +79,7 @@ class StoreProductCommand implements CommandInterface
 
     public function getBrands() : array
     {
-        return $this->brand;
+        return $this->brands;
     }
 
     public function getCharacteristics() : array
@@ -87,14 +87,14 @@ class StoreProductCommand implements CommandInterface
         return $this->characteristics;
     }
 
-    public function getOrder() : string
+    public function getOrder() : array
     {
-        return $this->order;
+        return $this->orders;
     }
 
     public function getProvider() : array
     {
-        return $this->provider;
+        return $this->providers;
     }
 
 }

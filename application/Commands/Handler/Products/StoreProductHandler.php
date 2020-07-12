@@ -5,7 +5,9 @@ namespace Application\Commands\Handler\Products;
 
 
 use Application\Commands\Command\Products\StoreProductCommand;
+use Domain\Entities\Order;
 use Domain\Entities\Product;
+use Domain\Entities\Stock;
 use Domain\Interfaces\Services\Products\ProductServiceInterface;
 use Infrastructure\CommandBus\Handler\HandlerInterface;
 
@@ -26,7 +28,21 @@ class StoreProductHandler implements HandlerInterface
     public function handle($command) : void
     {
         $product = new Product();
+        $product->setTitle($command->getName());
+        $product->setDescription($command->getDescription());
+        $product->setPrice($command->getPrice());
+        $stock = new Stock();
+        $stock->setQuantity($command->getStock());
+        $stock->setRemanentQuantity($command->getStock());
+        $product->setStock($stock);
+        $product->setTaxes($command->getIva());
+        //$product->setBrand($command->getBrands()); Corregir BRAND
+        $order = new Order();
+        $order->setNumberSell($command->);
+        $product->setOrder();
+
         $this->productService->persist($product);
+
     }
 
 }

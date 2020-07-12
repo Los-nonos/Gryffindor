@@ -6,6 +6,8 @@ use Domain\Entities\Category;
 use Domain\Entities\Characteristic;
 use Domain\Entities\Order;
 use Domain\Entities\Stock;
+use Domain\Entities\Provider;
+use Domain\Entities\Brand;
 
 $builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('products');
@@ -35,3 +37,7 @@ $builder->createManyToMany('orders', Order::class)
     ->build();
 
 $builder->addOneToMany('characteristics', Characteristic::class, 'product');
+
+$builder->addOneToMany('providers', Provider::class,'product');
+
+$builder->addOneToMany('brands',Brand::class,'product');
