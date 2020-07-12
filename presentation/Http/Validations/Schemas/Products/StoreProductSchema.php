@@ -18,10 +18,10 @@ class StoreProductSchema
             'categories' => 'bail|required|array',
             'stock' => 'bail|required|numeric|integer|min:0',
             'iva' => 'bail|required|numeric|min:0',
-            'brand' => 'bail|required|min:1|array',
+            'brands' => 'bail|required|min:1|array',
             'characteristics' => 'bail|required|array',
             'order' => 'bail|required|alpha_num',
-            'provider' => 'bail|required|array'
+            'providers' => 'bail|required|array',
         ];
     }
 
