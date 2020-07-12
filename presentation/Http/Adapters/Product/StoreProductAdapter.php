@@ -62,7 +62,7 @@ class StoreProductAdapter
             $request->input('brands'),
             $request->input('characteristics'),
             $request->input('order'),
-            $request->input('provider')
+            $request->input('providers')
         );
 
     }

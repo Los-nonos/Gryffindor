@@ -18,7 +18,7 @@ class StoreProductCommand implements CommandInterface
     private array $brand;
     private array $characteristics;
     private string $order;
-    private ?array $provider;
+    private array $provider;
 
 
     public function __construct
@@ -32,7 +32,7 @@ class StoreProductCommand implements CommandInterface
         array $brand,
         array $characteristics,
         string $order,
-        ?array $provider
+        array $provider
     )
     {
         $this->name = $name;
