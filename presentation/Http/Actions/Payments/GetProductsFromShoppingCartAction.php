@@ -6,46 +6,38 @@ namespace Presentation\Http\Actions\Payments;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Infrastructure\QueryBus\QueryBusInterface;
+use Presentation\Http\Adapters\Payments\GetProductsFromShoppingCartAdapter;
 use Presentation\Http\Enums\HttpCodes;
+use Presentation\Http\Presenters\Payments\GetProductsFromShoppingCartPresenter;
 
 class GetProductsFromShoppingCartAction
 {
-    public function __construct()
-    {
+    private GetProductsFromShoppingCartAdapter $adapter;
 
+    private QueryBusInterface $queryBus;
+
+    private GetProductsFromShoppingCartPresenter $presenter;
+
+    public function __construct(
+        GetProductsFromShoppingCartAdapter $adapter,
+        QueryBusInterface $queryBus,
+        GetProductsFromShoppingCartPresenter $presenter
+    )
+    {
+        $this->adapter = $adapter;
+        $this->queryBus = $queryBus;
+        $this->presenter = $presenter;
     }
 
     public function __invoke(Request $request)
     {
-        $products = $request->input('products');
-        logger($products);
-        $productsList = [];
-        $id = 0;
-        foreach ($products as $product) {
-            array_push($productsList, [
-                'id' => $id++,
-                'name' => 'notebook lenovo',
-                'price' => 1500,
-                'images' => [
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTdmrVL1IU_101wa7aT39V5e2yiAkx0cn3lNw&usqp=CAU'
-                ],
-                'characteristics' => [
-                    [
-                        'name' => 'Color',
-                        'value' => 'rojo'
-                    ],
-                ],
-                'brands' => [
-                    'Lenovo'
-                ],
-                'quantity' => $product['quantity'],
-            ]);
-        }
+        $query = $this->adapter->from($request);
+
+        $result = $this->queryBus->handle($query);
 
         return new JsonResponse([
-            'data' => $productsList,
+            'data' => $this->presenter->fromResult($result)->getData(),
         ], HttpCodes::OK);
-
-        // TODO: Implement __invoke() method.
     }
 }

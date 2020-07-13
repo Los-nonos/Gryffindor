@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => ['api/*'],
+    'paths' => ['*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['www.zeepcommerce.test', 'www.zeepcommerce.test:3000'],
 
     'allowed_origins_patterns' => [],
 

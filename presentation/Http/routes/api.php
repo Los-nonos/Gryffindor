@@ -91,7 +91,7 @@ Route::prefix('categories')->group(function () {
 });
 
 Route::prefix('payments')->group(function () {
-    Route::post('/mercadopago', Actions\Payments\MercadoPagoExecute::class)->name('paymentMercadoPago');
+    Route::post('/mercadopago', Actions\Payments\MercadoPagoExecuteAction::class)->name('paymentMercadoPago');
     Route::post('/products', Actions\Payments\GetProductsFromShoppingCartAction::class)->name('getProductsFromCart');
 });
 
