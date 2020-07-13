@@ -66,10 +66,10 @@ class Stock extends \Domain\Entities\Stock implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'product', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'quantity', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'remanentQuantity'];
+            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'product', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'quantity', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'remanentQuantity', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'brands', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'reserved', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'categories'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'product', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'quantity', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'remanentQuantity'];
+        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'product', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'quantity', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'remanentQuantity', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'brands', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'reserved', '' . "\0" . 'Domain\\Entities\\Stock' . "\0" . 'categories'];
     }
 
     /**
@@ -255,6 +255,61 @@ class Stock extends \Domain\Entities\Stock implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRemanentQuantity', [$remanentQuantity]);
 
         parent::setRemanentQuantity($remanentQuantity);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBrands(): array
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBrands', []);
+
+        return parent::getBrands();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBrands(string $brand): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBrands', [$brand]);
+
+        parent::setBrands($brand);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setReservation(string $reservation): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setReservation', [$reservation]);
+
+        parent::setReservation($reservation);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCategories(): array
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCategories', []);
+
+        return parent::getCategories();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCategory(string $category): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCategory', [$category]);
+
+        parent::setCategory($category);
     }
 
 }

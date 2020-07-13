@@ -238,7 +238,7 @@ class Filter extends \Domain\Entities\Filter implements \Doctrine\ORM\Proxy\Prox
     /**
      * {@inheritDoc}
      */
-    public function getOptions(): array
+    public function getOptions()
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOptions', []);

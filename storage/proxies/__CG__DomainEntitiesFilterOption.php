@@ -213,4 +213,26 @@ class FilterOption extends \Domain\Entities\FilterOption implements \Doctrine\OR
         parent::setName($name);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getFilter(): \Domain\Entities\Filter
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFilter', []);
+
+        return parent::getFilter();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFilter(\Domain\Entities\Filter $filter): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFilter', [$filter]);
+
+        parent::setFilter($filter);
+    }
+
 }

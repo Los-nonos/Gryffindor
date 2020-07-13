@@ -66,10 +66,10 @@ class Product extends \Domain\Entities\Product implements \Doctrine\ORM\Proxy\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'title', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'description', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'price', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'taxes', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'categories', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'stock', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'characteristics', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'orders'];
+            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'title', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'description', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'available', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'price', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'taxes', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'categories', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'brands', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'stock', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'characteristics', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'orders', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'providers', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'purchaseOrderNumber', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'featured'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'title', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'description', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'price', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'taxes', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'categories', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'stock', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'characteristics', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'orders'];
+        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'title', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'description', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'available', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'price', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'taxes', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'categories', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'brands', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'stock', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'characteristics', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'orders', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'providers', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'purchaseOrderNumber', '' . "\0" . 'Domain\\Entities\\Product' . "\0" . 'featured'];
     }
 
     /**
@@ -194,6 +194,28 @@ class Product extends \Domain\Entities\Product implements \Doctrine\ORM\Proxy\Pr
     /**
      * {@inheritDoc}
      */
+    public function getPurchaseOrder(): array
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPurchaseOrder', []);
+
+        return parent::getPurchaseOrder();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPurchaseOrder($purchaseOrder): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPurchaseOrder', [$purchaseOrder]);
+
+        parent::setPurchaseOrder($purchaseOrder);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getTitle(): string
     {
 
@@ -271,18 +293,18 @@ class Product extends \Domain\Entities\Product implements \Doctrine\ORM\Proxy\Pr
     /**
      * {@inheritDoc}
      */
-    public function setTaxes(float $taxes): void
+    public function setTaxes(float $iva): void
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTaxes', [$taxes]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTaxes', [$iva]);
 
-        parent::setTaxes($taxes);
+        parent::setTaxes($iva);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getCategories(): array
+    public function getCategories()
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCategories', []);
@@ -293,12 +315,34 @@ class Product extends \Domain\Entities\Product implements \Doctrine\ORM\Proxy\Pr
     /**
      * {@inheritDoc}
      */
-    public function setCategories(\Domain\Entities\Category $categories): void
+    public function isFeatured(): bool
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCategories', [$categories]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isFeatured', []);
 
-        parent::setCategories($categories);
+        return parent::isFeatured();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFeatured(bool $featured): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFeatured', [$featured]);
+
+        parent::setFeatured($featured);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addCategories(\Domain\Entities\Category $categories): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCategories', [$categories]);
+
+        parent::addCategories($categories);
     }
 
     /**
@@ -326,7 +370,7 @@ class Product extends \Domain\Entities\Product implements \Doctrine\ORM\Proxy\Pr
     /**
      * {@inheritDoc}
      */
-    public function getCharacteristics(): array
+    public function getCharacteristics()
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCharacteristics', []);
@@ -337,12 +381,122 @@ class Product extends \Domain\Entities\Product implements \Doctrine\ORM\Proxy\Pr
     /**
      * {@inheritDoc}
      */
-    public function addCharacteristics(\Domain\Entities\Characteristic $characteristics): void
+    public function setCharacteristics(\Domain\Entities\Characteristic $characteristics): void
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCharacteristics', [$characteristics]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCharacteristics', [$characteristics]);
 
-        parent::addCharacteristics($characteristics);
+        parent::setCharacteristics($characteristics);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAvailability(): bool
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAvailability', []);
+
+        return parent::getAvailability();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isAvailable(): bool
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isAvailable', []);
+
+        return parent::isAvailable();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAvailable(bool $available): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAvailable', [$available]);
+
+        parent::setAvailable($available);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setNotAvailable(bool $notAvailable): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNotAvailable', [$notAvailable]);
+
+        parent::setNotAvailable($notAvailable);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getOrders()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOrders', []);
+
+        return parent::getOrders();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOrder(\Domain\Entities\Order $newOrder): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOrder', [$newOrder]);
+
+        parent::setOrder($newOrder);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getProviders()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProviders', []);
+
+        return parent::getProviders();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setProvider(\Domain\Entities\Provider $newProvider): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setProvider', [$newProvider]);
+
+        parent::setProvider($newProvider);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBrands()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBrands', []);
+
+        return parent::getBrands();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBrand(\Domain\Entities\Brand $newBrand): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBrand', [$newBrand]);
+
+        parent::setBrand($newBrand);
     }
 
 }
