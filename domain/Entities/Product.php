@@ -100,9 +100,9 @@ class Product
     }
 
     /**
-     * @param array $purchaseOrder
+     * @param PurchaseOrder $purchaseOrder
      */
-    public function setPurchaseOrder(array $purchaseOrder): void
+    public function setPurchaseOrder(PurchaseOrder $purchaseOrder): void
     {
         $this->purchaseOrder = $purchaseOrder;
     }
