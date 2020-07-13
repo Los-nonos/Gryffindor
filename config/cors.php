@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['www.zeepcommerce.test', 'www.zeepcommerce.test:3000'],
+    'allowed_origins' => ['http://www.zeepcommerce.test:3000', 'http://localhost:3003'],
 
     'allowed_origins_patterns' => [],
 
