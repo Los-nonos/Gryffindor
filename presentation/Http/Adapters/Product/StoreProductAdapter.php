@@ -8,6 +8,7 @@ use App\Exceptions\InvalidBodyException;
 use Application\Commands\Command\Products\StoreProductCommand;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\In;
+use Presentation\Http\Enums\HttpCodes;
 use Presentation\Http\Validations\Schemas\Products\StoreProductSchema;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
 
@@ -61,7 +62,7 @@ class StoreProductAdapter
             $request->input('brands'),
             $request->input('characteristics'),
             $request->input('order'),
-            $request->input('provider')
+            $request->input('providers')
         );
 
     }

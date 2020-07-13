@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    ZeepCommerce Dashboard & API
+                    ZeepCommerce API Service
                 </div>
 
                 <div class="links">

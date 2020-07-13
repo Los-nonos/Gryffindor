@@ -46,7 +46,6 @@ class StoreProductAction
     public function __invoke(Request $request)
     {
         $command = $this->adapter->adapt($request);
-
         $this->commandBus->handle($command);
 
         return new JsonResponse(

@@ -18,7 +18,7 @@ class StoreProductCommand implements CommandInterface
     private array $brand;
     private array $characteristics;
     private string $order;
-    private string $provider;
+    private array $provider;
 
 
     public function __construct
@@ -32,7 +32,7 @@ class StoreProductCommand implements CommandInterface
         array $brand,
         array $characteristics,
         string $order,
-        string $provider
+        array $provider
     )
     {
         $this->name = $name;
@@ -92,7 +92,7 @@ class StoreProductCommand implements CommandInterface
         return $this->order;
     }
 
-    public function getProvider() : string
+    public function getProvider() : array
     {
         return $this->provider;
     }
