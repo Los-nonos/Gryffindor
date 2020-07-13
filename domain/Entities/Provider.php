@@ -18,12 +18,17 @@ class Provider
     /**
      * @var string
      */
-    private string $adress;
+    private string $address;
 
     /**
      * @var array
      */
     private $products;
+
+    /**
+     * @var array
+     */
+    private $orders;
 
     public function __construct()
     {

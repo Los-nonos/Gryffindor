@@ -25,6 +25,11 @@ class Employee
      */
     private $orders;
 
+    /**
+     * @var PurchaseOrder[]
+     */
+    private $purchaseOrders;
+
     public function __construct()
     {
         $this->role = json_encode([]);

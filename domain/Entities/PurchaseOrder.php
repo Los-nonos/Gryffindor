@@ -8,10 +8,14 @@ use Money\Money;
 
 class PurchaseOrder
 {
-    private $id;
+    /**
+     * @var int
+     * @ORM\Id
+     */
+    private int $id;
 
     /**
-     * @var
+     * @var Provider[]
      */
     private $provider;
 
@@ -49,7 +53,7 @@ class PurchaseOrder
     }
 
     /**
-     * @return Provider
+     * @return Provider[]
      */
     public function getProvider()
     {
@@ -57,7 +61,7 @@ class PurchaseOrder
     }
 
     /**
-     * @param Provider $provider
+     * @param Provider[] $provider
      */
     public function setProvider($provider): void
     {

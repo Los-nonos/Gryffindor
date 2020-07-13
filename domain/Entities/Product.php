@@ -56,19 +56,19 @@ class Product
     private $characteristics;
 
     /**
-     * @var array
+     * @var Order[]
      */
     private $orders;
 
     /**
-     * @var array .
+     * @var Provider[] .
      */
     private $providers;
 
     /**
      * @var array
      */
-    private $purchaseOrder;
+    private $purchaseOrderNumber;
 
     /**
      * @var bool
@@ -96,15 +96,15 @@ class Product
      */
     public function getPurchaseOrder(): array
     {
-        return $this->purchaseOrder;
+        return $this->purchaseOrderNumber;
     }
 
     /**
-     * @param PurchaseOrder $purchaseOrder
+     * @param PurchaseOrder[] $purchaseOrder
      */
-    public function setPurchaseOrder(PurchaseOrder $purchaseOrder): void
+    public function setPurchaseOrder($purchaseOrder): void
     {
-        $this->purchaseOrder = $purchaseOrder;
+        $this->purchaseOrderNumber = $purchaseOrder;
     }
 
     /**

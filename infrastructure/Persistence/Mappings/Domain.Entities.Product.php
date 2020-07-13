@@ -4,6 +4,7 @@ use Doctrine\DBAL\Types\Types as Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Domain\Entities\Category;
 use Domain\Entities\Characteristic;
+use Domain\Entities\Order;
 use Domain\Entities\Purchaseorder;
 use Domain\Entities\Stock;
 use Domain\Entities\Provider;
@@ -34,10 +35,16 @@ $builder->createOneToOne('stock', Stock::class)
 
 $builder->createManyToMany('purchaseOrderNumber', PurchaseOrder::class)
     ->inversedBy('products')
+    ->cascadePersist()
+    ->cascadeRemove()
+    ->build();
+
+$builder->createManyToMany('orders', Order::class)
+    ->inversedBy('products')
     ->build();
 
 $builder->addOneToMany('characteristics', Characteristic::class, 'product');
 
-$builder->addOneToMany('providers', Provider::class,'product');
+$builder->addInverseManyToMany('providers', Provider::class,'products');
 
-$builder->addOneToMany('brands',Brand::class,'product');
+$builder->addOneToMany('brands',Brand::class,'products');
