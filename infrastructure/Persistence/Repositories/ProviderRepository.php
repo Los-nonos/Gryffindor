@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping;
 use Domain\Entities\Provider;
+use Domain\Interfaces\Repositories\ProviderRepositoryInterface;
 
 class ProviderRepository extends EntityRepository implements ProviderRepositoryInterface
 {
