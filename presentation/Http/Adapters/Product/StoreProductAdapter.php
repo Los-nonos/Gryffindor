@@ -58,11 +58,11 @@ class StoreProductAdapter
             $request->input('price'),
             $request->input('categories'),
             $request->input('stock'),
-            $request->input('iva'),
+            $request->input('taxes'),
             $request->input('brands'),
             $request->input('characteristics'),
-            $request->input('order'),
-            $request->input('providers')
+            $request->input('purchaseOrderNumber'),
+            $request->input('providerId')
         );
 
     }

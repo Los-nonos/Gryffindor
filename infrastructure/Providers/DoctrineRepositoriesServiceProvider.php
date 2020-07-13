@@ -12,6 +12,7 @@ use Domain\Interfaces\Repositories\FilterRepositoryInterface;
 use Domain\Interfaces\Repositories\NotificationRepositoryInterface;
 use Domain\Interfaces\Repositories\OrderRepositoryInterface;
 use Domain\Interfaces\Repositories\ProductRepositoryInterface;
+use Domain\Interfaces\Repositories\StockRepositoryInterface;
 use Domain\Interfaces\Repositories\TokenRepositoryInterface;
 use Domain\Interfaces\Repositories\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +24,7 @@ use Infrastructure\Persistence\Repositories\FilterRepository;
 use Infrastructure\Persistence\Repositories\NotificationRepository;
 use Infrastructure\Persistence\Repositories\OrderRepository;
 use Infrastructure\Persistence\Repositories\ProductRepository;
+use Infrastructure\Persistence\Repositories\StockRepository;
 use Infrastructure\Persistence\Repositories\TokenRepository;
 use Infrastructure\Persistence\Repositories\UserRepository;
 
@@ -45,5 +47,6 @@ final class DoctrineRepositoriesServiceProvider extends ServiceProvider
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(BrandRepositoryInterface::class, BrandRepository::class);
         $this->app->bind(NotificationRepositoryInterface::class, NotificationRepository::class);
+        $this->app->bind(StockRepositoryInterface::class, StockRepository::class);
     }
 }

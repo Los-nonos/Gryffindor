@@ -14,11 +14,11 @@ class StoreProductCommand implements CommandInterface
     private float $price;
     private array $categories;
     private int $stock;
-    private float $iva;
-    private array $brand;
+    private float $taxes;
+    private array $brands;
     private array $characteristics;
-    private string $order;
-    private array $provider;
+    private string $purchaseOrder;
+    private int $providerId;
 
 
     public function __construct
@@ -28,11 +28,11 @@ class StoreProductCommand implements CommandInterface
         float $price,
         array $categories,
         int $stock,
-        float $iva,
-        array $brand,
+        float $taxes,
+        array $brands,
         array $characteristics,
-        string $order,
-        array $provider
+        string $purchaseOrder,
+        int $providerId
     )
     {
         $this->name = $name;
@@ -40,11 +40,11 @@ class StoreProductCommand implements CommandInterface
         $this->price = $price;
         $this->categories = $categories;
         $this->stock = $stock;
-        $this->iva = $iva;
-        $this->brand = $brand;
+        $this->taxes = $taxes;
+        $this->brands = $brands;
         $this->characteristics = $characteristics;
-        $this->order = $order;
-        $this->provider = $provider;
+        $this->purchaseOrder = $purchaseOrder;
+        $this->providerId = $providerId;
     }
 
     public function getName(): string
@@ -72,14 +72,14 @@ class StoreProductCommand implements CommandInterface
         return $this->stock;
     }
 
-    public function getIva(): float
+    public function getTaxes(): float
     {
-        return $this->iva;
+        return $this->taxes;
     }
 
     public function getBrands() : array
     {
-        return $this->brand;
+        return $this->brands;
     }
 
     public function getCharacteristics() : array
@@ -87,14 +87,14 @@ class StoreProductCommand implements CommandInterface
         return $this->characteristics;
     }
 
-    public function getOrder() : string
+    public function getPurchaseNumber() : string
     {
-        return $this->order;
+        return $this->purchaseOrder;
     }
 
-    public function getProvider() : array
+    public function getProviderId() : int
     {
-        return $this->provider;
+        return $this->providerId;
     }
 
 }

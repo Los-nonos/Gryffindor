@@ -3,13 +3,10 @@
 
 namespace Domain\Entities;
 
-use Doctrine\ORM\Mapping as ORM;
-
 class Product
 {
     /**
      * @var int
-     * @ORM\Id
      */
     private int $id;
 
@@ -51,7 +48,7 @@ class Product
     /**
      * @var Stock
      */
-    private $stock;
+    private Stock $stock;
 
     /**
      * @var array
@@ -69,6 +66,16 @@ class Product
     private $providers;
 
     /**
+     * @var array
+     */
+    private $purchaseOrder;
+
+    /**
+     * @var bool
+     */
+    private bool $featured;
+
+    /**
      * Product constructor.
      */
     public function __construct()
@@ -82,6 +89,22 @@ class Product
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPurchaseOrder(): array
+    {
+        return $this->purchaseOrder;
+    }
+
+    /**
+     * @param PurchaseOrder $purchaseOrder
+     */
+    public function setPurchaseOrder(PurchaseOrder $purchaseOrder): void
+    {
+        $this->purchaseOrder = $purchaseOrder;
     }
 
     /**
@@ -157,6 +180,22 @@ class Product
     }
 
     /**
+     * @return bool
+     */
+    public function isFeatured(): bool
+    {
+        return $this->featured;
+    }
+
+    /**
+     * @param bool $featured
+     */
+    public function setFeatured(bool $featured): void
+    {
+        $this->featured = $featured;
+    }
+
+    /**
      * @param Category $categories
      */
     public function addCategories(Category $categories): void
@@ -173,9 +212,9 @@ class Product
     }
 
     /**
-     * @param int $stock
+     * @param Stock $stock
      */
-    public function setStock(int $stock): void
+    public function setStock(Stock $stock): void
     {
         $this->stock = $stock;
     }
@@ -199,15 +238,32 @@ class Product
     /**
      * @return bool
      */
-    public function getAvailability() : bool
+    public function getAvailability(): bool
     {
         return $this->available;
     }
 
     /**
+     * @return bool
+     */
+    public function isAvailable(): bool
+    {
+        return $this->available;
+    }
+
+    /**
+     * @param bool $available
+     */
+    public function setAvailable(bool $available): void
+    {
+        $this->available = $available;
+    }
+
+
+    /**
      * @param bool $notAvailable
      */
-    public function setNotAvailable(bool $notAvailable) : void
+    public function setNotAvailable(bool $notAvailable): void
     {
         $this->available = $notAvailable;
     }
