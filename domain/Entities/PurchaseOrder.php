@@ -8,10 +8,6 @@ use Money\Money;
 
 class PurchaseOrder
 {
-    /**
-     * @var int
-     * @ORM\Id
-     */
     private int $id;
 
     /**

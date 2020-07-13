@@ -8,7 +8,7 @@ use Domain\Entities\Product;
 use Domain\Entities\Provider;
 use Domain\Entities\PurchaseOrder;
 
-$builder = new ClassMetadataBuilder(new ClassMetadata(PurchaseOrder::class));
+$builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('purchase_orders');
 
 $builder->createField('id', Type::INTEGER)
@@ -18,7 +18,9 @@ $builder->createField('id', Type::INTEGER)
 
 $builder->addField('amount', Type::INTEGER);
 
-$builder->createManyToOne('provider', Provider::class)->inversedBy('orders')->build();
+$builder->createManyToOne('provider', Provider::class)
+    ->inversedBy('orders')
+    ->build();
 
 $builder->addField('purchaseNumber', Type::STRING);
 
