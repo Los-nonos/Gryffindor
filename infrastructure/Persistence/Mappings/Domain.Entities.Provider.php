@@ -14,6 +14,7 @@ $builder->createField('id', Type::INTEGER)
 
 $builder->addField('name', Type::STRING);
 $builder->addField('address', Type::STRING);
+
 $builder->createManyToMany('products', Product::class)
     ->inversedBy('providers')
     ->build();
