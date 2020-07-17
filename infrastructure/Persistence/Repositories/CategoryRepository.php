@@ -50,7 +50,7 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
             //->orderBy('c.id', 'ASC')
             ->select('category', 'f', 'o')
             ->from(Category::class, 'category')
-            ->innerJoin('category.filters', 'f', Expr\Join::WITH, 'f.category = category.id')
+            ->leftJoin('category.filters', 'f', Expr\Join::WITH, 'f.category = category.id')
             ->leftJoin('f.options', 'o', Expr\Join::WITH, 'o.filter = f.id')
             ->getQuery();
 

@@ -29,12 +29,17 @@ class IndexCategoryPresenter
                 'filters' => $this->clearFilters($category->getFilters()),
             ]);
         }
-
+        logger($cleanData);
         return $cleanData;
     }
 
     private function clearOptions($data): array {
         $clearData = [];
+        if(!isset($data) && !is_array($data)) {
+            return $clearData;
+        }
+
+
         foreach ($data as $option) {
             array_push($clearData, [
                 'name' => $option->getName() ? $option->getName() : null,
