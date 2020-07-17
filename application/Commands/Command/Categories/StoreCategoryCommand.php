@@ -15,19 +15,12 @@ class StoreCategoryCommand implements CommandInterface
     private $name;
 
     /**
-     * @var array
-     */
-    private $filters;
-
-    /**
      * StoreCategoryCommand constructor.
      * @param string $name
-     * @param array $filters
      */
-    public function __construct(string $name, array $filters)
+    public function __construct(string $name)
     {
         $this->name = $name;
-        $this->filters = $filters;
     }
 
     /**
@@ -36,13 +29,5 @@ class StoreCategoryCommand implements CommandInterface
     public function getName(): string
     {
         return $this->name;
-    }
-
-    /**
-     * @return array
-     */
-    public function getFilters(): array
-    {
-        return $this->filters;
     }
 }

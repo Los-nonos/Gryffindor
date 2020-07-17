@@ -31,23 +31,6 @@ class StoreCategoryHandler implements HandlerInterface
         $category = new Category();
         $category->setName($command->getName());
 
-        $filters = $command->getFilters();
-
-        foreach ($filters as $filter) {
-            $objectFilter = new Filter();
-            $objectFilter->setCategory($category);
-            $objectFilter->setName($filter['name']);
-
-            foreach ($filter['options'] as $option) {
-                $optionObject = new FilterOption();
-                $optionObject->setName($option);
-                $optionObject->setFilter($objectFilter);
-                $objectFilter->addOption($optionObject);
-            }
-
-            $category->addFilters($objectFilter);
-        }
-
         $this->categoryService->persist($category);
     }
 }

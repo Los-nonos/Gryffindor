@@ -37,8 +37,8 @@ class IndexFiltersAction
         return new JsonResponse([
             'data' => [
                 'categories' => $categories,
-                'brands' => array(),
-                'providers' => array()
+                'brands' => [['id' => 1, 'name' => 'Asus']],
+                'providers' => [['id' => 1, 'name' => 'El kiosquito de la esquina']]
             ]],
             HttpCodes::OK
         );

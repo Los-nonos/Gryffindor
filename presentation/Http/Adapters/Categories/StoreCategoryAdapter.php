@@ -40,7 +40,6 @@ class StoreCategoryAdapter
 
         return new StoreCategoryCommand(
             $request->input('name'),
-            $request->input('filters')
         );
     }
 }

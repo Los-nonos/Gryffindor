@@ -36,7 +36,6 @@ class UpdateCategoryAdapter
         return new UpdateCategoryCommand(
             $request->route('id'),
             $request->input('name'),
-            $request->input('filters'),
         );
     }
 }

@@ -10,17 +10,14 @@ class UpdateCategoryCommand implements CommandInterface
 {
     private $id;
     private $name;
-    private $filters;
 
     public function __construct(
         $id,
-        $name,
-        $filters
+        $name
     )
     {
         $this->id = $id;
         $this->name = $name;
-        $this->filters = $filters;
     }
 
     /**
@@ -37,13 +34,5 @@ class UpdateCategoryCommand implements CommandInterface
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * @return array
-     */
-    public function getFilters()
-    {
-        return $this->filters;
     }
 }

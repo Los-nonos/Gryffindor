@@ -34,35 +34,7 @@ class UpdateCategoryHandler implements HandlerInterface
         $category = $this->categoryService->findOneByIdOrFail($command->getId());
 
         $category->setName($command->getName());
-        $category = $this->modifyFilters($category, $command->getFilters());
 
         $this->categoryService->persist($category);
-    }
-
-    private function modifyFilters(Category $category, array $filters)
-    {
-        $filterSaved = $category->getFilters();
-
-        // TODO : refactor this grap
-        foreach ($filterSaved as $item) {
-            $this->filterService->destroy($item);
-        }
-
-        foreach ($filters as $filter) {
-            $objectFilter = new Filter();
-            $objectFilter->setCategory($category);
-            $objectFilter->setName($filter['name']);
-
-            foreach ($filter['options'] as $option) {
-                $optionObject = new FilterOption();
-                $optionObject->setName($option);
-                $optionObject->setFilter($objectFilter);
-                $objectFilter->addOption($optionObject);
-            }
-
-            $category->addFilters($objectFilter);
-        }
-
-        return $category;
     }
 }
