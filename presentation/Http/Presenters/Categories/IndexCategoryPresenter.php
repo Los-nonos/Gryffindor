@@ -29,7 +29,6 @@ class IndexCategoryPresenter
                 'filters' => $this->clearFilters($category->getFilters()),
             ]);
         }
-        logger($cleanData);
         return $cleanData;
     }
 
