@@ -19,7 +19,7 @@ class SearchProductsSchema
           'providers.*' => 'bail|integer|min:0',
           'page' => 'bail|integer|min:0',
           'size' => 'bail|integer|min:0',
-          'orderBy' => 'bail|alpha|length:3'
+          'orderBy' => 'bail'
         ];
     }
 }
