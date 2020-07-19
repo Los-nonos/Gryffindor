@@ -32,6 +32,9 @@ class IndexCustomerAdapter
         return new IndexCustomerQuery(
             $request->query('page'),
             $request->query('size'),
+            $request->query('name'),
+            $request->query('dni'),
+            $request->query('cuil'),
         );
     }
 }

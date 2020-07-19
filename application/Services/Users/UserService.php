@@ -131,11 +131,11 @@ class UserService implements UserServiceInterface
         return $this->repository->findEmployees($page, $size);
     }
 
-    public function findCustomers($page, $size)
+    public function findCustomers($page, $size, $name, $dni, $cuil)
     {
         $page = $page ? $page : 1;
         $size = $size ? $size : 10;
 
-        return $this->repository->findCustomers($page, $size);
+        return $this->repository->findCustomers($page, $size, $name, $dni, $cuil);
     }
 }

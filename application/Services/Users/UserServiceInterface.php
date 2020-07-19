@@ -39,5 +39,5 @@ interface UserServiceInterface
 
     public function findEmployees($page, $size): array;
 
-    public function findCustomers($page, $size);
+    public function findCustomers($page, $size, $name, $dni, $cuil);
 }

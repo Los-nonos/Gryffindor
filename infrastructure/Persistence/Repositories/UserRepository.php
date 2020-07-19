@@ -13,6 +13,7 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Domain\Entities\User;
+use Doctrine\ORM\Query\Expr;
 use Domain\Interfaces\Repositories\UserRepositoryInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Exception;
@@ -163,7 +164,7 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
         return $employeesList;
     }
 
-    public function findCustomers(int $page, int $size)
+    public function findCustomers(int $page, int $size, ?string $name, ?string $dni, ?string $cuil)
     {
         // get entity manager
         $em = $this->getEntityManager();
@@ -172,10 +173,26 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
         $customers = $em->getRepository(User::class);
 
         // build the query for the doctrine paginator
-        $query = $customers->createQueryBuilder('u')
-            ->where('NOT u.customer IS null')
-            //->orderBy('u.id', 'DESC')
-            ->getQuery();
+        if(isset($name) || isset($dni) || isset($cuil)) {
+            $query = $customers->createQueryBuilder('u')
+                ->select('u', 'c')
+                ->leftJoin('u.customer', 'c', Expr\Join::WITH, 'u.customer = c.id')
+                ->where('NOT u.customer IS null')
+                ->andWhere('u.name LIKE :name')
+                ->orWhere('c.dni LIKE :dni')
+                ->orWhere('c.cuil LIKE :cuil')
+                ->setParameter('name',"%$name%")
+                ->setParameter('dni',"%$dni%")
+                ->setParameter('cuil',"%$cuil%")
+                //->orderBy('u.id', 'DESC')
+                ->getQuery();
+        }else {
+            $query = $customers->createQueryBuilder('u')
+                ->where('NOT u.customer IS null')
+                //->orderBy('u.id', 'DESC')
+                ->getQuery();
+        }
+
 
         // load doctrine Paginator
         $paginator = new Paginator($query);

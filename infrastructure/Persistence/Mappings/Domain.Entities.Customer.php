@@ -24,6 +24,8 @@ $builder->addField('cellPhone', Type::STRING);
 
 $builder->addField('dni', Type::STRING);
 
+$builder->addField('cuil', Type::STRING);
+
 $builder->addField('birthday', Type::DATETIME);
 
 $builder->addField('postalCode', Type::STRING);

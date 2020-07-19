@@ -18,5 +18,5 @@ interface UserRepositoryInterface
     public function findAll(): array;
     public function destroy(User $user): void;
     public function findEmployees($page, $size);
-    public function findCustomers(int $page, int $size);
+    public function findCustomers(int $page, int $size, ?string $name, ?string $dni, ?string $cuil);
 }

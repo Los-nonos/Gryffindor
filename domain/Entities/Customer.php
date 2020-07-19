@@ -40,6 +40,11 @@ class Customer
     private $dni;
 
     /**
+     * @var string
+     */
+    private $cuil;
+
+    /**
      * @var DateTime
      */
     private $birthday;
@@ -155,6 +160,22 @@ class Customer
     public function setDni(string $dni): void
     {
         $this->dni = $dni;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCuil(): string
+    {
+        return $this->cuil;
+    }
+
+    /**
+     * @param string $cuil
+     */
+    public function setCuil(string $cuil): void
+    {
+        $this->cuil = $cuil;
     }
 
     /**

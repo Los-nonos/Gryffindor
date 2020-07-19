@@ -56,7 +56,7 @@ class StoreWebCustomerHandler implements HandlerInterface
         $this->notifiableService->sendEmail($notifiable);
 
         $notifiable->setMessage("Please activate your account checking your email");
-
+        $notifiable->setRole('customer');
         $this->notifiableService->sendNotification($notifiable);
     }
 

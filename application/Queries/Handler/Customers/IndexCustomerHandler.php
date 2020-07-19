@@ -25,7 +25,13 @@ class IndexCustomerHandler implements HandlerInterface
      */
     public function handle($query): ResultInterface
     {
-        $customers = $this->userService->findCustomers($query->getPage(), $query->getSize());
+        $customers = $this->userService->findCustomers(
+            $query->getPage(),
+            $query->getSize(),
+            $query->getName(),
+            $query->getDni(),
+            $query->getCuil()
+        );
 
         $result = new IndexCustomerResult();
         $result->setCustomers($customers);
