@@ -66,7 +66,7 @@ class Product
     private $providers;
 
     /**
-     * @var array
+     * @var PurchaseOrder[]
      */
     private $purchaseOrderNumber;
 

@@ -36,11 +36,11 @@ $builder->createOneToOne('stock', Stock::class)
     ->cascadeRemove()
     ->build();
 
-//$builder->createManyToMany('purchaseOrderNumber', PurchaseOrder::class)
-//    ->inversedBy('products')
-//    ->cascadePersist()
-//    ->cascadeRemove()
-//    ->build();
+$builder->createManyToMany('purchaseOrderNumber', 'Domain\Entities\PurchaseOrder')
+    ->inversedBy('products')
+    ->cascadePersist()
+    ->cascadeRemove()
+    ->build();
 
 $builder->createManyToMany('orders', Order::class)
     ->inversedBy('products')

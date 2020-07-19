@@ -46,10 +46,10 @@ final class DoctrineRepositoriesServiceProvider extends ServiceProvider
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(FilterRepositoryInterface::class, FilterRepository::class);
         $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
+        $this->app->bind(PurchaseOrderRepositoryInterface::class, PurchaseOrderRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(BrandRepositoryInterface::class, BrandRepository::class);
         $this->app->bind(NotificationRepositoryInterface::class, NotificationRepository::class);
         $this->app->bind(StockRepositoryInterface::class, StockRepository::class);
-        $this->app->bind(PurchaseOrderRepositoryInterface::class, PurchaseOrderRepository::class);
     }
 }
