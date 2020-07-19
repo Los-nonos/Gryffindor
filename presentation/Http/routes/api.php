@@ -104,3 +104,10 @@ Route::prefix('orders')->group(function () {
     Route::get('all', Actions\Orders\IndexAllOrdersAction::class)->name('getAllOrders');
     Route::get('/{uuid}', Actions\Orders\FindOrderByUuidAction::class)->name('findOrderByUuid');
 });
+
+Route::prefix('brands')->group(function() {
+    Route::get('/', Actions\Brands\IndexBrandsAction::class)->name('indexBrands');
+    Route::get('/{id}', Actions\Brands\FindBrandAction::class)->name('showBrand');
+    Route::post('/', Actions\Brands\StoreBrandAction::class)->name('storeBrand');
+    Route::put('/{id}', Actions\Brands\UpdateBrandAction::class)->name('updateBrand');
+});

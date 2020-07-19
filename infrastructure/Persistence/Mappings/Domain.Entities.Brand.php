@@ -19,4 +19,4 @@ $builder->createOneToMany('providers', Provider::class)
     ->mappedBy('brands')
     ->build();
 
-$builder->addManyToOne('products', Product::class, 'brands');
+$builder->createOneToMany('products', Product::class)->mappedBy('brands')->build();

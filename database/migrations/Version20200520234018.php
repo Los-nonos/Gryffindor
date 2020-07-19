@@ -17,13 +17,13 @@ class Version20200520234018 extends AbstractMigration
     public function up(Schema $schema)
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
-        
+
         $this->addSql('CREATE TABLE `stocks` (`id` int NOT NULL AUTO_INCREMENT, `product_id` int DEFAULT NULL, `quantity` int NOT NULL, `remanent_quantity` int NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
-        $this->addSql('CREATE TABLE `products` (`id` int NOT NULL AUTO_INCREMENT, `stock_id` int DEFAULT NULL, `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `price` double NOT NULL, `taxes` double NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
+        $this->addSql('CREATE TABLE `products` (`id` int NOT NULL AUTO_INCREMENT, `stock_id` int DEFAULT NULL, `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `price` double NOT NULL, `taxes` double NOT NULL, `brand_id` INT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
         $this->addSql('CREATE TABLE `users` (`id` int NOT NULL AUTO_INCREMENT, `employee_id` int DEFAULT NULL, `customer_id` int DEFAULT NULL, `admin_id` int DEFAULT NULL, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `surname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `is_active` tinyint(1) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
 
         $this->addSql('CREATE TABLE `admins` (`id` int NOT NULL AUTO_INCREMENT, `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
-        $this->addSql('CREATE TABLE `brands` (`id` int NOT NULL AUTO_INCREMENT,`product_id` int DEFAULT NULL,`name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
+        $this->addSql('CREATE TABLE `brands` (`id` int NOT NULL AUTO_INCREMENT,`name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `description` varchar(255) COLLATE utf8mb4_unicode_ci NULL,PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
         $this->addSql('CREATE TABLE `categories` (`id` int NOT NULL AUTO_INCREMENT, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
         $this->addSql('CREATE TABLE `characteristic` (`id` int NOT NULL AUTO_INCREMENT, `product_id` int DEFAULT NULL, `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `property` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
         $this->addSql('CREATE TABLE `customers` (`id` int NOT NULL AUTO_INCREMENT,`uuid` char(36),`email` varchar(255) COLLATE utf8mb4_unicode_ci NULL, `age` int NULL, `cell_phone` varchar(255) COLLATE utf8mb4_unicode_ci NULL, `dni` varchar(255) COLLATE utf8mb4_unicode_ci NULL,`cuil` varchar(255) COLLATE utf8mb4_unicode_ci NULL, `birthday` datetime NULL, `postal_code` varchar(255) COLLATE utf8mb4_unicode_ci NULL, `country` varchar(255) COLLATE utf8mb4_unicode_ci NULL, `state` varchar(255) COLLATE utf8mb4_unicode_ci NULL, `city` varchar(255) COLLATE utf8mb4_unicode_ci NULL, `vat_condition` varchar(255) COLLATE utf8mb4_unicode_ci NULL, `gross_income` varchar(255) COLLATE utf8mb4_unicode_ci NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
@@ -51,8 +51,8 @@ class Version20200520234018 extends AbstractMigration
         $this->addSql('ALTER TABLE `users` ADD CONSTRAINT `FK_1483A5E9642B8210` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`)');
         $this->addSql('ALTER TABLE `users` ADD CONSTRAINT `FK_1483A5E98C03F15C` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`)');
         $this->addSql('ALTER TABLE `users` ADD CONSTRAINT `FK_1483A5E99395C3F3` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)');
-        $this->addSql('ALTER TABLE `brands` ADD KEY `IDX_7EA244344584665A` (`product_id`)');
-        $this->addSql('ALTER TABLE `brands` ADD CONSTRAINT `FK_7EA244344584665A` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)');
+        $this->addSql('ALTER TABLE `products` ADD KEY `IDX_7EA244344584665A` (`brand_id`)');
+        $this->addSql('ALTER TABLE `products` ADD CONSTRAINT `FK_7EA244344584665A` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`)');
         $this->addSql('ALTER TABLE `characteristic` ADD KEY `IDX_522FA9504584665A` (`product_id`)');
         $this->addSql('ALTER TABLE `characteristic` ADD CONSTRAINT `FK_522FA9504584665A` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)');
         $this->addSql('ALTER TABLE `filter_options` ADD KEY `IDX_67A58DE2D395B25E` (`filter_id`)');
