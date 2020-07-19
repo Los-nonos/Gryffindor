@@ -7,6 +7,7 @@ namespace Presentation\Http\Adapters\Providers;
 use App\Exceptions\InvalidBodyException;
 use Application\Commands\Command\Providers\StoreProviderCommand;
 use Illuminate\Http\Request;
+use Presentation\Http\Validations\Schemas\Providers\StoreProviderSchema;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
 
 class StoreProviderAdapter
@@ -20,7 +21,7 @@ class StoreProviderAdapter
 
     public function from(Request $request)
     {
-        $this->validatorService->make($request->all(), []);
+        $this->validatorService->make($request->all(), StoreProviderSchema::getRules());
 
         if(!$this->validatorService->isValid())
         {

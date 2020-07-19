@@ -7,6 +7,7 @@ namespace Presentation\Http\Actions\Providers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Infrastructure\CommandBus\CommandBusInterface;
+use Presentation\Http\Adapters\Providers\StoreProviderAdapter;
 use Presentation\Http\Enums\HttpCodes;
 
 class StoreProviderAction

@@ -18,15 +18,15 @@ class Provider
     /**
      * @var string
      */
-    private string $address;
+    private ?string $address;
 
     private string $businessName;
 
-    private string $phoneNumber;
+    private ?string $phoneNumber;
 
-    private string $zipCode;
+    private ?string $zipCode;
 
-    private string $observations;
+    private ?string $observations;
 
     /**
      * @var array
@@ -99,7 +99,7 @@ class Provider
     /**
      * @param string $address
      */
-    public function setAddress(string $address): void
+    public function setAddress(?string $address): void
     {
         $this->address = $address;
     }
@@ -131,7 +131,7 @@ class Provider
     /**
      * @param string $phoneNumber
      */
-    public function setPhoneNumber(string $phoneNumber): void
+    public function setPhoneNumber(?string $phoneNumber): void
     {
         $this->phoneNumber = $phoneNumber;
     }
@@ -147,7 +147,7 @@ class Provider
     /**
      * @param string $zipCode
      */
-    public function setZipCode(string $zipCode): void
+    public function setZipCode(?string $zipCode): void
     {
         $this->zipCode = $zipCode;
     }
@@ -163,7 +163,7 @@ class Provider
     /**
      * @param string $observations
      */
-    public function setObservations(string $observations): void
+    public function setObservations(?string $observations): void
     {
         $this->observations = $observations;
     }
