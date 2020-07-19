@@ -66,10 +66,10 @@ class Brand extends \Domain\Entities\Brand implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'name', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'products'];
+            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'name', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'description', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'providers', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'products'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'name', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'products'];
+        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'name', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'description', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'providers', '' . "\0" . 'Domain\\Entities\\Brand' . "\0" . 'products'];
     }
 
     /**
@@ -211,6 +211,50 @@ class Brand extends \Domain\Entities\Brand implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', [$name]);
 
         parent::setName($name);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDescription(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDescription', []);
+
+        return parent::getDescription();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDescription(?string $description): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDescription', [$description]);
+
+        parent::setDescription($description);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getProviders()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProviders', []);
+
+        return parent::getProviders();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setProviders($providers): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setProviders', [$providers]);
+
+        parent::setProviders($providers);
     }
 
     /**

@@ -66,10 +66,10 @@ class Provider extends \Domain\Entities\Provider implements \Doctrine\ORM\Proxy\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'name', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'address', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'products', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'orders'];
+            return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'name', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'address', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'businessName', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'phoneNumber', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'zipCode', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'observations', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'brands', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'products', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'orders'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'name', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'address', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'products', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'orders'];
+        return ['__isInitialized__', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'id', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'name', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'address', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'businessName', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'phoneNumber', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'zipCode', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'observations', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'brands', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'products', '' . "\0" . 'Domain\\Entities\\Provider' . "\0" . 'orders'];
     }
 
     /**
@@ -179,6 +179,28 @@ class Provider extends \Domain\Entities\Provider implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
+    public function getOrders(): array
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOrders', []);
+
+        return parent::getOrders();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOrders(array $orders): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOrders', [$orders]);
+
+        parent::setOrders($orders);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getId(): int
     {
         if ($this->__isInitialized__ === false) {
@@ -211,6 +233,138 @@ class Provider extends \Domain\Entities\Provider implements \Doctrine\ORM\Proxy\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', [$name]);
 
         parent::setName($name);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAddress(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAddress', []);
+
+        return parent::getAddress();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAddress(string $address): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAddress', [$address]);
+
+        parent::setAddress($address);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBusinessName(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBusinessName', []);
+
+        return parent::getBusinessName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBusinessName(string $businessName): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBusinessName', [$businessName]);
+
+        parent::setBusinessName($businessName);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPhoneNumber(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhoneNumber', []);
+
+        return parent::getPhoneNumber();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPhoneNumber(string $phoneNumber): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhoneNumber', [$phoneNumber]);
+
+        parent::setPhoneNumber($phoneNumber);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getZipCode(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getZipCode', []);
+
+        return parent::getZipCode();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setZipCode(string $zipCode): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setZipCode', [$zipCode]);
+
+        parent::setZipCode($zipCode);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getObservations(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getObservations', []);
+
+        return parent::getObservations();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setObservations(string $observations): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setObservations', [$observations]);
+
+        parent::setObservations($observations);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBrands(): array
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBrands', []);
+
+        return parent::getBrands();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBrands(array $brands): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBrands', [$brands]);
+
+        parent::setBrands($brands);
     }
 
     /**
