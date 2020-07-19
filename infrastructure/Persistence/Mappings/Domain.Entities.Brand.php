@@ -15,6 +15,8 @@ $builder->addField('name', Type::STRING);
 
 $builder->addField('description' , Type::STRING);
 
-$builder->addOneToMany('providers', Provider::class, 'providers');
+$builder->createOneToMany('providers', Provider::class)
+    ->mappedBy('brands')
+    ->build();
 
 $builder->addManyToOne('products', Product::class, 'brands');

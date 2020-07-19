@@ -27,10 +27,13 @@ $builder->addField('taxes', Type::FLOAT);
 
 $builder->createManyToMany('categories', Category::class)
     ->inversedBy('products')
+    ->cascadePersist()
+    ->cascadeRemove()
     ->build();
 
 $builder->createOneToOne('stock', Stock::class)
     ->cascadePersist()
+    ->cascadeRemove()
     ->build();
 
 $builder->createManyToMany('purchaseOrderNumber', PurchaseOrder::class)

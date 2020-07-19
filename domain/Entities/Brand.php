@@ -10,6 +10,10 @@ class Brand
 
     private string $name;
 
+    private string $description;
+
+    private $providers;
+
     /**
      * @var array
      */
@@ -42,6 +46,38 @@ class Brand
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return array
+     */
+    public function getProviders()
+    {
+        return $this->providers;
+    }
+
+    /**
+     * @param array $providers
+     */
+    public function setProviders($providers): void
+    {
+        $this->providers = $providers;
     }
 
     /**

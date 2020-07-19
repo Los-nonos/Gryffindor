@@ -1,6 +1,6 @@
 <?php
 
-use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Types\Types as Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Domain\Entities\Employee;
@@ -10,11 +10,7 @@ use Domain\Entities\PurchaseOrder;
 
 $builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('purchase_orders');
-
-$builder->createField('id', Type::INTEGER)
-    ->makePrimaryKey()
-    ->generatedValue()
-    ->build();
+$builder->createField('id', Type::INTEGER)->makePrimaryKey()->generatedValue()->build();
 
 $builder->addField('amount', Type::INTEGER);
 

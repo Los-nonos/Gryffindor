@@ -38,13 +38,13 @@ class StoreProductHandler implements HandlerInterface
         $stock->setRemanentQuantity($command->getStock());
         $product->setStock($stock);
         $product->setTaxes($command->getTaxes());
-        //$product->setBrand($command->getBrands()); Corregir BRAND
-        $purchase = new PurchaseOrder();
-        $purchase->setPurchaseNumber($command->getPurchaseNumber());
-        $product->setPurchaseOrder($purchase);
-        $provider = new Provider();
-        $provider->setName($command->getProviderId());
-        $product->setProvider($provider);
+        //$product->setBrand($command->getBrands()); //TODO: Corregir BRAND
+        //$purchase = new PurchaseOrder();
+        //$purchase->setPurchaseNumber($command->getPurchaseNumber());
+        //$product->setPurchaseOrder([$purchase]);
+        //$provider = new Provider();
+        //$provider->setName($command->getProviderId());
+        //$product->setProvider($provider);
 
 
         $this->productService->persist($product);

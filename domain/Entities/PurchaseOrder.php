@@ -3,12 +3,14 @@
 
 namespace Domain\Entities;
 
-
 use Money\Money;
 
 class PurchaseOrder
 {
-    private int $id;
+    /**
+     * @var int
+     */
+    private $id;
 
     /**
      * @var Provider[]

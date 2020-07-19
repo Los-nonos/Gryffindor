@@ -2,6 +2,7 @@
 
 use Doctrine\DBAL\Types\Types as Type;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
+use Domain\Entities\Brand;
 use Domain\Entities\Product;
 use Domain\Entities\PurchaseOrder;
 
@@ -14,7 +15,7 @@ $builder->createField('id', Type::INTEGER)
 
 $builder->addField('name', Type::STRING);
 
-$builder->addField('busisnessName', Type::STRING);
+$builder->addField('businessName', Type::STRING);
 
 $builder->addField('phoneNumber', Type::STRING);
 
@@ -32,3 +33,4 @@ $builder->createOneToMany('orders', PurchaseOrder::class)
     ->mappedBy('provider')
     ->build();
 
+$builder->addManyToOne('brands', Brand::class, 'providers');
