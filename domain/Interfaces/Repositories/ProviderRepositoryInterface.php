@@ -10,5 +10,7 @@ interface ProviderRepositoryInterface
 {
     public function persist (Provider $provider) : void;
 
-    //TODO Terminar repository interface
+    public function findOneById(int $id): ?Provider;
+
+    public function findAllPaginated($page, $size): array;
 }

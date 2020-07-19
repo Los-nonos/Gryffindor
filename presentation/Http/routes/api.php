@@ -111,3 +111,10 @@ Route::prefix('brands')->group(function() {
     Route::post('/', Actions\Brands\StoreBrandAction::class)->name('storeBrand');
     Route::put('/{id}', Actions\Brands\UpdateBrandAction::class)->name('updateBrand');
 });
+
+Route::prefix('providers')->group(function() {
+    Route::get('/', Actions\Providers\IndexProvidersAction::class)->name('indexProviders');
+    Route::post('/', Actions\Providers\StoreProviderAction::class)->name('storeProviders');
+    Route::put('/{id}', Actions\Providers\UpdateProviderAction::class)->name('storeProviders');
+    Route::get('/{id}', Actions\Providers\FindProviderAction::class)->name('storeProviders');
+});

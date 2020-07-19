@@ -10,5 +10,7 @@ interface ProviderServiceInterface
 {
     public function persist(Provider $provider): void;
 
-    //TODO Terminar ProviderServiceInterface
+    public function findOneByIdOrFail(int $id): Provider;
+
+    public function findAllPaginated($page, $size);
 }
