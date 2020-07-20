@@ -91,7 +91,7 @@ class Provider
     /**
      * @return string
      */
-    public function getAddress(): string
+    public function getAddress(): ?string
     {
         return $this->address;
     }
@@ -123,7 +123,7 @@ class Provider
     /**
      * @return string
      */
-    public function getPhoneNumber(): string
+    public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
@@ -139,7 +139,7 @@ class Provider
     /**
      * @return string
      */
-    public function getZipCode(): string
+    public function getZipCode(): ?string
     {
         return $this->zipCode;
     }
@@ -155,7 +155,7 @@ class Provider
     /**
      * @return string
      */
-    public function getObservations(): string
+    public function getObservations(): ?string
     {
         return $this->observations;
     }
@@ -198,21 +198,5 @@ class Provider
     public function setProducts($products): void
     {
         $this->products = $products;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAdress(): string
-    {
-        return $this->adress;
-    }
-
-    /**
-     * @param string $adress
-     */
-    public function setAdress(string $adress): void
-    {
-        $this->adress = $adress;
     }
 }

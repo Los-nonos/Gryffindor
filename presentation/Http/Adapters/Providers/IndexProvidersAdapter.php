@@ -5,6 +5,7 @@ namespace Presentation\Http\Adapters\Providers;
 
 
 use App\Exceptions\InvalidBodyException;
+use Application\Queries\Query\Providers\IndexProvidersQuery;
 use Illuminate\Http\Request;
 use Presentation\Http\Validations\Schemas\PageSizeSchema;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;

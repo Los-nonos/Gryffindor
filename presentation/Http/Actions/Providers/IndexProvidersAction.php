@@ -7,7 +7,9 @@ namespace Presentation\Http\Actions\Providers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Infrastructure\QueryBus\QueryBusInterface;
+use Presentation\Http\Adapters\Providers\IndexProvidersAdapter;
 use Presentation\Http\Enums\HttpCodes;
+use Presentation\Http\Presenters\Providers\IndexProvidersPresenter;
 
 class IndexProvidersAction
 {

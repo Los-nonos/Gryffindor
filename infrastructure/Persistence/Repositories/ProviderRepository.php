@@ -47,7 +47,7 @@ class ProviderRepository extends EntityRepository implements ProviderRepositoryI
 
         // build the query for the doctrine paginator
         $query = $providers->createQueryBuilder('p')
-            ->orderBy('u.id', 'ASC')
+            ->orderBy('p.id', 'ASC')
             ->getQuery();
 
         // load doctrine Paginator
