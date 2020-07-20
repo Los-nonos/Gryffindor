@@ -230,7 +230,7 @@ class Product
     /**
      * @param Characteristic $characteristics
      */
-    public function setCharacteristics(Characteristic $characteristics): void
+    public function addCharacteristics(Characteristic $characteristics): void
     {
         $this->characteristics[] = $characteristics;
     }

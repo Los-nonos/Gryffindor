@@ -5,23 +5,42 @@ namespace Application\Commands\Handler\Products;
 
 
 use Application\Commands\Command\Products\StoreProductCommand;
+use Application\Services\Category\CategoryServiceInterface;
+use Domain\Entities\Characteristic;
+use Domain\Entities\Filter;
+use Domain\Entities\FilterOption;
 use Domain\Entities\Order;
 use Domain\Entities\Product;
 use Domain\Entities\Provider;
 use Domain\Entities\PurchaseOrder;
 use Domain\Entities\Stock;
+use Domain\Interfaces\Services\Brands\BrandServiceInterface;
 use Domain\Interfaces\Services\Products\ProductServiceInterface;
+use Domain\Interfaces\Services\Provider\ProviderServiceInterface;
 use Infrastructure\CommandBus\Handler\HandlerInterface;
 
 class StoreProductHandler implements HandlerInterface
 {
     private ProductServiceInterface $productService;
+
+    private BrandServiceInterface $brandService;
+
+    private ProviderServiceInterface $providerService;
+
+    private CategoryServiceInterface $categoryService;
+
     public function __construct
     (
-        ProductServiceInterface $productServiceInterface
+        ProductServiceInterface $productServiceInterface,
+        BrandServiceInterface $brandService,
+        ProviderServiceInterface $providerService,
+        CategoryServiceInterface $categoryService
     )
     {
         $this->productService = $productServiceInterface;
+        $this->brandService = $brandService;
+        $this->providerService = $providerService;
+        $this->categoryService = $categoryService;
     }
 
     /**
@@ -38,14 +57,67 @@ class StoreProductHandler implements HandlerInterface
         $stock->setRemanentQuantity($command->getStock());
         $product->setStock($stock);
         $product->setTaxes($command->getTaxes());
-        //$product->setBrand($command->getBrands()); //TODO: Corregir BRAND
-        //$purchase = new PurchaseOrder();
-        //$purchase->setPurchaseNumber($command->getPurchaseNumber());
-        //$product->setPurchaseOrder([$purchase]);
-        //$provider = new Provider();
-        //$provider->setName($command->getProviderId());
-        //$product->setProvider($provider);
 
+        $brand = $this->brandService->findOneByIdOrFail($command->getBrands()[0]);
+
+        $product->setBrand($brand); //TODO: Corregir BRAND
+        $purchase = new PurchaseOrder();
+        $purchase->setPurchaseNumber($command->getPurchaseNumber());
+        $product->setPurchaseOrder([$purchase]);
+        $provider = $this->providerService->findOneByIdOrFail($command->getProviderId());
+        $provider->setName($command->getProviderId());
+        $product->setProvider($provider);
+
+        $category = $this->categoryService->findOneByIdOrFail($command->getCategories()[0]);
+
+        $product->addCategories($category);
+
+        $filters = $category->getFilters();
+
+        $characteristics = $command->getCharacteristics();
+
+        foreach ($characteristics as $characteristic) {
+
+            $isFilterCreated = false;
+            $objectFilter = null;
+            foreach ($filters as $filter) {
+                if ($filter->getName() === $characteristic->name){
+                    $isFilterCreated = true;
+                    $objectFilter = $filter;
+                    break;
+                }
+            }
+
+            if(!$isFilterCreated) {
+                $objectFilter = new Filter();
+                $objectFilter->setCategory($category);
+                $objectFilter->setName($filter['name']);
+
+                $filterOption = new FilterOption();
+                $filterOption->setName($characteristic->value);
+                $filterOption->setFilter($objectFilter);
+
+                $objectFilter->addOption($filterOption);
+                $category->addFilters($objectFilter);
+            }
+            else {
+
+                foreach ($filters as $filter) {
+                    foreach ($filter['options'] as $option) {
+                        $optionObject = new FilterOption();
+                        $optionObject->setName($option);
+                        $optionObject->setFilter($objectFilter);
+                        $objectFilter->addOption($optionObject);
+                    }
+                }
+            }
+
+            $characteristicObject = new Characteristic();
+            $characteristicObject->setName($characteristic->name);
+            $characteristicObject->setProperty($characteristic->value);
+
+            $product->addCharacteristics($characteristicObject);
+        }
 
         $this->productService->persist($product);
 
