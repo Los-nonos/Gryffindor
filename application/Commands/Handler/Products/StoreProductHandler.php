@@ -60,7 +60,7 @@ class StoreProductHandler implements HandlerInterface
 
         $brand = $this->brandService->findOneByIdOrFail($command->getBrands()[0]);
 
-        $product->setBrand($brand); //TODO: Corregir BRAND
+        $product->setBrand($brand);
         $purchase = new PurchaseOrder();
         $purchase->setPurchaseNumber($command->getPurchaseNumber());
         $product->setPurchaseOrder([$purchase]);
