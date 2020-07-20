@@ -77,41 +77,6 @@ class StoreProductHandler implements HandlerInterface
         $characteristics = $command->getCharacteristics();
 
         foreach ($characteristics as $characteristic) {
-
-            $isFilterCreated = false;
-            $objectFilter = null;
-            foreach ($filters as $filter) {
-                if ($filter->getName() === $characteristic->name){
-                    $isFilterCreated = true;
-                    $objectFilter = $filter;
-                    break;
-                }
-            }
-
-            if(!$isFilterCreated) {
-                $objectFilter = new Filter();
-                $objectFilter->setCategory($category);
-                $objectFilter->setName($filter['name']);
-
-                $filterOption = new FilterOption();
-                $filterOption->setName($characteristic->value);
-                $filterOption->setFilter($objectFilter);
-
-                $objectFilter->addOption($filterOption);
-                $category->addFilters($objectFilter);
-            }
-            else {
-
-                foreach ($filters as $filter) {
-                    foreach ($filter['options'] as $option) {
-                        $optionObject = new FilterOption();
-                        $optionObject->setName($option);
-                        $optionObject->setFilter($objectFilter);
-                        $objectFilter->addOption($optionObject);
-                    }
-                }
-            }
-
             $characteristicObject = new Characteristic();
             $characteristicObject->setName($characteristic->name);
             $characteristicObject->setProperty($characteristic->value);
