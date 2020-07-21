@@ -238,7 +238,7 @@ class Provider extends \Domain\Entities\Provider implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getAddress(): string
+    public function getAddress(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAddress', []);
@@ -249,7 +249,7 @@ class Provider extends \Domain\Entities\Provider implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function setAddress(string $address): void
+    public function setAddress(?string $address): void
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAddress', [$address]);
@@ -282,7 +282,7 @@ class Provider extends \Domain\Entities\Provider implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getPhoneNumber(): string
+    public function getPhoneNumber(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhoneNumber', []);
@@ -293,7 +293,7 @@ class Provider extends \Domain\Entities\Provider implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function setPhoneNumber(string $phoneNumber): void
+    public function setPhoneNumber(?string $phoneNumber): void
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhoneNumber', [$phoneNumber]);
@@ -304,7 +304,7 @@ class Provider extends \Domain\Entities\Provider implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getZipCode(): string
+    public function getZipCode(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getZipCode', []);
@@ -315,7 +315,7 @@ class Provider extends \Domain\Entities\Provider implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function setZipCode(string $zipCode): void
+    public function setZipCode(?string $zipCode): void
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setZipCode', [$zipCode]);
@@ -326,7 +326,7 @@ class Provider extends \Domain\Entities\Provider implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function getObservations(): string
+    public function getObservations(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getObservations', []);
@@ -337,7 +337,7 @@ class Provider extends \Domain\Entities\Provider implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function setObservations(string $observations): void
+    public function setObservations(?string $observations): void
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setObservations', [$observations]);
@@ -387,28 +387,6 @@ class Provider extends \Domain\Entities\Provider implements \Doctrine\ORM\Proxy\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setProducts', [$products]);
 
         parent::setProducts($products);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getAdress(): string
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAdress', []);
-
-        return parent::getAdress();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setAdress(string $adress): void
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAdress', [$adress]);
-
-        parent::setAdress($adress);
     }
 
 }

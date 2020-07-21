@@ -41,7 +41,7 @@ class Product
     private $categories;
 
     /**
-     * @var array
+     * @var Brand
      */
     private $brands;
 
@@ -301,7 +301,7 @@ class Product
     }
 
     /**
-     * @return array
+     * @return Brand
      */
     public function getBrands()
     {
@@ -313,6 +313,6 @@ class Product
      */
     public function setBrand(Brand $newBrand) : void
     {
-        $this->brands[] = $newBrand;
+        $this->brands = $newBrand;
     }
 }

@@ -19,4 +19,6 @@ $builder->addField('property', Type::STRING);
 
 $builder->createManyToOne('product', Product::class)
     ->inversedBy('characteristics')
+    ->cascadePersist()
+    ->cascadeRemove()
     ->build();

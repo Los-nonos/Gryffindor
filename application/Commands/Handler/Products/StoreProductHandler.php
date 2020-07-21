@@ -72,14 +72,13 @@ class StoreProductHandler implements HandlerInterface
 
         $product->addCategories($category);
 
-        $filters = $category->getFilters();
-
         $characteristics = $command->getCharacteristics();
 
         foreach ($characteristics as $characteristic) {
             $characteristicObject = new Characteristic();
-            $characteristicObject->setName($characteristic->name);
-            $characteristicObject->setProperty($characteristic->value);
+            $characteristicObject->setName($characteristic['name']);
+            $characteristicObject->setProperty($characteristic['value']);
+            $characteristicObject->setProduct($product);
 
             $product->addCharacteristics($characteristicObject);
         }

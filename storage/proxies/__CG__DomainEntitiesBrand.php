@@ -216,7 +216,7 @@ class Brand extends \Domain\Entities\Brand implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDescription', []);

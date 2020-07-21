@@ -235,4 +235,26 @@ class Characteristic extends \Domain\Entities\Characteristic implements \Doctrin
         parent::setProperty($property);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getProduct(): \Domain\Entities\Product
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProduct', []);
+
+        return parent::getProduct();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setProduct(\Domain\Entities\Product $product): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setProduct', [$product]);
+
+        parent::setProduct($product);
+    }
+
 }

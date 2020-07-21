@@ -381,12 +381,12 @@ class Product extends \Domain\Entities\Product implements \Doctrine\ORM\Proxy\Pr
     /**
      * {@inheritDoc}
      */
-    public function setCharacteristics(\Domain\Entities\Characteristic $characteristics): void
+    public function addCharacteristics(\Domain\Entities\Characteristic $characteristics): void
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCharacteristics', [$characteristics]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCharacteristics', [$characteristics]);
 
-        parent::setCharacteristics($characteristics);
+        parent::addCharacteristics($characteristics);
     }
 
     /**

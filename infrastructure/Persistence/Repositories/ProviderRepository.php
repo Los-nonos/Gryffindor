@@ -34,7 +34,7 @@ class ProviderRepository extends EntityRepository implements ProviderRepositoryI
 
     public function findOneById(int $id): ?Provider
     {
-        return $this->findBy(['id' => $id]);
+        return $this->findOneBy(['id' => $id]);
     }
 
     public function findAllPaginated($page, $size): array

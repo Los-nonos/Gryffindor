@@ -21,10 +21,11 @@ class IndexProductsPresenter
         foreach ($products as $product) {
             array_push($items, [
                 'id' => $product->getId(),
-               'title' => $product->getTitle(),
-               'price' => $product->getPrice(),
-               'taxes' => $product->getTaxes(),
-               'characteristics' => $this->getCharacteristics($product->getCharacteristics()),
+                'title' => $product->getTitle(),
+                'description' => $product->getDescription(),
+                'price' => $product->getPrice(),
+                'taxes' => $product->getTaxes(),
+                'characteristics' => $this->getCharacteristics($product->getCharacteristics()),
                 'categories' => $this->getCategories($product->getCategories()),
                 'brand' => $this->getBrands($product->getBrands()),
             ]);
@@ -67,7 +68,7 @@ class IndexProductsPresenter
             array_push($characteristicsList, [
                 'id' => $characteristic->getId(),
                 'name' => $characteristic->getName(),
-                'value' => $characteristic->getValue(),
+                'value' => $characteristic->getProperty(),
             ]);
         }
 
@@ -82,12 +83,10 @@ class IndexProductsPresenter
             return $brandList;
         }
 
-        foreach ($brands as $brand) {
-            array_push($brandList, [
-                'id' => $brand->getId(),
-                'name' => $brand->getName(),
-            ]);
-        }
+        array_push($brandList, [
+            'id' => $brands->getId(),
+            'name' => $brands->getName(),
+        ]);
 
         return $brandList;
     }

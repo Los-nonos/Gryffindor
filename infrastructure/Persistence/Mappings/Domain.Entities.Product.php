@@ -46,7 +46,11 @@ $builder->createManyToMany('orders', Order::class)
     ->inversedBy('products')
     ->build();
 
-$builder->addOneToMany('characteristics', Characteristic::class, 'product');
+$builder->createOneToMany('characteristics', Characteristic::class)
+    ->mappedBy('product')
+    ->cascadePersist()
+    ->cascadeRemove()
+    ->build();
 
 $builder->addInverseManyToMany('providers', Provider::class,'products');
 

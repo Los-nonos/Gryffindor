@@ -66,4 +66,20 @@ class Characteristic
     {
         $this->property = $property;
     }
+
+    /**
+     * @return Product
+     */
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param Product $product
+     */
+    public function setProduct(Product $product): void
+    {
+        $this->product = $product;
+    }
 }
