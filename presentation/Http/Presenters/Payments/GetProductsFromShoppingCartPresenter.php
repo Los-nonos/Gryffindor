@@ -27,8 +27,8 @@ class GetProductsFromShoppingCartPresenter
             array_push($productsList, [
                 'id' => $product['product']->getId(),
                 'name' => $product['product']->getTitle(),
-                'price' => $product['product']->getPrice(),
-                //'images' => $product['product']->getImages(),
+                'price' => $product['product']->getPrice() + $product['product']->getTaxes(),
+                'images' => $this->clearImages($product['product']->getCharacteristics()),
                 'characteristics' => $this->clearCharacteristics($product['product']->getCharacteristics()),
                 'brands' => $this->clearBrand($product['product']->getBrands()),
                 'quantity' => $product['quantity'],
@@ -47,14 +47,33 @@ class GetProductsFromShoppingCartPresenter
 
 
         foreach ($characteristics as $characteristic) {
-            array_push($characteristicsList, [
-                'id' => $characteristic->getId(),
-                'name' => $characteristic->getName(),
-                'value' => $characteristic->getProperty(),
-            ]);
+            if($characteristic->getName() !== 'image') {
+                array_push($characteristicsList, [
+                    'id' => $characteristic->getId(),
+                    'name' => $characteristic->getName(),
+                    'value' => $characteristic->getProperty(),
+                ]);
+            }
         }
 
         return $characteristicsList;
+    }
+
+    public function clearImages($characteristics) {
+        $imageList = [];
+
+        if(!$characteristics) {
+            return $imageList;
+        }
+
+
+        foreach ($characteristics as $characteristic) {
+            if($characteristic->getName() === 'image') {
+                array_push($imageList, $characteristic->getProperty());
+            }
+        }
+
+        return $imageList;
     }
 
     public function clearBrand($brands) {
