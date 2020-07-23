@@ -6,7 +6,10 @@ namespace Application\Commands\Handler\Payments;
 
 use App\Exceptions\InvalidBodyException;
 use Application\Commands\Command\Payments\MercadoPagoExecuteCommand;
+use Application\Exceptions\CalculatedAmountInvalid;
 use Application\Services\Customers\CustomerServiceInterface;
+use Domain\Entities\Order;
+use Domain\Interfaces\Services\Orders\OrderServiceInterface;
 use Domain\Interfaces\Services\Payments\PaymentServiceInterface;
 use Domain\Interfaces\Services\Products\ProductServiceInterface;
 use GuzzleHttp\Client;
@@ -23,19 +26,24 @@ class MercadoPagoExecuteHandler implements HandlerInterface
 
     private ProductServiceInterface $productService;
 
+    private OrderServiceInterface $orderService;
+
     public function __construct(
         PaymentServiceInterface $paymentService,
         CustomerServiceInterface $customerService,
-        ProductServiceInterface $productService
+        ProductServiceInterface $productService,
+        OrderServiceInterface $orderService
     )
     {
         $this->paymentService = $paymentService;
         $this->customerService = $customerService;
         $this->productService = $productService;
+        $this->orderService = $orderService;
     }
 
     /**
      * @param MercadoPagoExecuteCommand $command
+     * @throws CalculatedAmountInvalid
      */
     public function handle($command): void
     {
@@ -54,21 +62,32 @@ class MercadoPagoExecuteHandler implements HandlerInterface
 
         foreach ($products as $product) {
             $amount = Money::ARS($product['price']);
-            $calculatedAmount->add($amount);
+            $calculatedAmount = $calculatedAmount->add($amount);
         }
 
         //TODO: add payment object and set info
 
-        if($calculatedAmount === $command->getAmount()) {
+        if($calculatedAmount->equals($command->getAmount())) {
             $this->paymentService->mercadoPagoPaymentExecute(null);
         }
+        else {
+            throw new CalculatedAmountInvalid();
+        }
 
-        //TODO: check products, modify stocks and create order
 
-        $this->modifyProductsStock($products);
+        $products = $this->modifyProductsStock($products);
+
+        $order = new Order();
+        $order->setCustomer($customer);
+        $order->setAmount($calculatedAmount);
+        $order->setProducts($products);
+
+        $this->orderService->persist($order);
     }
 
     private function modifyProductsStock($products) {
+        $productList = [];
+
         foreach ($products as $product) {
             $productObject = $this->productService->findOneByIdOrFail($product['id']);
             $stock = $productObject->getStock();
@@ -76,7 +95,11 @@ class MercadoPagoExecuteHandler implements HandlerInterface
             $quantity = $stock->getQuantity();
             $stock->setQuantity($quantity - $product['quantity']);
 
+            array_push($productList, $productObject);
+
             $this->productService->persist($productObject);
         }
+
+        return $productList;
     }
 }

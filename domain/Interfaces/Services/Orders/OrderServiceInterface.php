@@ -13,4 +13,6 @@ interface OrderServiceInterface
     public function indexAll($page, $size): array;
 
     public function findByUuidOrFail(string $uuid): Order;
+
+    public function persist(Order $order): void;
 }

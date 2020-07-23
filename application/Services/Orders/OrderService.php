@@ -50,4 +50,9 @@ class OrderService implements OrderServiceInterface
 
         return $order;
     }
+
+    public function persist(Order $order): void
+    {
+        $this->repository->persist($order);
+    }
 }

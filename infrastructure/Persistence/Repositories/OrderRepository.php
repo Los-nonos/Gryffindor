@@ -92,4 +92,10 @@ class OrderRepository extends EntityRepository implements OrderRepositoryInterfa
     {
         return $this->findOneBy(['numberSell' => $uuid]);
     }
+
+    public function persist(Order $order)
+    {
+        $this->getEntityManager()->persist($order);
+        $this->getEntityManager()->flush();
+    }
 }

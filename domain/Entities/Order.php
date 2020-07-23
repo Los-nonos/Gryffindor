@@ -15,7 +15,7 @@ class Order
     private $customer;
 
     /**
-     * @var Money
+     * @var string
      */
     private $amount;
 
@@ -45,19 +45,19 @@ class Order
     }
 
     /**
-     * @return mixed
+     * @return Money
      */
     public function getAmount()
     {
-        return $this->amount;
+        return Money::ARS($this->amount);
     }
 
     /**
-     * @param mixed $amount
+     * @param Money $amount
      */
     public function setAmount($amount): void
     {
-        $this->amount = $amount;
+        $this->amount = $amount->getAmount();
     }
 
     /**
