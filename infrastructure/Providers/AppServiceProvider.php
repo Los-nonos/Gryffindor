@@ -16,6 +16,7 @@ use Application\Services\Notification\NotifiableService;
 use Application\Services\Notification\NotifiableServiceInterface;
 use Application\Services\Notification\NotificationService;
 use Application\Services\Orders\OrderService;
+use Application\Services\Payments\PaymentService;
 use Application\Services\Products\ProductService;
 use Application\Services\Providers\ProviderService;
 use Application\Services\Token\TokenLoginService;
@@ -29,6 +30,7 @@ use Domain\Interfaces\Services\GetUserTypeServiceInterface;
 use Domain\Interfaces\Services\Notifications\NotifiableInterface;
 use Domain\Interfaces\Services\Notifications\NotificationServiceInterface;
 use Domain\Interfaces\Services\Orders\OrderServiceInterface;
+use Domain\Interfaces\Services\Payments\PaymentServiceInterface;
 use Domain\Interfaces\Services\Products\ProductServiceInterface;
 use Domain\Interfaces\Services\Provider\ProviderServiceInterface;
 use Domain\Services\Users\GetUserTypeService;
@@ -97,6 +99,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(NotificationServiceInterface::class, NotificationService::class);
 
         $this->app->bind(ProviderServiceInterface::class, ProviderService::class);
+
+        $this->app->bind(PaymentServiceInterface::class, PaymentService::class);
     }
 
     /**
