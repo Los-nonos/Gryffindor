@@ -3,6 +3,8 @@
 
 namespace Domain\Entities;
 
+use Money\Money;
+
 class Product
 {
     /**
@@ -26,14 +28,14 @@ class Product
     private bool $available;
 
     /**
-     * @var float
+     * @var string
      */
-    private float $price;
+    private string $price;
 
     /**
-     * @var float
+     * @var string
      */
-    private float $taxes;
+    private string $taxes;
 
     /**
      * @var array
@@ -140,35 +142,35 @@ class Product
     }
 
     /**
-     * @return float
+     * @return Money
      */
-    public function getPrice(): float
+    public function getPrice(): Money
     {
-        return $this->price;
+        return Money::ARS($this->price);
     }
 
     /**
-     * @param float $price
+     * @param Money $price
      */
-    public function setPrice(float $price): void
+    public function setPrice(Money $price): void
     {
-        $this->price = $price;
+        $this->price = $price->getAmount();
     }
 
     /**
-     * @return float
+     * @return Money
      */
-    public function getTaxes(): float
+    public function getTaxes(): Money
     {
-        return $this->taxes;
+        return Money::ARS($this->taxes);
     }
 
     /**
-     * @param float $iva
+     * @param Money $iva
      */
-    public function setTaxes(float $iva): void
+    public function setTaxes(Money $iva): void
     {
-        $this->taxes = $iva;
+        $this->taxes = $iva->getAmount();
     }
 
     /**

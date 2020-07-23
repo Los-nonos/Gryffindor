@@ -1,15 +1,15 @@
 <?php
 
 
-namespace Presentation\Http\Adapters\Payments;
+namespace Presentation\Http\Adapters\Orders;
 
 
 use App\Exceptions\InvalidBodyException;
-use Application\Commands\Command\Payments\MercadoPagoExecuteCommand;
+use Application\Commands\Command\Orders\StoreOrderCommand;
 use Illuminate\Http\Request;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
 
-class MercadoPagoExecuteAdapter
+class StoreOrderAdapter
 {
     private ValidatorServiceInterface $validatorService;
 
@@ -22,17 +22,15 @@ class MercadoPagoExecuteAdapter
     {
         $this->validatorService->make($request->all(), []);
 
-        if (!$this->validatorService->isValid())
-        {
+        if($this->validatorService->isValid()){
             throw new InvalidBodyException($this->validatorService->getErrors());
         }
 
-        return new MercadoPagoExecuteCommand(
-            $request->input('cartToken'),
+        return new StoreOrderCommand(
             $request->input('amount'),
             $request->input('customerId'),
+            $request->input('employeeId'),
             $request->input('products'),
-            $request->input('paymentMethod'),
         );
     }
 }

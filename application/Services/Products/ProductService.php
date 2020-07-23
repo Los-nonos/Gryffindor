@@ -95,4 +95,23 @@ class ProductService implements ProductServiceInterface
 
         return $product;
     }
+
+    public function modifyProductsStock($products): array
+    {
+        $productList = [];
+
+        foreach ($products as $product) {
+            $productObject = $this->findOneByIdOrFail($product['id']);
+            $stock = $productObject->getStock();
+
+            $quantity = $stock->getQuantity();
+            $stock->setQuantity($quantity - $product['quantity']);
+
+            array_push($productList, $productObject);
+
+            $this->persist($productObject);
+        }
+
+        return $productList;
+    }
 }
