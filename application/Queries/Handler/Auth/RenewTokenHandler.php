@@ -4,6 +4,8 @@
 namespace Application\Queries\Handler\Auth;
 
 
+use Application\Exceptions\TokenExpired;
+use Application\Queries\Query\Auth\RenewTokenQuery;
 use Application\Queries\Results\Auth\RenewTokenResult;
 use Application\Services\Token\TokenLoginServiceInterface;
 use Application\Services\Token\GenerateRandomTokenService;
@@ -32,15 +34,24 @@ class RenewTokenHandler implements HandlerInterface
     }
 
 
+    /**
+     * @param RenewTokenQuery $query
+     * @return ResultInterface
+     * @throws TokenExpired
+     */
     public function handle($query): ResultInterface
     {
         $token = $this->tokenService->findOneByUserIdOrFail($query->getToken());
+
+        if($token->isExpired()) {
+            throw new TokenExpired();
+        }
 
         $token->setUpdatedAt(new DateTime());
 
         $token->setHash($this->randomTokenService->generate(Token::LENGTH));
 
-        $this->tokenService->update();
+        $this->tokenService->persist($token);
 
         $this->result->setToken($token);
         return $this->result;
