@@ -3,6 +3,7 @@
 
 namespace Domain\Interfaces\Services\Payments;
 
+use Domain\ValueObjects\Payment;
 
 interface PaymentServiceInterface
 {
@@ -10,5 +11,5 @@ interface PaymentServiceInterface
 
     public function login(string $username, string $password): void;
 
-    public function mercadoPagoPaymentExecute($data);
+    public function mercadoPagoPaymentExecute(Payment $data);
 }

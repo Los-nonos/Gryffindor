@@ -4,6 +4,7 @@
 namespace Domain\Entities;
 
 
+use Application\Exceptions\StockInvalidQuantity;
 use http\Exception\InvalidArgumentException;
 use phpDocumentor\Reflection\DocBlock\Serializer;
 
@@ -82,8 +83,9 @@ class Stock
     public function setQuantity(int $quantity): void
     {
         if($quantity <= 0) {
-            throw new InvalidArgumentException('the stock cannot be equal to or less than 0');
+            throw new StockInvalidQuantity();
         }
+
         $this->quantity = $quantity;
     }
 

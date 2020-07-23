@@ -12,6 +12,7 @@ use Domain\Entities\Order;
 use Domain\Interfaces\Services\Orders\OrderServiceInterface;
 use Domain\Interfaces\Services\Payments\PaymentServiceInterface;
 use Domain\Interfaces\Services\Products\ProductServiceInterface;
+use Domain\ValueObjects\Payment;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Infrastructure\CommandBus\Command\CommandInterface;
@@ -65,17 +66,16 @@ class MercadoPagoExecuteHandler implements HandlerInterface
             $calculatedAmount = $calculatedAmount->add($amount);
         }
 
-        //TODO: add payment object and set info
+        $products = $this->modifyProductsStock($products);
 
         if($calculatedAmount->equals($command->getAmount())) {
-            $this->paymentService->mercadoPagoPaymentExecute(null);
+            $payment = new Payment($calculatedAmount->getAmount(), $customer->getEmail(), $command->getCartToken(), $command->getPaymentMethod());
+
+            $this->paymentService->mercadoPagoPaymentExecute($payment);
         }
         else {
             throw new CalculatedAmountInvalid();
         }
-
-
-        $products = $this->modifyProductsStock($products);
 
         $order = new Order();
         $order->setCustomer($customer);

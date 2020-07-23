@@ -6,6 +6,7 @@ use App\Exceptions\InvalidBodyException;
 use Application\Exceptions\ClientNotInitialized;
 use Application\Exceptions\ClientNotLogged;
 use Domain\Interfaces\Services\Payments\PaymentServiceInterface;
+use Domain\ValueObjects\Payment;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 
@@ -55,7 +56,7 @@ class PaymentService implements PaymentServiceInterface
         $this->token = $this->userData['token'];
     }
 
-    public function mercadoPagoPaymentExecute($data) {
+    public function mercadoPagoPaymentExecute(Payment $data) {
         if($this->client == null) {
             throw new ClientNotInitialized();
         }
