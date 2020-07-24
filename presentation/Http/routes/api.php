@@ -110,6 +110,7 @@ Route::prefix('brands')->group(function() {
     Route::get('/{id}', Actions\Brands\FindBrandAction::class)->name('showBrand');
     Route::post('/', Actions\Brands\StoreBrandAction::class)->name('storeBrand');
     Route::put('/{id}', Actions\Brands\UpdateBrandAction::class)->name('updateBrand');
+    Route::delete('/{id}', Actions\Brands\DestroyBrandAction::class)->name('destroyBrand');
 });
 
 Route::prefix('providers')->group(function() {
