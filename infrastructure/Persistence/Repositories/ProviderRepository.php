@@ -67,4 +67,10 @@ class ProviderRepository extends EntityRepository implements ProviderRepositoryI
 
         return $providersList;
     }
+
+    public function destroy(Provider $provider)
+    {
+        $this->getEntityManager()->remove($provider);
+        $this->getEntityManager()->flush();
+    }
 }

@@ -13,4 +13,6 @@ interface ProviderServiceInterface
     public function findOneByIdOrFail(int $id): Provider;
 
     public function findAllPaginated($page, $size);
+
+    public function destroy(Provider $provider);
 }

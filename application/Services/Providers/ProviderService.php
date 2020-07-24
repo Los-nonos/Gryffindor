@@ -44,4 +44,9 @@ class ProviderService implements ProviderServiceInterface
 
         return $this->repository->findAllPaginated($page, $size);
     }
+
+    public function destroy(Provider $provider)
+    {
+        $this->repository->destroy($provider);
+    }
 }

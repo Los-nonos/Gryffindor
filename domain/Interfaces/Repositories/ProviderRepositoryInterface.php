@@ -13,4 +13,6 @@ interface ProviderRepositoryInterface
     public function findOneById(int $id): ?Provider;
 
     public function findAllPaginated($page, $size): array;
+
+    public function destroy(Provider $provider);
 }
