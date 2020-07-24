@@ -15,4 +15,6 @@ interface BrandRepositoryInterface
     public function findOneByName(string $name): ?Brand;
 
     public function findAllPaginated(int $page, int $size): array;
+
+    public function destroy(Brand $brand);
 }

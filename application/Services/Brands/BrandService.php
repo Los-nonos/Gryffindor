@@ -57,4 +57,9 @@ class BrandService implements BrandServiceInterface
 
         return $brand;
     }
+
+    public function destroy(Brand $brand)
+    {
+        $this->repository->destroy($brand);
+    }
 }

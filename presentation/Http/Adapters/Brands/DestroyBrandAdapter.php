@@ -1,16 +1,16 @@
 <?php
 
 
-namespace Presentation\Http\Adapters\Providers;
+namespace Presentation\Http\Adapters\Brands;
 
 
 use App\Exceptions\InvalidBodyException;
-use Application\Commands\Command\Providers\DestroyProviderCommand;
+use Application\Commands\Command\Brands\DestroyBrandCommand;
 use Illuminate\Http\Request;
 use Presentation\Http\Validations\Schemas\IdSchema;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
 
-class DestroyProviderAdapter
+class DestroyBrandAdapter
 {
     private ValidatorServiceInterface $validatorService;
 
@@ -27,6 +27,7 @@ class DestroyProviderAdapter
             throw new InvalidBodyException($this->validatorService->getErrors());
         }
 
-        return new DestroyProviderCommand($request->route('id'));
+        return new DestroyBrandCommand($request->route('id'));
     }
 }
+

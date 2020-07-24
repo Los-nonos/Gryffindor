@@ -15,4 +15,6 @@ interface BrandServiceInterface
     public function findAllPaginated($page, $size): array;
 
     public function findByNameOrFail(string $name): Brand;
+
+    public function destroy(Brand $brand);
 }

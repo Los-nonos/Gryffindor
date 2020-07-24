@@ -65,4 +65,10 @@ class BrandRepository extends EntityRepository implements BrandRepositoryInterfa
 
         return $brandsList;
     }
+
+    public function destroy(Brand $brand)
+    {
+        $this->getEntityManager()->remove($brand);
+        $this->getEntityManager()->flush();
+    }
 }

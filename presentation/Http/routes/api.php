@@ -117,4 +117,5 @@ Route::prefix('providers')->group(function() {
     Route::post('/', Actions\Providers\StoreProviderAction::class)->name('storeProviders');
     Route::put('/{id}', Actions\Providers\UpdateProviderAction::class)->name('storeProviders');
     Route::get('/{id}', Actions\Providers\FindProviderAction::class)->name('storeProviders');
+    Route::delete('/{id}', Actions\Providers\DestroyProviderAction::class)->name('destroyProvider');
 });
