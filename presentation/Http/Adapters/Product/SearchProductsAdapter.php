@@ -39,6 +39,8 @@ class SearchProductsAdapter
             $request->query('page'),
             $request->query('size'),
             $request->query('orderBy'),
+            $request->query('minPrice'),
+            $request->query('maxPrice')
         );
     }
 

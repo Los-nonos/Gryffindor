@@ -26,7 +26,9 @@ class ProductRepository extends EntityRepository implements ProductRepositoryInt
         array $providers = null,
         int $page = null,
         int $limit = null,
-        string $order = null
+        string $order = null,
+        int $minPrice = null,
+        int $maxPrice = null
     ): array {
         $productQueryBuilder = new ProductQueryBuilder($this->getEntityManager());
         if ($query) {
@@ -43,6 +45,10 @@ class ProductRepository extends EntityRepository implements ProductRepositoryInt
         }
         if ($page && $limit) {
             $productQueryBuilder->addPageAndLimitBy($page, $limit);
+        }
+
+        if ($minPrice || $maxPrice) {
+            $productQueryBuilder->addPriceRange($minPrice, $maxPrice);
         }
 
         return $productQueryBuilder->executeQueryBuilder();

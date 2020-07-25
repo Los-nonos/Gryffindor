@@ -15,6 +15,8 @@ class SearchProductsQuery implements QueryInterface
     private ?int $page;
     private ?int $size;
     private ?string $orderBy;
+    private ?int $minPrice;
+    private ?int $maxPrice;
 
     public function __construct(
         ?string $query,
@@ -23,7 +25,9 @@ class SearchProductsQuery implements QueryInterface
         ?array $providers,
         ?int $page,
         ?int $size,
-        ?string $orderBy
+        ?string $orderBy,
+        ?int $minPrice,
+        ?int $maxPrice
     )
     {
         $this->query = $query;
@@ -33,6 +37,8 @@ class SearchProductsQuery implements QueryInterface
         $this->page = $page;
         $this->size = $size;
         $this->orderBy = $orderBy;
+        $this->minPrice = $minPrice;
+        $this->maxPrice = $maxPrice;
     }
 
     /**
@@ -89,5 +95,21 @@ class SearchProductsQuery implements QueryInterface
     public function getOrderBy(): ?string
     {
         return $this->orderBy;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getMinPrice(): ?int
+    {
+        return $this->minPrice;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getMaxPrice(): ?int
+    {
+        return $this->maxPrice;
     }
 }

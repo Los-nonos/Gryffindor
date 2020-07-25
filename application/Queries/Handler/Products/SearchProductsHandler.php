@@ -38,7 +38,7 @@ class SearchProductsHandler implements HandlerInterface
      */
     public function handle($query): ResultInterface
     {
-        if (!$query->getQuery() && !$query->getCategories() && !$query->getBrands() && !$query->getProviders()) {
+        if (!$query->getQuery() && !$query->getCategories() && !$query->getBrands() && !$query->getProviders() && !$query->getMinPrice() && !$query->getMaxPrice()) {
             $products = $this->productService->findAll($query->getPage(), $query->getSize());
             $totalCount = $this->productService->count();
             return new ProductListResult($products, $totalCount);
@@ -47,6 +47,8 @@ class SearchProductsHandler implements HandlerInterface
         $queryInput = null;
         $brandIds = [];
         $categoriesIds = [];
+        $minPrice = 0;
+        $maxPrice = null;
 
         if (!empty($query->getQuery())) {
             $queryInput = $query->getQuery();
@@ -58,7 +60,7 @@ class SearchProductsHandler implements HandlerInterface
                 $brandIds[] = $brand->getId();
             }
         }
-        
+
         if($query->getCategories()) {
             foreach ($query->getCategories() as $categoryId) {
                 $category = $this->categoryService->findOneByIdOrFail($categoryId);
@@ -66,7 +68,15 @@ class SearchProductsHandler implements HandlerInterface
             }
         }
 
-        $products = $this->productService->findByQuery($queryInput, $categoriesIds, $brandIds, [], $query->getPage(), $query->getSize(), $query->getOrderBy());
+        if($query->getMinPrice()) {
+            $minPrice = $query->getMinPrice();
+        }
+
+        if($query->getMaxPrice()) {
+            $maxPrice = $query->getMaxPrice();
+        }
+
+        $products = $this->productService->findByQuery($queryInput, $categoriesIds, $brandIds, [], $query->getPage(), $query->getSize(), $query->getOrderBy(), $minPrice, $maxPrice);
         $totalCount = $this->productService->count();
 
         return new ProductListResult($products, $totalCount);

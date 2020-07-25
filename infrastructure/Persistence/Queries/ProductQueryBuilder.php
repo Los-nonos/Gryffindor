@@ -141,4 +141,15 @@ class ProductQueryBuilder extends EntityRepository
         $this->page = $page;
         $this->limit = $limit;
     }
+
+    public function addPriceRange(int $minPrice, int $maxPrice)
+    {
+        $this->dqlQuery->where('p.price BETWEEN :minPrice AND :maxPrice')
+            ->setParameter('minPrice', $minPrice)
+            ->setParameter('maxPrice', $maxPrice);
+
+        $this->filteredProducts = $this->dqlQuery->getQuery()->getResult();
+
+        return $this;
+    }
 }

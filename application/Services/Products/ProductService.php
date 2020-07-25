@@ -33,12 +33,13 @@ class ProductService implements ProductServiceInterface
         return $this->repository->findAllPaginated($page, $size);
     }
 
-    public function findByQuery($query, $categories, $brands, $provider, $page, $size, $orderBy): array
+    public function findByQuery($query, $categories, $brands, $provider, $page, $size, $orderBy, $minPrice, $maxPrice): array
     {
         $page = $page ? $page : 1;
         $size = $size ? $size : 10;
+        $maxPrice = $maxPrice ? $maxPrice : 1000000;
 
-        return $this->repository->findByQuery($query, $categories, $brands, $provider, $page, $size, $orderBy);
+        return $this->repository->findByQuery($query, $categories, $brands, $provider, $page, $size, $orderBy, $minPrice, $maxPrice);
     }
 
     public function count(): int
