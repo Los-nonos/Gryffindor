@@ -35,7 +35,7 @@ class IndexProductStockHandler implements HandlerInterface
         $productList = [];
 
         foreach ($products as $product) {
-            if($product->getStock->getQuantity() <= $query->getMinValue()) {
+            if($product->getStock()->getQuantity() <= $query->getMinValue()) {
                 array_push($productList, $product);
             }
         }
