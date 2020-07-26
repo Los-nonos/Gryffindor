@@ -115,4 +115,9 @@ class ProductService implements ProductServiceInterface
 
         return $productList;
     }
+
+    public function destroy(Product $product)
+    {
+        $this->repository->destroy($product);
+    }
 }

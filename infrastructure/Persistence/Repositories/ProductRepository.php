@@ -100,4 +100,10 @@ class ProductRepository extends EntityRepository implements ProductRepositoryInt
     {
         return $this->findOneBy(['uuid' => $uuid]);
     }
+
+    public function destroy(Product $product)
+    {
+        $this->getEntityManager()->remove($product);
+        $this->getEntityManager()->flush();
+    }
 }

@@ -19,4 +19,6 @@ interface ProductRepositoryInterface
     public function findOneByUuid(string $uuid): ?Product;
 
     public function count(array $criteria);
+
+    public function destroy(Product $product);
 }

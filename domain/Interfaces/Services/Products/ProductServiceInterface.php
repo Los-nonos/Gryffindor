@@ -23,4 +23,6 @@ interface ProductServiceInterface
     public function findOneByUuidOrFail(string $uuid): Product;
 
     public function modifyProductsStock($products): array;
+
+    public function destroy(Product $product);
 }
