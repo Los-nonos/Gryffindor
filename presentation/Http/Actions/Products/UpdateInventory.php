@@ -13,6 +13,6 @@ class UpdateInventory
 
     public function __invoke()
     {
-
+        //out of mvp
     }
 }

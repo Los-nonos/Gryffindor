@@ -5,6 +5,7 @@ namespace Application\Commands\Handler\Products;
 
 
 use Application\Commands\Command\Products\StoreProductCommand;
+use Application\Exceptions\StockInvalidQuantity;
 use Application\Services\Category\CategoryServiceInterface;
 use Domain\Entities\Characteristic;
 use Domain\Entities\Filter;
@@ -45,6 +46,7 @@ class StoreProductHandler implements HandlerInterface
 
     /**
      * @param StoreProductCommand $command
+     * @throws StockInvalidQuantity
      */
     public function handle($command) : void
     {
@@ -74,6 +76,8 @@ class StoreProductHandler implements HandlerInterface
 
         $characteristics = $command->getCharacteristics();
 
+        $images = $command->getImages();
+
         foreach ($characteristics as $characteristic) {
             $characteristicObject = new Characteristic();
             $characteristicObject->setName($characteristic['name']);
@@ -83,8 +87,15 @@ class StoreProductHandler implements HandlerInterface
             $product->addCharacteristics($characteristicObject);
         }
 
+        foreach ($images as $image) {
+            $imageObject = new Characteristic();
+            $imageObject->setName('image');
+            $imageObject->setProperty($image);
+            $imageObject->setProduct($product);
+
+            $product->addCharacteristics($imageObject);
+        }
+
         $this->productService->persist($product);
-
     }
-
 }

@@ -7,15 +7,15 @@ namespace Application\Commands\Command\Products;
 use Infrastructure\CommandBus\Command\CommandInterface;
 use Money\Money;
 
-class StoreProductCommand implements CommandInterface
+class UpdateProductCommand implements CommandInterface
 {
-
+    private int $id;
     private string $name;
     private string $description;
     private int $price;
     private array $categories;
     private int $stock;
-    private float $taxes;
+    private int $taxes;
     private array $brands;
     private array $characteristics;
     private string $purchaseOrder;
@@ -24,6 +24,7 @@ class StoreProductCommand implements CommandInterface
 
     public function __construct
     (
+        int $id,
         string $name,
         string $description,
         array $images,
@@ -37,17 +38,26 @@ class StoreProductCommand implements CommandInterface
         int $providerId
     )
     {
+        $this->id = $id;
         $this->name = $name;
         $this->description = $description;
         $this->images = $images;
         $this->price = $price * 100;
         $this->categories = $categories;
         $this->stock = $stock;
-        $this->taxes = $taxes;
+        $this->taxes = $taxes * 100;
         $this->brands = $brands;
         $this->characteristics = $characteristics;
         $this->purchaseOrder = $purchaseOrder;
         $this->providerId = $providerId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public function getName(): string

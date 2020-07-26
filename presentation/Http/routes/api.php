@@ -26,8 +26,6 @@ Route::prefix('users')->group(function() {
     Route::get('/{id}/enable', Actions\Users\EnableUserAction::class)->name('enableUser');
 
     Route::get('/{id}/disable', Actions\Users\DisableUserAction::class)->name('disableUser');
-
-    Route::get('/{id}', Actions\Users\ShowUserAction::class)->name('showOneUser');
 });
 
 Route::group([
@@ -60,7 +58,7 @@ Route::group([
     'prefix' => 'products'
 ],function ($router) {
     Route::put('/{id}', Actions\Products\UpdateProductAction::class)->name('updateProduct');
-    Route::get('/{uuid}', Actions\Products\FindProductAction::class)->name('findProduct');
+    Route::get('/{id}', Actions\Products\FindProductAction::class)->name('findProduct');
     Route::delete('/{id}', Actions\Products\DestroyProductAction::class)->name('destroyProduct');
     Route::post('/', Actions\Products\StoreProductAction::class)->name('createProduct');
 });
@@ -78,9 +76,6 @@ Route::prefix('inventory')->group(function () {
 
 Route::prefix('filters')->group(function () {
     Route::get('/', Actions\Filters\IndexFiltersAction::class)->name('indexFilters');
-    Route::post('/', Actions\Filters\StoreFiltersAction::class)->name('addFilter');
-    Route::put('/{id}', Actions\Filters\UpdateFiltersAction::class)->name('updateFilter');
-    Route::delete('/{id}', Actions\Filters\DestroyFilterAction::class)->name('destroyFilter');
 });
 
 Route::prefix('categories')->group(function () {

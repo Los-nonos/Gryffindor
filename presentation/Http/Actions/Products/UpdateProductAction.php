@@ -6,11 +6,14 @@ namespace Presentation\Http\Actions\Products;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Presentation\Http\Adapters\Product\UpdateProductAdapter;
 use Presentation\Http\Enums\HttpCodes;
 
 class UpdateProductAction
 {
-    public function __construct()
+    private UpdateProductAdapter $adapter;
+
+    public function __construct(UpdateProductAdapter $adapter)
     {
 
     }

@@ -55,6 +55,7 @@ class StoreProductAdapter
         return new StoreProductCommand(
             $request->input( 'name'),
             $request->input('description'),
+            $request->input('images'),
             $request->input('price'),
             $request->input('categories'),
             $request->input('stock'),
