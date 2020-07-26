@@ -23,6 +23,7 @@ class FindProductPresenter
             'id' => $product->getId(),
             'title' => $product->getTitle(),
             'description' => $product->getDescription(),
+            'images' => $this->getImages($product->getCharacteristics()),
             'price' => $product->getPrice(),
             'taxes' => $product->getTaxes(),
             'characteristics' => $this->getCharacteristics($product->getCharacteristics()),
@@ -58,14 +59,33 @@ class FindProductPresenter
 
 
         foreach ($characteristics as $characteristic) {
-            array_push($characteristicsList, [
-                'id' => $characteristic->getId(),
-                'name' => $characteristic->getName(),
-                'value' => $characteristic->getProperty(),
-            ]);
+            if($characteristic->getName() !== 'image') {
+                array_push($characteristicsList, [
+                    'id' => $characteristic->getId(),
+                    'name' => $characteristic->getName(),
+                    'value' => $characteristic->getProperty(),
+                ]);
+            }
         }
 
         return $characteristicsList;
+    }
+
+    private function getImages($characteristics) {
+        $imagesList = [];
+
+        if(!$characteristics) {
+            return $imagesList;
+        }
+
+
+        foreach ($characteristics as $characteristic) {
+            if($characteristic->getName() === 'image') {
+                array_push($imagesList, $characteristic->getProperty());
+            }
+        }
+
+        return $imagesList;
     }
 
     private function getBrands($brands)

@@ -39,11 +39,28 @@ class IndexProductsHomePresenter
             array_push($itemList, [
                 'id' => $product->getId(),
                 'title' => $product->getTitle(),
-                //'image' => $product->getImage(), // TODO: add line when added image service
+                'images' => $this->getImages($product->getCharacteristics()),
                 'description' => $product->getDescription(),
             ]);
         }
 
         return $itemList;
+    }
+
+    private function getImages($characteristics) {
+        $imagesList = [];
+
+        if(!$characteristics) {
+            return $imagesList;
+        }
+
+
+        foreach ($characteristics as $characteristic) {
+            if($characteristic->getName() === 'image') {
+                array_push($imagesList, $characteristic->getProperty());
+            }
+        }
+
+        return $imagesList;
     }
 }
