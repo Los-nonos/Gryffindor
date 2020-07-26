@@ -23,7 +23,11 @@ class EnableUserHandler implements HandlerInterface
     {
         $user = $this->userService->findOneByIdOrFail($command->getId());
 
-        $user->setIsActive(true);
+        if($user->isActive()) {
+            $user->setIsActive(true);
+        } else {
+            $user->setIsActive(false);
+        }
 
         $this->userService->update();
     }
