@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://www.zeepcommerce.xyz', 'http://10.5.0.6', 'http://10.5.0.7:3003', 'http://64.225.42.26:3003', 'http://64.225.42.26:3000'],
+    'allowed_origins' => ['http://zeepcommerce.xyz', 'http://10.5.0.6', 'http://10.5.0.7:3003', 'http://64.225.42.26:3003', 'http://64.225.42.26:3000'],
 
     'allowed_origins_patterns' => [],
 
