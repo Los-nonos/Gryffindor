@@ -28,7 +28,7 @@ class SearchProductsForHomeAction
 
     public function __invoke(Request $request)
     {
-        $query = new SearchProductsQuery(null, null,null,null,1,100, null);
+        $query = new SearchProductsQuery(null, null,null,null,1,100, null, 0, null);
 
         $result = $this->queryBus->handle($query);
 
