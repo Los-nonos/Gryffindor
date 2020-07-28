@@ -24,7 +24,10 @@ class IndexProductsPresenter
                 'title' => $product->getTitle(),
                 'description' => $product->getDescription(),
                 'images' => $this->getImages($product->getCharacteristics()),
-                'price' => $product->getPrice(),
+                'price' => [
+                    'amount' => ($product->getPrice()->getAmount() / 100),
+                    'currency' => $product->getPrice()->getCurrency()
+                ],
                 'taxes' => $product->getTaxes(),
                 'characteristics' => $this->getCharacteristics($product->getCharacteristics()),
                 'categories' => $this->getCategories($product->getCategories()),
@@ -66,11 +69,13 @@ class IndexProductsPresenter
 
 
         foreach ($characteristics as $characteristic) {
-            array_push($characteristicsList, [
-                'id' => $characteristic->getId(),
-                'name' => $characteristic->getName(),
-                'value' => $characteristic->getProperty(),
-            ]);
+            if($characteristic->getName() !== 'image') {
+                array_push($characteristicsList, [
+                    'id' => $characteristic->getId(),
+                    'name' => $characteristic->getName(),
+                    'value' => $characteristic->getProperty(),
+                ]);
+            }
         }
 
         return $characteristicsList;
