@@ -28,7 +28,10 @@ class IndexProductsPresenter
                     'amount' => ($product->getPrice()->getAmount() / 100),
                     'currency' => $product->getPrice()->getCurrency()
                 ],
-                'taxes' => $product->getTaxes(),
+                'taxes' => [
+                    'amount' => ($product->getTaxes()->getAmount() / 100),
+                    'currency' => $product->getPrice()->getCurrency()
+                ],
                 'characteristics' => $this->getCharacteristics($product->getCharacteristics()),
                 'categories' => $this->getCategories($product->getCategories()),
                 'brand' => $this->getBrands($product->getBrands()),

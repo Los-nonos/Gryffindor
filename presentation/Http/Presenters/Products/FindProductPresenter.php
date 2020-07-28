@@ -5,6 +5,7 @@ namespace Presentation\Http\Presenters\Products;
 
 
 use Application\Queries\Results\Products\FindProductResult;
+use Domain\Entities\Provider;
 
 class FindProductPresenter
 {
@@ -24,11 +25,20 @@ class FindProductPresenter
             'title' => $product->getTitle(),
             'description' => $product->getDescription(),
             'images' => $this->getImages($product->getCharacteristics()),
-            'price' => $product->getPrice(),
-            'taxes' => $product->getTaxes(),
+            'price' => [
+                'amount' => ($product->getPrice()->add($product->getTaxes())->getAmount() / 100),
+                'currency' => $product->getPrice()->getCurrency()
+            ],
+            'taxes' => [
+                'amount' => ($product->getTaxes()->getAmount() / 100),
+                'currency' => $product->getPrice()->getCurrency()
+            ],
             'characteristics' => $this->getCharacteristics($product->getCharacteristics()),
             'categories' => $this->getCategories($product->getCategories()),
             'brand' => $this->getBrands($product->getBrands()),
+            'provider' => $this->getProvider($product->getProviders()),
+            'stock' => $product->getStock()->getQuantity(),
+            'purchaseOrderNumber' => $product->getPurchaseOrder()[0]->getPurchaseNumber(),
         ];
     }
 
@@ -102,5 +112,24 @@ class FindProductPresenter
         ]);
 
         return $brandList;
+    }
+
+    /**
+     * @param Provider[] $providers
+     * @return array
+     */
+    private function getProvider(array $providers)
+    {
+        $providerList = [];
+
+        foreach ($providers as $provider) {
+            array_push($providerList, [
+                'id' => $provider->getId(),
+                'name' => $provider->getName(),
+                'businessName' => $provider->getBusinessName(),
+            ]);
+        }
+
+        return $providerList;
     }
 }

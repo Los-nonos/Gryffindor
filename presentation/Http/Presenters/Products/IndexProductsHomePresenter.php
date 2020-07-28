@@ -34,13 +34,17 @@ class IndexProductsHomePresenter
 
         for ($i = 0; $i < 3; $i++)
         {
-            $item = random_int(0, $itemCount);
+            $item = random_int(0, $itemCount - 1);
             $product = $items[$item];
             array_push($itemList, [
                 'id' => $product->getId(),
                 'title' => $product->getTitle(),
                 'images' => $this->getImages($product->getCharacteristics()),
                 'description' => $product->getDescription(),
+                'price' => [
+                    'amount' => ($product->getPrice()->add($product->getTaxes())->getAmount() / 100),
+                    'currency' => $product->getPrice()->getCurrency()
+                ],
             ]);
         }
 

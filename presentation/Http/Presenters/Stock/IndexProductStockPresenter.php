@@ -25,9 +25,12 @@ class IndexProductStockPresenter
                 'product' => [
                     'id' => $product->getId(),
                     'title' => $product->getTitle(),
-                    'price' => $product->getPrice(),
                     'brand' => $product->getBrands()->getName(),
                     'description' => $product->getDescription(),
+                    'price' => [
+                        'amount' => ($stock->getProduct()->getPrice()->add($stock->getProduct()->getTaxes())->getAmount() / 100),
+                        'currency' => $stock->getProduct()->getPrice()->getCurrency(),
+                    ],
                 ],
                 'quantity' => $stock->getQuantity(),
                 'remanentQuantity' => $stock->getRemanentQuantity(),

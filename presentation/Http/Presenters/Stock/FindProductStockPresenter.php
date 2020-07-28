@@ -23,6 +23,10 @@ class FindProductStockPresenter
             'product' => [
                 'id' => $stock->getProduct()->getId(),
                 'title' => $stock->getProduct()->getTitle(),
+                'price' => [
+                    'amount' => ($stock->getProduct()->getPrice()->add($stock->getProduct()->getTaxes())->getAmount() / 100),
+                    'currency' => $stock->getProduct()->getPrice()->getCurrency(),
+                ],
                 'brand' => $stock->getProduct()->getBrands()[0]->getName(),
             ],
             'quantity' => $stock->getQuantity(),

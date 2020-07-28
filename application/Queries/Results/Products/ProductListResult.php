@@ -4,6 +4,7 @@
 namespace Application\Queries\Results\Products;
 
 
+use Domain\Entities\Product;
 use Infrastructure\QueryBus\Result\ResultInterface;
 
 class ProductListResult implements ResultInterface
@@ -19,7 +20,7 @@ class ProductListResult implements ResultInterface
     }
 
     /**
-     * @return array
+     * @return Product[]
      */
     public function getProducts(): array
     {
