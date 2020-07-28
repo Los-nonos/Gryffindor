@@ -7,6 +7,7 @@ namespace Presentation\Http\Actions\Products;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Infrastructure\CommandBus\CommandBusInterface;
+use Presentation\Http\Adapters\Product\DestroyProductAdapter;
 use Presentation\Http\Enums\HttpCodes;
 
 class DestroyProductAction

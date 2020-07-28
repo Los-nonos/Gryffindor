@@ -5,6 +5,7 @@ namespace Presentation\Http\Adapters\Product;
 
 
 use App\Exceptions\InvalidBodyException;
+use Application\Commands\Command\Products\DestroyProductCommand;
 use Illuminate\Http\Request;
 use Presentation\Http\Validations\Schemas\IdSchema;
 use Presentation\Http\Validations\Utils\ValidatorServiceInterface;
