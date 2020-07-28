@@ -24,7 +24,7 @@ class FindProductPresenter
             'title' => $product->getTitle(),
             'description' => $product->getDescription(),
             'images' => $this->getImages($product->getCharacteristics()),
-            'price' => $product->getPrice(),
+            'price' => $product->getPrice()/100,
             'taxes' => $product->getTaxes(),
             'characteristics' => $this->getCharacteristics($product->getCharacteristics()),
             'categories' => $this->getCategories($product->getCategories()),
