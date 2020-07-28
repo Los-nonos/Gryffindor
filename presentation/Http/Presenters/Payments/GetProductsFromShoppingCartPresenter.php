@@ -27,7 +27,7 @@ class GetProductsFromShoppingCartPresenter
             array_push($productsList, [
                 'id' => $product['product']->getId(),
                 'name' => $product['product']->getTitle(),
-                'price' => $product['product']->getPrice() + $product['product']->getTaxes(),
+                'price' => $product['product']->getPrice()/100 + $product['product']->getTaxes(),
                 'images' => $this->clearImages($product['product']->getCharacteristics()),
                 'characteristics' => $this->clearCharacteristics($product['product']->getCharacteristics()),
                 'brands' => $this->clearBrand($product['product']->getBrands()),
