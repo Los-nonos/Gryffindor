@@ -18,7 +18,7 @@ class PurchaseOrder
     private $provider;
 
     /**
-     * @var Money
+     * @var int
      */
     private $amount;
 
@@ -71,7 +71,7 @@ class PurchaseOrder
      */
     public function getAmount(): Money
     {
-        return $this->amount;
+        return Money::ARS($this->amount);
     }
 
     /**
@@ -79,7 +79,7 @@ class PurchaseOrder
      */
     public function setAmount(Money $amount): void
     {
-        $this->amount = $amount;
+        $this->amount = $amount->getAmount();
     }
 
     /**
