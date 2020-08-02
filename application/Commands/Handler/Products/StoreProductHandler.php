@@ -65,6 +65,7 @@ class StoreProductHandler implements HandlerInterface
         $product->setBrand($brand);
         $purchase = new PurchaseOrder();
         $purchase->setPurchaseNumber($command->getPurchaseNumber());
+        $purchase->setAmount($command->getPrice());
         $product->setPurchaseOrder([$purchase]);
         $provider = $this->providerService->findOneByIdOrFail($command->getProviderId());
         $provider->setName($command->getProviderId());
