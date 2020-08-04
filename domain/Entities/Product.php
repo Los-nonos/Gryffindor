@@ -94,9 +94,9 @@ class Product
     }
 
     /**
-     * @return array
+     * @return PurchaseOrder[]
      */
-    public function getPurchaseOrder(): array
+    public function getPurchaseOrder()
     {
         return $this->purchaseOrderNumber;
     }
