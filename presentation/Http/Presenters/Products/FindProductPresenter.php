@@ -114,10 +114,7 @@ class FindProductPresenter
         return $brandList;
     }
 
-    /**
-     * @param Provider[] $providers
-     */
-    private function getProvider(array $providers)
+    private function getProvider($providers)
     {
         $providerList = [];
 
