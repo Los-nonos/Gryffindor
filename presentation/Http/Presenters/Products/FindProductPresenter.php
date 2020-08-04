@@ -116,7 +116,6 @@ class FindProductPresenter
 
     /**
      * @param Provider[] $providers
-     * @return array
      */
     private function getProvider(array $providers)
     {
