@@ -34,4 +34,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'afip' => [
+        'pointOfSale' => 1,
+        'concept' => env('CONCEPT'),
+    ],
 ];

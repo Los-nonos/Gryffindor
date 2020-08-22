@@ -65,9 +65,6 @@ class PaymentService implements PaymentServiceInterface
             throw new ClientNotLogged();
         }
 
-        $base_url = env('BASE_URL');
-        $base_url = $base_url . '/auth/login';
-
         $body = [
             'access_token' => env('API_ACCESS_TOKEN'),
             'amount' => $data->getAmount(),
@@ -77,7 +74,16 @@ class PaymentService implements PaymentServiceInterface
             'customer_id' => $this->userData['id'],
         ];
 
-        $request = new Request('POST', $base_url, [ 'authorization' => $this->token ], $body);
+        $this->executeRequest('POST', '/payments/mercadopago/pay', $body);
+    }
+
+    public function executeRequest(string $method, string $endpoint, array $body)
+    {
+        $base_url = env('BASE_URL');
+        $base_url = $base_url . $endpoint;
+        $body['customer_id'] = $this->userData['id'];
+
+        $request = new Request($method, $base_url, [ 'authorization' => $this->token ], $body);
 
         $response = $this->client->send($request);
 
