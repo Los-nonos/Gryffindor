@@ -67,7 +67,7 @@ class AfipElectronicBillingHandler implements HandlerInterface
             $this->getNetAmountTaxed($products),
             $this->getTotalAmountNotTaxed($products),
             $this->getTotalTaxIva($products),
-            Money::ARS(''),
+            Money::ARS(''),//TODO: verify this and make this for b voucher
             $this->getTotalNetAmountNotTaxed($products),
         );
 
