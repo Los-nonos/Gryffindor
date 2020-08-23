@@ -27,7 +27,7 @@
         "predis/predis": "^1.1",
         "psr/cache": "1.0.0",
         "sendgrid/sendgrid": "~7",
-        "ext-http": "*"
+        "ext-http": "*",
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

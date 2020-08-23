@@ -42,6 +42,6 @@ class AfipService
             'expirationDate' => $command->getExpirationDate(),
         ];
 
-        $this->paymentService->executeRequest('POST', 'payments/afip/electronicbilling', $body);
+        return $this->paymentService->executeRequest('POST', 'payments/afip/electronicbilling', $body);
     }
 }

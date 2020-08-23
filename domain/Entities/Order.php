@@ -69,7 +69,7 @@ class Order
     }
 
     /**
-     * @param mixed $numberSell
+     * @param string $numberSell
      */
     public function setNumberSell($numberSell): void
     {

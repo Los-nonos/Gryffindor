@@ -7,7 +7,9 @@ namespace Presentation\Http\Actions\Payments;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Infrastructure\QueryBus\QueryBusInterface;
+use Presentation\Http\Adapters\Payments\AfipElectronicBillingAdapter;
 use Presentation\Http\Enums\HttpCodes;
+use Presentation\Http\Presenters\Payments\AfipElectronicBillingPresenter;
 
 class AfipElectronicBillingAction
 {
@@ -20,14 +22,20 @@ class AfipElectronicBillingAction
      * @var QueryBusInterface
      */
     private QueryBusInterface $queryBus;
+    /**
+     * @var AfipElectronicBillingPresenter
+     */
+    private AfipElectronicBillingPresenter $presenter;
 
     public function __construct(
         AfipElectronicBillingAdapter $adapter,
-        QueryBusInterface $queryBus
+        QueryBusInterface $queryBus,
+        AfipElectronicBillingPresenter $presenter
     )
     {
         $this->adapter = $adapter;
         $this->queryBus = $queryBus;
+        $this->presenter = $presenter;
     }
 
     public function __invoke(Request $request)
@@ -36,6 +44,8 @@ class AfipElectronicBillingAction
 
         $result = $this->queryBus->handle($query);
 
-        return new JsonResponse(['data' => ''], HttpCodes::CREATED);
+        $presenter = $this->presenter->fromResult($result);
+
+        return new JsonResponse(['data' => $presenter->getData(), 'voucher' => $presenter->createVoucherFile($result)], HttpCodes::CREATED);
     }
 }
